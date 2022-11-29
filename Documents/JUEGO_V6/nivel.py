@@ -6,6 +6,7 @@ from objetos import *
 from botínes import *
 from enemigos import *
 from jugador import *
+from obstaculos import *
 
 class Nivel:
     def __init__(self,nivel,pantalla):
@@ -22,7 +23,7 @@ class Nivel:
         self.enemigos = self.crear_enemigos()
         self.jugador = self.crear_jugador()
         self.pantalla = pantalla
-        self.nivel = [self.tiles,self.loot,self.objetos,self.enemigos,self.obstaculos,self.jugador.municiones]
+        self.nivel = [self.tiles,self.loot,self.objetos,self.enemigos,self.jugador.municiones]
 
         self.tiempo_activado = 0
         
@@ -38,7 +39,7 @@ class Nivel:
     def crear_mapa(self):
         tiles = []
         x = 0
-        y = 0
+        y = 50
         for fila in self.mapa:
             for tile in fila:
                 if tile == PLATAFORMA:
@@ -47,16 +48,37 @@ class Nivel:
                     tiles.append(Muro(x,y,ancho=50,alto=50,tipo=4))
                 elif tile == CAJA:
                     tiles.append(Objeto_Estatico(x,y,ancho=50,alto=50,tipo_desbloqueado=2))
+                elif tile == FONDO_ACIDO:
+                    tiles.append(Obstaculo(x,y,ancho=50,alto=50,tipo=1))
+                elif tile == TOP_ACIDO:
+                    tiles.append(Obstaculo(x,y,ancho=50,alto=50,tipo=0))
                 x += 50
 
             x = 0
             y += 50
         return tiles
 
+    def crear_obstaculos(self):
+        obstaculos = []
+        x = 0
+        y = 50
+        for fila in self.mapa:
+            for tile in fila:
+                if tile == FONDO_ACIDO:
+                    obstaculos.append(Obstaculo(x,y,ancho=50,alto=50,tipo=1))
+                elif tile == TOP_ACIDO:
+                    obstaculos.append(Obstaculo(x,y,ancho=50,alto=50,tipo=0))
+                x += 50
+
+            x = 0
+            y += 50
+        return obstaculos
+
+
     def crear_loot(self):
         loot = []
         x = 0
-        y = 0
+        y = 50
         for fila in self.mapa:
             for tile in fila:
                 if tile == LOOT:
@@ -94,19 +116,6 @@ class Nivel:
                     elif objeto["nombre"] == "final":
                         objetos.append(Objeto_Animado("final",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
         return objetos
-
-    def crear_obstaculos(self):
-        obstaculos = []
-        x = 0
-        y = 0
-        for fila in self.mapa:
-            for tile in fila:
-                if tile == PINCHO:
-                    obstaculos.append(Objeto(x,y,ancho=50,alto=50,tipo_desbloqueado=0))
-                x += 50
-            x = 0
-            y += 50
-        return obstaculos
 
     def colisiones(self,delta_ms):
         #MUROS
@@ -185,9 +194,9 @@ class Nivel:
         for lista in self.nivel:
             for elemento in lista:
                 elemento.renderizar(self.pantalla)
-        for enemigo in self.enemigos:
-            if enemigo == Enemigo_Distancia:
-                enemigo.municiones.renderizar(self.pantalla)
+                if type(elemento) == Enemigo_Distancia:
+                    for bala in elemento.municiones:
+                        bala.renderizar(self.pantalla)
         
                 
     

@@ -171,7 +171,7 @@ class Jugador:
         if not self.esta_saltando:
             self.sobre_plataforma = False
             for plataforma in plataformas:
-                if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico:
+                if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico or type(plataforma) == Muro:
                     if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
                         self.sobre_plataforma = True
                         break

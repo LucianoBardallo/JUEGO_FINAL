@@ -18,10 +18,11 @@ class FormNivel(Form):
         self.perder = False
         super().__init__(name, master_surface, x, y, w, h, color_background, imagen_background, color_border, active)
 
-        self.pb1 = ProgressBar(master=self,x=60,y=60,w=200,h=20,color_background=None,color_border=None,image_background=None,image_progress=CORAZON,value=10,value_max=10)
-        self.pb2 = ProgressBar(master=self,x=350,y=60,w=300,h=20,color_background=None,color_border=None,image_background=None,image_progress=BALA,value=15,value_max=15)
+        self.text1 = TextBox(master=self,x=-100,y=-10,w=1400,h=60,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\bar.png",text=None,font=None,font_size=None,font_color=None)
+        self.pb1 = ProgressBar(master=self,x=60,y=10,w=150,h=25,color_background=None,color_border=None,image_background=None,image_progress=CORAZON,value=5,value_max=5)
         
-        self.lista_widget = [self.pb1,self.pb2]
+        
+        self.lista_widget = [self.text1,self.pb1]
 
         
     def resetear(self):
@@ -56,6 +57,8 @@ class FormNivel(Form):
         super().draw()
         self.nivel_actual.renderizar()
         self.nivel_actual.jugador.renderizar(self.nivel_actual.pantalla)
+        for obstaculo in self.nivel_actual.obstaculos:
+            obstaculo.renderizar(self.nivel_actual.pantalla)
         for aux_widget in self.lista_widget:    
             aux_widget.draw()
         

@@ -5,17 +5,18 @@
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVMMMMMMMMMM",
-                    "MVVLLLLLLLLLVVVVMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVMMMMMM",
-                    "MPPPPPPPPPVVVVVVVVVMMMMM",
-                    "MMMMMMMMMVVVVVVVVVVMMMMM",
-                    "MMVLLLLLLLLVVVVVVVVVVVVM",
-                    "MMVVVVVVVVVVVVVVVVVVVVVM",
-                    "MMVVVVVVVVVVVVVVVVVVVVVM",
-                    "MMPPPPPPPPPPPPPPPPPPPPPM",
-                    "MMMMMMMMMMMMMMMMMMMMMMMM"
+                    "MVVVVVVVVVVVVVVVVVVVVVLM",
+                    "MVVVVVVVVVVVVVVVVVVVVVLM",
+                    "MPPVVPPPPPPPPPPPPPPPVVLM",
+                    "MVLVVVMLVVVVVVVVVVVVVVLM",
+                    "MVLVVPMLVVVVVVVVVVVVVVLM",
+                    "MVLVVVMLVVPPPPPPPPPPPPPM",
+                    "MVLVVPMLVVVVVVVVVVVVVVVM",
+                    "MvVVVVMLVVVVVVVVVVVVVVVM",
+                    "MVVVVPMPPPPPPPPPPPPPVVVM",
+                    "MVVVVVMMMMMMMMMMMMMMPPPM",
+                    "MPPPPPMMMMMMMMMMMMMMMMMM"
+            
             ],
             
             "enemigos":
@@ -23,12 +24,12 @@
                 {
                     "nombre":"soldado",  
                     "cantidad":2,
-                    "coordenadas":[[300,400,200],[800,190,200]]
+                    "coordenadas":[[500,340,150],[800,190,240]]
                 },
                 {   
                     "nombre":"artillero",   
                     "cantidad":0,
-                    "coordenadas":[[400,100,0]]
+                    "coordenadas":[[]]
                 }
             ],
             "objetos":
@@ -36,23 +37,23 @@
                 {
                 "nombre":"inicio",
                 "cantidad":1,
-                "coordenadas":[[70,130]]
+                "coordenadas":[[100,480]]
                 },
                 {
                 "nombre":"interruptor",
                 "cantidad":1,
-                "coordenadas":[[125,425]]
+                "coordenadas":[[100,125]]
                 },
                 {
                 "nombre":"final",
                 "cantidad":1,
-                "coordenadas":[[1050,380]]
+                "coordenadas":[[1050,430]]
                 }
             
             ],
             "jugador":
             {
-                "coordenadas":[[20,130]]
+                "coordenadas":[[120,450]]
             }
         },
         "nivel_2":
@@ -60,27 +61,27 @@
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
+            "MVVVLLLLLLLLLLLLLLLVVVVM",
             "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVLLLLLLLLLLLLLVVVVVM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
+            "MPVVPPPPPPPPPPPPPPPPPPPM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
             "MPVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVPPPM",
-            "MVPVPVPVPVPVPVPVPVVVVVVM",
-            "MSSSSSSSSSSSSSSSSSCVVVVM",
-            "MPPPPPPPPPPPPPPPPPPPPVCM",
-            "MVVVLLLLLLLLLLLLLLVVVVCM",
-            "MVVVVVVVVVVVVVVVVVVVVVCM",
-            "MVVVVVVVVVVVVVVVVVVVVVCM",
-            "MPPPPPPPPPPPPPPPPPPPPPPM"],
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
+            "MVVVPVLVPVLVPVLVPVLVPVVM",
+            "MVVVMVLVMVLVMVLVMVLVMVVM",
+            "MPPPPPPPPPPPPPPPPPPPPPPM",
+            "MMMMMMMMMMMMMMMMMMMMMMMM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
                     "cantidad":1,
-                    "coordenadas":[[500,400,200]]
+                    "coordenadas":[[500,400,200],[600,150,300]]
                 },
                 {   
                     "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
+                    "cantidad":1,
+                    "coordenadas":[[50,100,0]]
                 }
             ],
             "objetos":
@@ -93,12 +94,12 @@
                 {
                 "nombre":"interruptor",
                 "cantidad":1,
-                "coordenadas":[[70,75]]
+                "coordenadas":[[1100,475]]
                 },
                 {
                 "nombre":"final",
                 "cantidad":1,
-                "coordenadas":[[1050,80]]
+                "coordenadas":[[1050,130]]
                 }
             
             ],
@@ -112,17 +113,17 @@
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
-            "MVVVVVLLLLLLLLLLLVVVVVVM",
             "MVVVVVVVVVVVVVVVVVVVVVVM",
             "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MPPPPPPPPPPPPPPPPPPPPVVM",
             "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVLLLLLLLLLLLLLVVVVVVM",
+            "MPPPPVVPVVPVVPVVPVVPPPPM",
             "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVPVVPVVPVVPVVPVVPPPPM",
-            "MVVVMVVMVVMVVMVVMVVVVVVM",
-            "MVVVMCVMCVMCVMCVMCVVVVVM",
-            "MPPPPPPPPPPPPPPPPPPPPPPM"],
+            "MVVVVVVPVVVVVVVVPVVVVVVM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
+            "MVVVVVVVVVPPPPVVVVVVVVVM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM",
+            "MVVVVVVVVVVVVVVVVVVVVVVM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
@@ -162,17 +163,17 @@
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
+                    "MVVVVVMVVVVVVVVVVVVVVVVM",
+                    "MVVVVVMVVVVVVVVVVVVVVVVM",
+                    "MVVVVVMPPPPPPPPPPPPPPVVM",
+                    "MPPPVVMVVVVVVVVVVVVVVVVM",
+                    "MVVVVVMPVVVVVVVVVVVVVVVM",
+                    "MVVVVVMVVVVVVVVVVVVVVVVM",
+                    "MVVPPPMPVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPPPPPPPPPPPPPPPPM"],
+                    "MPPPPPPPVVVVVVVVVVVVVVVM",
+                    "MMMMMMMMPPPPPPPPPPPPPPPM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
@@ -214,13 +215,13 @@
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVPPPPPPPPPPPPPPPPVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVPPPPPPPPPPPPPPPPVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVPPPPPPPPPPPPPPPPVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVPPPPPPPPPPPPPPPPVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MPPPPPPPPPPPPPPPPPPPPPPM"],
             "enemigos":[
@@ -264,15 +265,15 @@
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPPPPPPPPPPPPPPPPM"],
+                    "MPPPVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVPVPVPVPVPVPVPPPM",
+                    "MVVVVVVPMTTTTTTTTTTTTTTM",
+                    "MVVVVVPMMAAAAAAAAAAAAAAM",
+                    "MVVVVPMMMAAAAAAAAAAAAAAM",
+                    "MVVVPMMMMAAAAAAAAAAAAAAM",
+                    "MVVVMMMMMAAAAAAAAAAAAAAM",
+                    "MVVVMMMMMAAAAAAAAAAAAAAM",
+                    "MPPPMMMMMAAAAAAAAAAAAAAM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
@@ -315,14 +316,14 @@
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
                     "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPPPPPPPPPPPPPPPPM"],
+                    "MPPPPVVPVVPVVPVVPVVPPPPM",
+                    "MTTTTTTTTTTTTTTTTTTTTTTM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM",
+                    "MAAAAAAAAAAAAAAAAAAAAAAM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
@@ -361,18 +362,18 @@
         "nivel_8":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":["VVVVVVVVVVVVVVVVVVVVVVVV",
-            "VVVVVLVVVVVVVVVVVVLLLLLV",
-            "VVVVVLVVVVVVVVVVVVVVVVVV",
-            "VVVVVLVVVVVVVVVVVVPPPPPV",
-            "VPPPVLVPPVVVVVLLLLLLLLLV",
-            "VVVVVLVVVVVVVVVVVVVVVVVV",
-            "VVVVVLVVVVVPPPPPPPPPPPPV",
-            "VVVPPPVVVVVVVVVVVVVVVVVV",
-            "VVVVVVVVVVVVVVVVVVVVVVVV",
-            "VVVVVVVVVCVVVVVVVVVVVVVV",
-            "VVVVVVVVVCVVVVVVVVVVVVVV",
-            "PPPPPPPPPPPPPPPPPPPPPPPP"],
+            "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MPPPVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MVVVVVVVVVVVVVVVVVVVVVVM",
+                    "MPPPPPPPPPPPPPPPPPPPPPPM",
+                    "MMMMMMMMMMMMMMMMMMMMMMMM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
