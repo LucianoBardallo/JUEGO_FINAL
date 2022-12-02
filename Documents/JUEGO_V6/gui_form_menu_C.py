@@ -39,6 +39,8 @@ class FormMenuC(Form):
     def on_click_boton_nivel(self,parametro):
         self.set_active(parametro)
         self.forms_dict["pausa"].cambiar_nivel(parametro)
+        self.forms_dict["you_win"].cambiar_nivel(parametro)
+        self.forms_dict["you_lose"].cambiar_nivel(parametro)
 
 
     def draw(self): 

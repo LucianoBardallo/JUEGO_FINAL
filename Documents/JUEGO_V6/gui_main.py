@@ -24,16 +24,17 @@ form_nivel_1 = FormNivel(name="nivel_1",master_surface = PANTALLA,x=0,y=0,w=ANCH
 form_nivel_2 = FormNivel(name="nivel_2",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_nivel_3 = FormNivel(name="nivel_3",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_nivel_4 = FormNivel(name="nivel_4",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
-form_nivel_5 = FormNivel(name="nivel_5",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
-form_nivel_6 = FormNivel(name="nivel_6",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
-form_nivel_7 = FormNivel(name="nivel_7",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
-form_nivel_final = FormNivel(name="nivel_8",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
+# form_nivel_5 = FormNivel(name="nivel_5",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
+# form_nivel_6 = FormNivel(name="nivel_6",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
+# form_nivel_7 = FormNivel(name="nivel_7",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
+# form_nivel_8 = FormNivel(name="nivel_8",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_menu_pausa = FormMenuPausa(name="pausa",master_surface = PANTALLA,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 form_menu_pausa_opciones = FormMenuPausaOpciones(name="pausa_opciones",master_surface = PANTALLA,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 form_win = FormWin(name="you_win",master_surface = PANTALLA,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 form_lose = FormLose(name="you_lose",master_surface = PANTALLA,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 
-
+timer_1s = pygame.USEREVENT + 0
+pygame.time.set_timer(timer_1s,1000)
 
 while True:     
     teclas = pygame.key.get_pressed()
@@ -44,9 +45,12 @@ while True:
             sys.exit()
 
     keys = pygame.key.get_pressed()
+
+    
+
     delta_ms = clock.tick(FPS)
 
-    # lista_form_nivel = [form_nivel_1,form_nivel_2,form_nivel_3,form_nivel_4,form_nivel_5,form_nivel_6,form_nivel_7,form_nivel_final]
+    # lista_form_nivel = [form_nivel_1,form_nivel_2,form_nivel_3,form_nivel_4,form_nivel_5,form_nivel_6,form_nivel_7,form_nivel_8]
 
     if(form_menu_A.active):
         form_menu_A.update(eventos)
@@ -73,40 +77,40 @@ while True:
         form_win.draw()
     
     elif(form_lose.active):
-        form_lose.update(eventos)
+        form_lose.update(eventos) 
         form_lose.draw()
 
     elif(form_nivel_1.active):
-        form_nivel_1.update(eventos, teclas, delta_ms)
+        form_nivel_1.update(eventos, teclas, delta_ms, timer_1s)
         form_nivel_1.draw()
     
     elif(form_nivel_2.active):
-        form_nivel_2.update(eventos, teclas, delta_ms)
+        form_nivel_2.update(eventos, teclas, delta_ms, timer_1s)
         form_nivel_2.draw()
     
     elif(form_nivel_3.active):
-        form_nivel_3.update(eventos, teclas, delta_ms)
+        form_nivel_3.update(eventos, teclas, delta_ms, timer_1s)
         form_nivel_3.draw()
 
     elif(form_nivel_4.active):
-        form_nivel_4.update(eventos, teclas, delta_ms)
+        form_nivel_4.update(eventos, teclas, delta_ms, timer_1s)
         form_nivel_4.draw()
     
-    elif(form_nivel_5.active):
-        form_nivel_5.update(eventos, teclas, delta_ms)
-        form_nivel_5.draw()
+    # elif(form_nivel_5.active):
+    #     form_nivel_5.update(eventos, teclas, delta_ms, timer_1s)
+    #     form_nivel_5.draw()
     
-    elif(form_nivel_6.active):
-        form_nivel_6.update(eventos, teclas, delta_ms)
-        form_nivel_6.draw()
+    # elif(form_nivel_6.active):
+    #     form_nivel_6.update(eventos, teclas, delta_ms, timer_1s)
+    #     form_nivel_6.draw()
     
-    elif(form_nivel_7.active):
-        form_nivel_7.update(eventos, teclas, delta_ms)
-        form_nivel_7.draw()
+    # elif(form_nivel_7.active):
+    #     form_nivel_7.update(eventos, teclas, delta_ms, timer_1s)
+    #     form_nivel_7.draw()
 
-    elif(form_nivel_final.active):
-        form_nivel_final.update(eventos, teclas, delta_ms)
-        form_nivel_final.draw()
+    # elif(form_nivel_8.active):
+    #     form_nivel_8.update(eventos, teclas, delta_ms, timer_1s)
+    #     form_nivel_8.draw()
 
 
     # for form in lista_form_nivel:

@@ -62,7 +62,7 @@ class Enemigo:
     def verificar_plataforma(self, plataformas):
         self.sobre_plataforma = False
         for plataforma in plataformas:
-            if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico:
+            if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico or type(plataforma) == Muro:
                 if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
                     self.sobre_plataforma = True
                     break
@@ -137,15 +137,17 @@ class Enemigo_Melee(Enemigo):
             self.cambiar_y(self.mover_y)
 
 class Enemigo_Distancia(Enemigo):
-    def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0):
+    def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0,direccion=DERECHA):
         super().__init__(x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla)
 
+        self.direccion = direccion
         self.rectangulo_vision = pygame.Rect(self.rectangulo_colision)
+        self.rectangulo_vision.centerx = 0
         self.rectangulo_vision.centery = y + 75
         self.rectangulo_vision.height = ALTURA_PIES * 3
-        self.rectangulo_vision.width = 400
+        self.rectangulo_vision.width = 1200
 
-        self.animacion = self.parado[DERECHA]
+        self.animacion = self.parado[direccion]
 
         self.municiones = []
         self.disparo_cooldown = 0
@@ -167,8 +169,8 @@ class Enemigo_Distancia(Enemigo):
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
-                self.disparo_cooldown = 40
-                bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=4)
+                self.disparo_cooldown = 120
+                bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
                 self.municiones.append(bala)
 
     def actualizar_bala(self,delta_ms,pantalla):

@@ -5,6 +5,7 @@ from balas import Bala
 from enemigos import *
 from plataformas import *
 from objetos import *
+from obstaculos import *
 import sys
 
 class Jugador:
@@ -86,11 +87,15 @@ class Jugador:
 
         self.rectangulo_derecha = pygame.Rect(self.rectangulo_colision)
         self.rectangulo_derecha.width = ALTURA_PIES
+        self.rectangulo_derecha.height = 70
         self.rectangulo_derecha.x = x + self.rect.width - ALTURA_PIES * 3
+        self.rectangulo_derecha.y = y + ALTURA_PIES * 2
 
         self.rectangulo_izquierda = pygame.Rect(self.rectangulo_colision)
         self.rectangulo_izquierda.width = ALTURA_PIES
+        self.rectangulo_izquierda.height = 70
         self.rectangulo_izquierda.x = x + ALTURA_PIES * 2
+        self.rectangulo_izquierda.y = y + ALTURA_PIES * 2
     
         self.esta_saltando = False
         self.esta_cayendo = False
@@ -119,17 +124,22 @@ class Jugador:
 
         self.municiones = []
         self.disparo_cooldown = 0
-        self.municion = 15
+        self.municion = 100
+
+        self.move_alloved = {}
+        self.move_alloved[IZQUIERDA] = True
+        self.move_alloved[DERECHA] = True
 
 
     #ACCIONES
     def caminar(self,direccion:int): 
         if self.vivo:
             self.direccion = direccion
-            self.mover_x = self.velocidad_movimiento[self.direccion]
             self.esta_caminando = True
-            if self.esta_saltando:
-                self.mover_x = self.velocidad_movimiento[self.direccion] // 2
+            if self.move_alloved[self.direccion]:
+                self.mover_x = self.velocidad_movimiento[self.direccion]
+                if self.esta_saltando:
+                    self.mover_x = self.velocidad_movimiento[self.direccion] // 2
          
     def parar(self):
         self.esta_caminando = False
@@ -165,9 +175,9 @@ class Jugador:
     def limitar_salto(self):
         if self.rectangulo_pies.y < self.comienzo_salto - 150:
             self.esta_saltando = False
+ 
 
-
-    def verificar_plataforma(self, plataformas):
+    def verificar_plataforma(self, plataformas,obstaculos):
         if not self.esta_saltando:
             self.sobre_plataforma = False
             for plataforma in plataformas:
@@ -175,7 +185,12 @@ class Jugador:
                     if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
                         self.sobre_plataforma = True
                         break
-            
+            for obstaculo in obstaculos:
+                if type(obstaculo) == Obstaculo_Pincho:
+                    if self.rectangulo_pies.colliderect(obstaculo.rectangulo_pies):
+                        self.sobre_plataforma = True
+                        break
+                
 
     def aplicar_gravedad(self):
         if not self.esta_saltando:
@@ -207,7 +222,7 @@ class Jugador:
             self.vivo = False
     
     #MOVIMIENTO
-    def cambiar_x(self,delta_x:int):
+    def cambiar_x(self,delta_x):
         self.rect.x += delta_x
         self.rectangulo_colision.x += delta_x
         self.rectangulo_pies.x += delta_x
@@ -326,12 +341,12 @@ class Jugador:
             self.parar()      
 
     #MOVIMIENTO
-    def hacer_movimiento(self,delta_ms,plataformas):
+    def hacer_movimiento(self,delta_ms,plataformas,obstaculos):
         self.tiempo_transcurrido_movimiento += delta_ms
         if(self.tiempo_transcurrido_movimiento >= self.move_rate_ms):
             self.tiempo_transcurrido_movimiento = 0
 
-            self.verificar_plataforma(plataformas)
+            self.verificar_plataforma(plataformas,obstaculos)
             self.aplicar_gravedad()
             self.cambiar_y(self.mover_y)
             if self.vivo:
@@ -345,11 +360,11 @@ class Jugador:
         self.actualizar_frames(delta_ms)      
 
     #ACTUALIZACION PRINCIPAL
-    def actualizar(self,delta_ms,pantalla,teclas,eventos,plataformas):
+    def actualizar(self,delta_ms,pantalla,teclas,eventos,plataformas,obstaculos):
         self.eventos(teclas,eventos)
         # if not self.ganar:
         self.comprobar_vidas()
-        self.hacer_movimiento(delta_ms,plataformas)
+        self.hacer_movimiento(delta_ms,plataformas,obstaculos)
         self.hacer_animaciones(delta_ms)
         self.actualizar_invensible(delta_ms)
         self.actualizar_bala(delta_ms,pantalla)

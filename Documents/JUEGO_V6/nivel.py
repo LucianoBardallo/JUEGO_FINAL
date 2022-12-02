@@ -7,6 +7,7 @@ from botínes import *
 from enemigos import *
 from jugador import *
 from obstaculos import *
+from boss import Boss
 
 class Nivel:
     def __init__(self,nivel,pantalla):
@@ -26,6 +27,8 @@ class Nivel:
         self.nivel = [self.tiles,self.loot,self.objetos,self.enemigos,self.jugador.municiones]
 
         self.tiempo_activado = 0
+        self.puntuacion = 0
+        self.tiempo_juego = self.nivel_data["tiempo"]
         
         
     def crear_jugador(self):
@@ -48,10 +51,8 @@ class Nivel:
                     tiles.append(Muro(x,y,ancho=50,alto=50,tipo=4))
                 elif tile == CAJA:
                     tiles.append(Objeto_Estatico(x,y,ancho=50,alto=50,tipo_desbloqueado=2))
-                elif tile == FONDO_ACIDO:
-                    tiles.append(Obstaculo(x,y,ancho=50,alto=50,tipo=1))
-                elif tile == TOP_ACIDO:
-                    tiles.append(Obstaculo(x,y,ancho=50,alto=50,tipo=0))
+                elif tile == PISO:
+                    tiles.append(Muro(x,y,ancho=50,alto=50,tipo=1))
                 x += 50
 
             x = 0
@@ -68,6 +69,8 @@ class Nivel:
                     obstaculos.append(Obstaculo(x,y,ancho=50,alto=50,tipo=1))
                 elif tile == TOP_ACIDO:
                     obstaculos.append(Obstaculo(x,y,ancho=50,alto=50,tipo=0))
+                elif tile == PINCHO:
+                    obstaculos.append(Obstaculo_Pincho(x,y,ancho=50,alto=50,tipo=0))
                 x += 50
 
             x = 0
@@ -98,8 +101,12 @@ class Nivel:
                     patrulla = coordenada[2]
                     if enemigo["nombre"] == "soldado":
                         enemigos.append(Enemigo_Melee(x,y,velocidad_movimiento=4,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla))
-                    elif enemigo["nombre"] == "artillero":
-                        enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla))
+                    elif enemigo["nombre"] == "artillero_l":
+                        enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=IZQUIERDA))
+                    elif enemigo["nombre"] == "artillero_r":
+                        enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=DERECHA))
+                    elif enemigo["nombre"] == "boss":
+                        enemigos.append(Boss(x,y,frame_rate_ms=120))
         return enemigos
            
     def crear_objetos(self):
@@ -119,36 +126,58 @@ class Nivel:
 
     def colisiones(self,delta_ms):
         #MUROS
+        self.jugador.move_alloved[IZQUIERDA] = True
+        self.jugador.move_alloved[DERECHA] = True
         for tile in self.tiles:
             for bala in self.jugador.municiones:
                 if bala.rectangulo_colision.colliderect(tile.rectangulo_colision):
                     self.jugador.municiones.remove(bala)
             if type(tile) == Muro:
                 if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_derecha):
-                    self.jugador.cambiar_x(-3)
+                    self.jugador.move_alloved[DERECHA] = False
+                    self.jugador.mover_x = 0
                 elif tile.rectangulo_colision.colliderect(self.jugador.rectangulo_izquierda):
-                    self.jugador.cambiar_x(3)
-                elif tile.rectangulo_colision.colliderect(self.jugador.rectangulo_cabeza):
+                    self.jugador.move_alloved[IZQUIERDA] = False
+                    self.jugador.mover_x = 0
+                if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_cabeza):
                     self.jugador.comienzo_salto = ALTO_VENTANA
-                elif tile.rectangulo_colision.colliderect(self.jugador.rectangulo_pies):
-                    self.jugador.sobre_plataforma = True
             if type(tile) == Objeto:
                 if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                     if not self.jugador.invensible:
                         self.jugador.vidas -= 1
                         self.jugador.invensible = True
+        
+        #OBSTACULO
+        for obstaculo in self.obstaculos:
+            if type(obstaculo) == Obstaculo:
+                if obstaculo.rectangulo_pies.colliderect(self.jugador.rectangulo_colision):
+                    if not self.jugador.invensible:
+                        self.jugador.vidas -= 5
+                        self.jugador.invensible = True
+            if type(obstaculo) == Obstaculo_Pincho:
+                if obstaculo.rectangulo_pies.colliderect(self.jugador.rectangulo_colision):
+                    if not self.jugador.invensible:
+                        self.jugador.vidas -= 1
+                        self.jugador.invensible = True
+
                 
         #ENEMIGOS
         for enemigo in self.enemigos:
-            if enemigo.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
-                if not self.jugador.invensible:
-                    self.jugador.vidas -= 1
-                    self.jugador.invensible = True
+            if type(enemigo) != Boss:
+                if enemigo.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
+                    if not self.jugador.invensible:
+                        self.jugador.vidas -= 1
+                        self.jugador.invensible = True
             for bala in self.jugador.municiones:
-                if bala.rectangulo_colision.colliderect(enemigo.rectangulo_colision):
-                    enemigo.vidas -= 1
-                    self.jugador.municiones.remove(bala)
-            if type(enemigo) == Enemigo_Distancia:                
+                if type(enemigo) == Boss:
+                    if bala.rectangulo_colision.colliderect(enemigo.rect_ojo):
+                        enemigo.hp -= 200
+                        self.jugador.municiones.remove(bala)
+                else:
+                    if bala.rectangulo_colision.colliderect(enemigo.rectangulo_colision):
+                        enemigo.vidas -= 1
+                        self.jugador.municiones.remove(bala)
+            if type(enemigo) == Enemigo_Distancia or type(enemigo) == Boss:                
                 for bala in enemigo.municiones:
                     if bala.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                         if not self.jugador.invensible:
@@ -156,14 +185,18 @@ class Nivel:
                             self.jugador.invensible = True
                             enemigo.municiones.remove(bala)
             if not enemigo.vivo:
+                if type(enemigo) == Boss:
+                    self.puntuacion += 10000
+                else:
+                    self.puntuacion += 200
                 self.enemigos.remove(enemigo)
-
+                
 
         #BOTÍN
         for loot in self.loot:
             if loot.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                 loot.recolectado = True
-                self.jugador.puntuacion += 50
+                self.puntuacion += 50
                 self.loot.remove(loot)
 
         #OBJETOS   
@@ -194,7 +227,7 @@ class Nivel:
         for lista in self.nivel:
             for elemento in lista:
                 elemento.renderizar(self.pantalla)
-                if type(elemento) == Enemigo_Distancia:
+                if type(elemento) == Enemigo_Distancia or type(elemento) == Boss:
                     for bala in elemento.municiones:
                         bala.renderizar(self.pantalla)
         
@@ -207,6 +240,8 @@ class Nivel:
                     elemento.actualizar(delta_ms,self.tiles,self.jugador.municiones)
                 elif type(elemento) == Enemigo_Distancia:
                     elemento.actualizar(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision)
+                elif type(elemento) == Boss:
+                    elemento.actualizar(delta_ms,self.pantalla,self.jugador.rectangulo_colision)
                 elif type(elemento) == Botín:
                     elemento.actualizar(delta_ms)
                     

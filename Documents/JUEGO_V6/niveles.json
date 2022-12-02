@@ -3,33 +3,42 @@
     {
         "nivel_1":
         {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
+            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
+            "tiempo":60,
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVVVVVLM",
-                    "MVVVVVVVVVVVVVVVVVVVVVLM",
-                    "MPPVVPPPPPPPPPPPPPPPVVLM",
-                    "MVLVVVMLVVVVVVVVVVVVVVLM",
-                    "MVLVVPMLVVVVVVVVVVVVVVLM",
-                    "MVLVVVMLVVPPPPPPPPPPPPPM",
-                    "MVLVVPMLVVVVVVVVVVVVVVVM",
-                    "MvVVVVMLVVVVVVVVVVVVVVVM",
-                    "MVVVVPMPPPPPPPPPPPPPVVVM",
-                    "MVVVVVMMMMMMMMMMMMMMPPPM",
-                    "MPPPPPMMMMMMMMMMMMMMMMMM"
-            
-            ],
+                    "MLLLBBBLLLMMMMMLLLLLLLLM",
+                    "MLLLLLLLLLMMMMMLLLLLLLLM",
+                    "MPPPLLLLLLLLLBBBLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLPPPPM",
+                    "MLLLLLPPLPPLLLLLLLLMMMMM",
+                    "MLLLLLLBBBLLPPLPPLLLBBBM",
+                    "MLLLLLLLLLLLLLLLLLLLBBBM",
+                    "MLLLLLLLLLLLLLLLLLLLBBBM",
+                    "MLLLLLOOOOOOOLLLLLOOOOOM",
+                    "MOOLLLMMMMMMMOOLLLMMMMMM",
+                    "MMMSSOMMMMMMMMMSSSMMMMMM"],
             
             "enemigos":
             [
                 {
                     "nombre":"soldado",  
                     "cantidad":2,
-                    "coordenadas":[[500,340,150],[800,190,240]]
+                    "coordenadas":[[990,350,60],[400,350,80]]
                 },
                 {   
-                    "nombre":"artillero",   
+                    "nombre":"artillero_r",   
+                    "cantidad":1,
+                    "coordenadas":[[100,100,0]]
+                },
+                {   
+                    "nombre":"artillero_l",   
                     "cantidad":0,
-                    "coordenadas":[[]]
+                    "coordenadas":[]
+                },
+                {   
+                    "nombre":"boss",   
+                    "cantidad":0,
+                    "coordenadas":[]
                 }
             ],
             "objetos":
@@ -37,64 +46,12 @@
                 {
                 "nombre":"inicio",
                 "cantidad":1,
-                "coordenadas":[[100,480]]
+                "coordenadas":[[60,430]]
                 },
                 {
                 "nombre":"interruptor",
                 "cantidad":1,
                 "coordenadas":[[100,125]]
-                },
-                {
-                "nombre":"final",
-                "cantidad":1,
-                "coordenadas":[[1050,430]]
-                }
-            
-            ],
-            "jugador":
-            {
-                "coordenadas":[[120,450]]
-            }
-        },
-        "nivel_2":
-        {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":
-            ["MMMMMMMMMMMMMMMMMMMMMMMM",
-            "MVVVLLLLLLLLLLLLLLLVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MPVVPPPPPPPPPPPPPPPPPPPM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MPVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVPVLVPVLVPVLVPVLVPVVM",
-            "MVVVMVLVMVLVMVLVMVLVMVVM",
-            "MPPPPPPPPPPPPPPPPPPPPPPM",
-            "MMMMMMMMMMMMMMMMMMMMMMMM"],
-            "enemigos":[
-                {
-                    "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200],[600,150,300]]
-                },
-                {   
-                    "nombre":"artillero",   
-                    "cantidad":1,
-                    "coordenadas":[[50,100,0]]
-                }
-            ],
-            "objetos":
-            [
-                {
-                "nombre":"inicio",
-                "cantidad":1,
-                "coordenadas":[[100,430]]
-                },
-                {
-                "nombre":"interruptor",
-                "cantidad":1,
-                "coordenadas":[[1100,475]]
                 },
                 {
                 "nombre":"final",
@@ -105,102 +62,187 @@
             ],
             "jugador":
             {
-                "coordenadas":[[150,400]]
+                "coordenadas":[[60,430]]
+            }
+        },
+        "nivel_2":
+        {
+            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
+            "tiempo":60,
+            "mapa":
+            ["MMMMMMMMMMMMMMMMMMMMMMMM",
+            "MMMMMMMMMMMMMMMMMMMMMMMM",
+            "MLLLLLLBBBLLBBBBBBBLLLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MPPPPLLLLLLPPPPPPPPPLLLM",
+            "MLLLLLLLLLLMMMMMMMMMLLLM",
+            "MLLLLLLBBBLLLLLLBBBBBLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MOOOLLLLLLLLLLLLLLLLLLLM",
+            "MMMMLLLLLLLLLLOOOOOOOOOM",
+            "MMMMOOSSSSSSSSMMMMMMMMMM"],
+            "enemigos":[
+                {
+                    "nombre":"soldado",  
+                    "cantidad":1,
+                    "coordenadas":[[800,450,100]]
+                },
+                {   
+                    "nombre":"artillero_r",   
+                    "cantidad":1,
+                    "coordenadas":[[100,100,0]]
+                },
+                {   
+                    "nombre":"artillero_l",   
+                    "cantidad":0,
+                    "coordenadas":[]
+                },
+                {   
+                    "nombre":"boss",   
+                    "cantidad":0,
+                    "coordenadas":[]
+                }
+            ],
+            "objetos":
+            [
+                {
+                "nombre":"inicio",
+                "cantidad":1,
+                "coordenadas":[[100,380]]
+                },
+                {
+                "nombre":"interruptor",
+                "cantidad":1,
+                "coordenadas":[[1000,475]]
+                },
+                {
+                "nombre":"final",
+                "cantidad":1,
+                "coordenadas":[[100,180]]
+                }
+            
+            ],
+            "jugador":
+            {
+                "coordenadas":[[110,380]]
             }
         },
         "nivel_3":
         {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
+            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
+            "tiempo":60,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MPPPPVVPVVPVVPVVPVVPPPPM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVPVVVVVVVVPVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVPPPPVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM",
-            "MVVVVVVVVVVVVVVVVVVVVVVM"],
+            "MMMMMMMMMMMMMMMMMMMMMMMM",
+            "MBBBBBLLLLLLLLLLLLBBBBBM",
+            "MBBBBBLLLLLLLLLLLLBBBBBM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MPPPPPLLLLLPPLLLLLPPPPPM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MOOOOOTTTTTTTTTTTTOOOOOM",
+            "MMMMMMAAAAAAAAAAAAMMMMMM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
+                    "cantidad":0,
+                    "coordenadas":[]
                 },
                 {   
-                    "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
+                    "nombre":"artillero_r",   
+                    "cantidad":1,
+                    "coordenadas":[[70,130,0]]
+                },
+                {   
+                    "nombre":"artillero_l",   
+                    "cantidad":1,
+                    "coordenadas":[[1050,130,0]]
+                },
+                {   
+                    "nombre":"boss",   
+                    "cantidad":0,
+                    "coordenadas":[]
                 }
             ],
             "objetos":[
                 {
                 "nombre":"inicio",
                 "cantidad":1,
-                "coordenadas":[[70,80]]
+                "coordenadas":[[70,430]]
                 },
                 {
                 "nombre":"interruptor",
                 "cantidad":1,
-                "coordenadas":[[1100,475]]
+                "coordenadas":[[590,225]]
                 },
                 {
                 "nombre":"final",
                 "cantidad":1,
-                "coordenadas":[[70,430]]
+                "coordenadas":[[1050,430]]
                 }
             
             ],
             "jugador":
             {
-                "coordenadas":[[70,80]]
+                "coordenadas":[[80,430]]
             }
         },
         "nivel_4":
         {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
+            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
+            "tiempo":60,
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVMVVVVVVVVVVVVVVVVM",
-                    "MVVVVVMVVVVVVVVVVVVVVVVM",
-                    "MVVVVVMPPPPPPPPPPPPPPVVM",
-                    "MPPPVVMVVVVVVVVVVVVVVVVM",
-                    "MVVVVVMPVVVVVVVVVVVVVVVM",
-                    "MVVVVVMVVVVVVVVVVVVVVVVM",
-                    "MVVPPPMPVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPVVVVVVVVVVVVVVVM",
-                    "MMMMMMMMPPPPPPPPPPPPPPPM"],
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MPPPLLLLLLLLLLLLLLLLPPPM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MPPPLLLLLLLLLLLLLLLLPPPM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLOOOLOOOLOOOOLOOOLOOOLM",
+                    "MTTTTTTTTTTTTTTTTTTTTTTM"],
             "enemigos":[
                 {
                     "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
+                    "cantidad":0,
+                    "coordenadas":[]
                 },
                 {   
-                    "nombre":"artillero",   
+                    "nombre":"artillero_r",   
+                    "cantidad":0,
+                    "coordenadas":[]
+                },
+                {   
+                    "nombre":"artillero_l",   
                     "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
+                    "coordenadas":[[1050,130,0],[1030,400,0]]
+                },
+                {   
+                    "nombre":"boss",   
+                    "cantidad":1,
+                    "coordenadas":[[600,45,0]]
                 }
             ],
             "objetos":[
                 {
                 "nombre":"inicio",
                 "cantidad":1,
-                "coordenadas":[[70,80]]
+                "coordenadas":[[70,130]]
                 },
                 {
                 "nombre":"interruptor",
                 "cantidad":1,
-                "coordenadas":[[1100,475]]
+                "coordenadas":[[575,475]]
                 },
                 {
                 "nombre":"final",
                 "cantidad":1,
-                "coordenadas":[[70,430]]
+                "coordenadas":[[1050,130]]
                 }
             
             ],
@@ -208,207 +250,8 @@
             {
                 "coordenadas":[[70,80]]
             }
-        },
-        "nivel_5":
-        {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVPPPPPPPPPPPPPPPPVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVPPPPPPPPPPPPPPPPVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVPPPPPPPPPPPPPPPPVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVPPPPPPPPPPPPPPPPVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPPPPPPPPPPPPPPPPM"],
-            "enemigos":[
-                {
-                    "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
-                },
-                {   
-                    "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
-                }
-            ],
-            "objetos":[
-                {
-                "nombre":"inicio",
-                "cantidad":1,
-                "coordenadas":[[70,80]]
-                },
-                {
-                "nombre":"interruptor",
-                "cantidad":1,
-                "coordenadas":[[1100,475]]
-                },
-                {
-                "nombre":"final",
-                "cantidad":1,
-                "coordenadas":[[70,430]]
-                }
-            
-            ],
-            "jugador":
-            {
-                "coordenadas":[[70,80]]
-            }
-        },
-        "nivel_6":
-        {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVPVPVPVPVPVPVPPPM",
-                    "MVVVVVVPMTTTTTTTTTTTTTTM",
-                    "MVVVVVPMMAAAAAAAAAAAAAAM",
-                    "MVVVVPMMMAAAAAAAAAAAAAAM",
-                    "MVVVPMMMMAAAAAAAAAAAAAAM",
-                    "MVVVMMMMMAAAAAAAAAAAAAAM",
-                    "MVVVMMMMMAAAAAAAAAAAAAAM",
-                    "MPPPMMMMMAAAAAAAAAAAAAAM"],
-            "enemigos":[
-                {
-                    "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
-                },
-                {   
-                    "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
-                }
-            ],
-            "objetos":[
-                {
-                "nombre":"inicio",
-                "cantidad":1,
-                "coordenadas":[[70,80]]
-                },
-                {
-                "nombre":"interruptor",
-                "cantidad":1,
-                "coordenadas":[[1100,475]]
-                },
-                {
-                "nombre":"final",
-                "cantidad":1,
-                "coordenadas":[[70,430]]
-                }
-            
-            ],
-            "jugador":
-            {
-                "coordenadas":[[70,80]]
-            }
-        },
-        "nivel_7":
-        {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPVVPVVPVVPVVPVVPPPPM",
-                    "MTTTTTTTTTTTTTTTTTTTTTTM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM",
-                    "MAAAAAAAAAAAAAAAAAAAAAAM"],
-            "enemigos":[
-                {
-                    "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
-                },
-                {   
-                    "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
-                }
-            ],
-            "objetos":[
-                {
-                "nombre":"inicio",
-                "cantidad":1,
-                "coordenadas":[[70,80]]
-                },
-                {
-                "nombre":"interruptor",
-                "cantidad":1,
-                "coordenadas":[[1100,475]]
-                },
-                {
-                "nombre":"final",
-                "cantidad":1,
-                "coordenadas":[[70,430]]
-                }
-            
-            ],
-            "jugador":
-            {
-                "coordenadas":[[70,80]]
-            }
-        },
-        "nivel_8":
-        {
-            "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/space_out.jpg",
-            "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MVVVVVVVVVVVVVVVVVVVVVVM",
-                    "MPPPPPPPPPPPPPPPPPPPPPPM",
-                    "MMMMMMMMMMMMMMMMMMMMMMMM"],
-            "enemigos":[
-                {
-                    "nombre":"soldado",  
-                    "cantidad":1,
-                    "coordenadas":[[500,400,200]]
-                },
-                {   
-                    "nombre":"artillero",   
-                    "cantidad":2,
-                    "coordenadas":[[580,100,0],[300,100,0]]
-                }
-            ],
-            "objetos":[
-                {
-                "nombre":"inicio",
-                "cantidad":1,
-                "coordenadas":[[70,80]]
-                },
-                {
-                "nombre":"interruptor",
-                "cantidad":1,
-                "coordenadas":[[1100,475]]
-                },
-                {
-                "nombre":"final",
-                "cantidad":1,
-                "coordenadas":[[70,430]]
-                }
-            
-            ],
-            "jugador":
-            {
-                "coordenadas":[[70,80]]
-            }
-        }   
+        }
+
         
     }  
 }  
