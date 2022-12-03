@@ -64,8 +64,8 @@ class Jugador:
         self.puntuacion = 0
         
         self.frame = 0
-        self.mover_x = 0
-        self.mover_y = 0
+        self.move_x = 0
+        self.move_y = 0
         self.gravedad = gravedad
         self.fuerza_salto = fuerza_salto
         self.direccion = DERECHA
@@ -137,13 +137,13 @@ class Jugador:
             self.direccion = direccion
             self.esta_caminando = True
             if self.move_alloved[self.direccion]:
-                self.mover_x = self.velocidad_movimiento[self.direccion]
+                self.move_x = self.velocidad_movimiento[self.direccion]
                 if self.esta_saltando:
-                    self.mover_x = self.velocidad_movimiento[self.direccion] // 2
+                    self.move_x = self.velocidad_movimiento[self.direccion] // 2
          
     def parar(self):
         self.esta_caminando = False
-        self.mover_x = 0
+        self.move_x = 0
 
     def disparar(self,shoot=True):
         if shoot:
@@ -165,8 +165,8 @@ class Jugador:
         if jump:
             if self.sobre_plataforma:
                 self.esta_saltando = True
-                self.mover_x = 0
-                self.mover_y = -self.fuerza_salto
+                self.move_x = 0
+                self.move_y = -self.fuerza_salto
                 self.comienzo_salto = self.rectangulo_pies.y
         else:
             self.esta_saltando = False
@@ -177,14 +177,26 @@ class Jugador:
             self.esta_saltando = False
  
 
-    def verificar_plataforma(self, plataformas,obstaculos):
+    def verificar_plataforma(self, tiles,obstaculos,plataformas):
         if not self.esta_saltando:
             self.sobre_plataforma = False
-            for plataforma in plataformas:
-                if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico or type(plataforma) == Muro:
-                    if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
+            for tile in tiles:
+                if type(tile) == Plataforma or type(tile) == Objeto_Estatico or type(tile) == Muro:
+                    if self.rectangulo_pies.colliderect(tile.rectangulo_pies):
                         self.sobre_plataforma = True
                         break
+            for plataforma in plataformas:
+                if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
+                    self.sobre_plataforma = True
+                    if plataforma.mover_izquierda or plataforma.mover_derecha:
+                        if self.esta_caminando:
+                            self.move_x = self.velocidad_movimiento[self.direccion] + plataforma.move_x
+                        else:
+                            self.move_x = plataforma.move_x
+                    else:
+                        self.move_y = plataforma.move_y
+                        self.cambiar_y(self.move_y)
+                    break
             for obstaculo in obstaculos:
                 if type(obstaculo) == Obstaculo_Pincho:
                     if self.rectangulo_pies.colliderect(obstaculo.rectangulo_pies):
@@ -195,10 +207,10 @@ class Jugador:
     def aplicar_gravedad(self):
         if not self.esta_saltando:
             if not self.sobre_plataforma:
-                self.mover_y = self.gravedad
+                self.move_y = self.gravedad
                 self.esta_cayendo = True
             else:
-                self.mover_y = 0
+                self.move_y = 0
                 self.esta_cayendo = False
 
     def actualizar_invensible(self, delta_ms):
@@ -341,17 +353,17 @@ class Jugador:
             self.parar()      
 
     #MOVIMIENTO
-    def hacer_movimiento(self,delta_ms,plataformas,obstaculos):
+    def hacer_movimiento(self,delta_ms,tiles,obstaculos,plataformas):
         self.tiempo_transcurrido_movimiento += delta_ms
         if(self.tiempo_transcurrido_movimiento >= self.move_rate_ms):
             self.tiempo_transcurrido_movimiento = 0
 
-            self.verificar_plataforma(plataformas,obstaculos)
+            self.verificar_plataforma(tiles,obstaculos,plataformas)
             self.aplicar_gravedad()
-            self.cambiar_y(self.mover_y)
+            self.cambiar_y(self.move_y)
             if self.vivo:
                 self.limitar_salto()
-                self.cambiar_x(self.mover_x)
+                self.cambiar_x(self.move_x)
                 
 
     #ANIMACIONES
@@ -360,11 +372,11 @@ class Jugador:
         self.actualizar_frames(delta_ms)      
 
     #ACTUALIZACION PRINCIPAL
-    def actualizar(self,delta_ms,pantalla,teclas,eventos,plataformas,obstaculos):
+    def actualizar(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas):
         self.eventos(teclas,eventos)
         # if not self.ganar:
         self.comprobar_vidas()
-        self.hacer_movimiento(delta_ms,plataformas,obstaculos)
+        self.hacer_movimiento(delta_ms,tiles,obstaculos,plataformas)
         self.hacer_animaciones(delta_ms)
         self.actualizar_invensible(delta_ms)
         self.actualizar_bala(delta_ms,pantalla)

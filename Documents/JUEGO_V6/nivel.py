@@ -17,14 +17,18 @@ class Nivel:
         self.enemigos_data = self.nivel_data["enemigos"]
         self.jugador_data = self.nivel_data["jugador"]
         self.fondo = self.nivel_data["fondo"]
+        self.plataformas_data = self.nivel_data["plataformas"]
+        self.obstaculos_data = self.nivel_data["obstaculos"]
         self.tiles = self.crear_mapa()
+        self.plataformas = self.crear_plataformas_mobiles()
         self.loot = self.crear_loot()
         self.objetos = self.crear_objetos()
         self.obstaculos = self.crear_obstaculos()
+        self.obstaculos2 = self.crear_obstaculos2()
         self.enemigos = self.crear_enemigos()
         self.jugador = self.crear_jugador()
         self.pantalla = pantalla
-        self.nivel = [self.tiles,self.loot,self.objetos,self.enemigos,self.jugador.municiones]
+        self.nivel = [self.obstaculos2,self.tiles,self.loot,self.objetos,self.enemigos,self.jugador.municiones,self.plataformas]
 
         self.tiempo_activado = 0
         self.puntuacion = 0
@@ -58,6 +62,21 @@ class Nivel:
             x = 0
             y += 50
         return tiles
+    
+    def crear_plataformas_mobiles(self):
+        plataformas = []
+        for plataforma in self.plataformas_data:
+            for i in range(plataforma["cantidad"]):
+                for coordenada in plataforma["coordenadas"]:
+                    x = coordenada[0]
+                    y = coordenada[1]
+                    punto_inicio = coordenada[2]
+                    punto_final = coordenada[3]
+                    if plataforma["nombre"] == "horizontal":
+                        plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="horizontal"))
+                    elif plataforma["nombre"] == "vertical":
+                        plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="vertical"))
+        return plataformas
 
     def crear_obstaculos(self):
         obstaculos = []
@@ -76,6 +95,17 @@ class Nivel:
             x = 0
             y += 50
         return obstaculos
+    
+    def crear_obstaculos2(self):
+        obstaculos2 = []
+        for obstaculo in self.obstaculos_data:
+            for i in range(obstaculo["cantidad"]):
+                for coordenada in obstaculo["coordenadas"]:
+                    x = coordenada[0]
+                    y = coordenada[1]
+                    if obstaculo["nombre"] == "sierra":
+                        obstaculos2.append(Obstaculo_sierra(x,y,ancho=50,alto=50,tipo=0))
+        return obstaculos2
 
 
     def crear_loot(self):
@@ -135,10 +165,10 @@ class Nivel:
             if type(tile) == Muro:
                 if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_derecha):
                     self.jugador.move_alloved[DERECHA] = False
-                    self.jugador.mover_x = 0
+                    self.jugador.move_x = 0
                 elif tile.rectangulo_colision.colliderect(self.jugador.rectangulo_izquierda):
                     self.jugador.move_alloved[IZQUIERDA] = False
-                    self.jugador.mover_x = 0
+                    self.jugador.move_x = 0
                 if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_cabeza):
                     self.jugador.comienzo_salto = ALTO_VENTANA
             if type(tile) == Objeto:
@@ -159,7 +189,12 @@ class Nivel:
                     if not self.jugador.invensible:
                         self.jugador.vidas -= 1
                         self.jugador.invensible = True
-
+        for obstaculo2 in self.obstaculos2:
+            if obstaculo2.rectangulo_pies.colliderect(self.jugador.rectangulo_colision):
+                if not self.jugador.invensible:
+                    self.jugador.vidas -=1
+                    self.jugador.invensible = True
+            
                 
         #ENEMIGOS
         for enemigo in self.enemigos:
@@ -242,8 +277,9 @@ class Nivel:
                     elemento.actualizar(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision)
                 elif type(elemento) == Boss:
                     elemento.actualizar(delta_ms,self.pantalla,self.jugador.rectangulo_colision)
-                elif type(elemento) == Botín:
+                elif type(elemento) == Botín or type(elemento) == Platforma_Mobiles or type(elemento) == Obstaculo_sierra:
                     elemento.actualizar(delta_ms)
+                
                     
                 
                 

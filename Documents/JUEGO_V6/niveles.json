@@ -7,7 +7,7 @@
             "tiempo":60,
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
                     "MLLLBBBLLLMMMMMLLLLLLLLM",
-                    "MLLLLLLLLLMMMMMLLLLLLLLM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MPPPLLLLLLLLLBBBLLLLLLLM",
                     "MLLLLLLLLLLLLLLLLLLPPPPM",
                     "MLLLLLPPLPPLLLLLLLLMMMMM",
@@ -22,8 +22,8 @@
             [
                 {
                     "nombre":"soldado",  
-                    "cantidad":2,
-                    "coordenadas":[[990,350,60],[400,350,80]]
+                    "cantidad":1,
+                    "coordenadas":[[990,350,60]]
                 },
                 {   
                     "nombre":"artillero_r",   
@@ -37,6 +37,18 @@
                 },
                 {   
                     "nombre":"boss",   
+                    "cantidad":0,
+                    "coordenadas":[]
+                }
+            ],
+            "plataformas":[
+                {
+                    "nombre":"horizontal",  
+                    "cantidad":0,
+                    "coordenadas":[]
+                },
+                {   
+                    "nombre":"vertical",   
                     "cantidad":0,
                     "coordenadas":[]
                 }
@@ -60,6 +72,13 @@
                 }
             
             ],
+            "obstaculos":[
+                {
+                    "nombre":"sierra",  
+                    "cantidad":1,
+                    "coordenadas":[[430,460]]
+                }
+            ],
             "jugador":
             {
                 "coordenadas":[[60,430]]
@@ -75,8 +94,8 @@
             "MLLLLLLBBBLLBBBBBBBLLLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
-            "MPPPPLLLLLLPPPPPPPPPLLLM",
-            "MLLLLLLLLLLMMMMMMMMMLLLM",
+            "MPPPPLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLLLPPPPPPPPPLLLM",
             "MLLLLLLBBBLLLLLLBBBBBLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MOOOLLLLLLLLLLLLLLLLLLLM",
@@ -102,6 +121,25 @@
                     "nombre":"boss",   
                     "cantidad":0,
                     "coordenadas":[]
+                }
+            ],
+            "plataformas":[
+                {
+                    "nombre":"horizontal",  
+                    "cantidad":2,
+                    "coordenadas":[[400,525,200,600],[400,250,200,600]]
+                },
+                {   
+                    "nombre":"vertical",   
+                    "cantidad":1,
+                    "coordenadas":[[1025,525,150,550]]
+                }
+            ],
+            "obstaculos":[
+                {
+                    "nombre":"sierra",  
+                    "cantidad":2,
+                    "coordenadas":[[620,310],[820,310]]
                 }
             ],
             "objetos":
@@ -167,6 +205,25 @@
                     "coordenadas":[]
                 }
             ],
+            "plataformas":[
+                {
+                    "nombre":"horizontal",  
+                    "cantidad":1,
+                    "coordenadas":[[600,450,200,1000]]
+                },
+                {   
+                    "nombre":"vertical",   
+                    "cantidad":2,
+                    "coordenadas":[[400,400,200,400],[800,400,200,400]]
+                }
+            ],
+            "obstaculos":[
+                {
+                    "nombre":"sierra",  
+                    "cantidad":0,
+                    "coordenadas":[]
+                }
+            ],
             "objetos":[
                 {
                 "nombre":"inicio",
@@ -226,6 +283,25 @@
                     "nombre":"boss",   
                     "cantidad":1,
                     "coordenadas":[[600,45,0]]
+                }
+            ],
+            "plataformas":[
+                {
+                    "nombre":"horizontal",  
+                    "cantidad":0,
+                    "coordenadas":[]
+                },
+                {   
+                    "nombre":"vertical",   
+                    "cantidad":0,
+                    "coordenadas":[]
+                }
+            ],
+            "obstaculos":[
+                {
+                    "nombre":"sierra",  
+                    "cantidad":0,
+                    "coordenadas":[]
                 }
             ],
             "objetos":[

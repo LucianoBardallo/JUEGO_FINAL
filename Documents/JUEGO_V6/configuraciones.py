@@ -47,6 +47,7 @@ CAJA = "C"
 PINCHO = "S"
 FONDO_ACIDO = "A"
 TOP_ACIDO = "T"
+MOBILE = "U"
 
 CORAZON = RUTA_IMAGEN + r"Menu\Button\Health_Dot.png"
 BALA = RUTA_IMAGEN + r"Menu\Button\Armor_Bar_Dot.png"

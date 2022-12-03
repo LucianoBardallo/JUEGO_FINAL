@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 
 form_menu_A = FormMenuA(name="menu",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\menu.jpg",color_border=BLACK,active=True)
 form_menu_B = FormMenuB(name="opciones",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\menu.jpg",color_border=BLACK,active=False)
-form_menu_C = FormMenuC(name="niveles",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\planets.jpg",color_border=BLACK,active=False)
+form_menu_C = FormMenuC(name="niveles",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\Space_Level.jpg",color_border=BLACK,active=False)
 form_nivel_1 = FormNivel(name="nivel_1",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_nivel_2 = FormNivel(name="nivel_2",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_nivel_3 = FormNivel(name="nivel_3",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
@@ -30,7 +30,7 @@ form_nivel_4 = FormNivel(name="nivel_4",master_surface = PANTALLA,x=0,y=0,w=ANCH
 # form_nivel_8 = FormNivel(name="nivel_8",master_surface = PANTALLA,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 form_menu_pausa = FormMenuPausa(name="pausa",master_surface = PANTALLA,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 form_menu_pausa_opciones = FormMenuPausaOpciones(name="pausa_opciones",master_surface = PANTALLA,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
-form_win = FormWin(name="you_win",master_surface = PANTALLA,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
+form_win = FormWin(name="you_win",master_surface = PANTALLA,x=500,y=200,w=300,h=430,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 form_lose = FormLose(name="you_lose",master_surface = PANTALLA,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
 
 timer_1s = pygame.USEREVENT + 0

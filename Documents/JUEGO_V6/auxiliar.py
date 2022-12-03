@@ -19,7 +19,6 @@ class Auxiliar:
                 y = fila * fotograma_alto
                 surface_fotograma = surface_imagen.subsurface(x,y,fotograma_ancho,fotograma_alto)
                 if(scale != 1):
-                    
                     surface_fotograma = pygame.transform.scale(surface_fotograma,(fotograma_ancho_scaled, fotograma_alto_scaled)).convert_alpha() 
                 if(flip):
                     surface_fotograma = pygame.transform.flip(surface_fotograma,True,False).convert_alpha() 

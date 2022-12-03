@@ -39,7 +39,7 @@ class FormNivel(Form):
     def update(self, lista_eventos, teclas, delta_ms, tiempo):
         self.nivel_actual.actualizar(delta_ms)
         self.nivel_actual.colisiones(delta_ms)
-        self.nivel_actual.jugador.actualizar(delta_ms,self.nivel_actual.pantalla,teclas,lista_eventos,self.nivel_actual.tiles,self.nivel_actual.obstaculos)
+        self.nivel_actual.jugador.actualizar(delta_ms,self.nivel_actual.pantalla,teclas,lista_eventos,self.nivel_actual.tiles,self.nivel_actual.obstaculos,self.nivel_actual.plataformas)
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
         for evento in lista_eventos:
