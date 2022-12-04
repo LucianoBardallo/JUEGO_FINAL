@@ -6,6 +6,7 @@ from gui_form import Form
 from gui_button import Button
 from gui_textbox import TextBox
 from gui_progressbar import ProgressBar
+from sql import insertar_linea,leer_lineas
 
 class FormWin(Form):
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
@@ -25,13 +26,14 @@ class FormWin(Form):
         self.forms_dict[self.boton1.on_click_param].resetear()
         self.set_active(parametro)
 
+    def cambiar_nivel(self,parametro):
+        self.boton1.on_click_param = parametro
+    
+
     def update(self, lista_eventos):
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
     
-    def cambiar_nivel(self,parametro):
-        self.boton1.on_click_param = parametro
-
     def draw(self): 
         super().draw()
         for aux_widget in self.lista_widget:    

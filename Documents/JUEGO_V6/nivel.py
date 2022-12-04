@@ -33,6 +33,11 @@ class Nivel:
         self.tiempo_activado = 0
         self.puntuacion = 0
         self.tiempo_juego = self.nivel_data["tiempo"]
+
+        # self.coin_sound = pygame.mixer.Sound(RUTA_MUSICA + r"space_coin.wav")
+        # self.door_activate = pygame.mixer.Sound(RUTA_MUSICA + r"door_activada.wav")
+        # self.door_open = pygame.mixer.Sound(RUTA_MUSICA + r"door_open.wav")
+        
         
         
     def crear_jugador(self):
@@ -154,7 +159,7 @@ class Nivel:
                         objetos.append(Objeto_Animado("final",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
         return objetos
 
-    def colisiones(self,delta_ms):
+    def colisiones(self,delta_ms,sonidos):
         #MUROS
         self.jugador.move_alloved[IZQUIERDA] = True
         self.jugador.move_alloved[DERECHA] = True
@@ -221,7 +226,7 @@ class Nivel:
                             enemigo.municiones.remove(bala)
             if not enemigo.vivo:
                 if type(enemigo) == Boss:
-                    self.puntuacion += 10000
+                    self.puntuacion += 2000
                 else:
                     self.puntuacion += 200
                 self.enemigos.remove(enemigo)
@@ -232,6 +237,7 @@ class Nivel:
             if loot.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                 loot.recolectado = True
                 self.puntuacion += 50
+                pygame.mixer.Sound.play(sonidos[4])
                 self.loot.remove(loot)
 
         #OBJETOS   
@@ -241,6 +247,7 @@ class Nivel:
                     objeto.activado = True
                     objeto.desbloqueado = True
                     self.jugador.puede_ganar = True
+                    pygame.mixer.Sound.play(sonidos[1])
                 else:
                     if objeto.activado:
                         self.tiempo_activado += delta_ms
@@ -256,6 +263,7 @@ class Nivel:
                 if objeto.rectangulo_colision.colliderect(self.jugador.rectangulo_colision) and self.jugador.puede_ganar:
                     objeto.activado = True
                     self.jugador.ganar = True
+                    pygame.mixer.Sound.play(sonidos[2])
    
 
     def renderizar(self):
@@ -282,11 +290,5 @@ class Nivel:
                 
                     
                 
-                
-
-    # def actualizar_nivel(self,delta_ms):
-    #     self.actualizar(delta_ms)
-    #     self.colisiones(delta_ms)
-        # self.jugador.actualizar(delta_ms,self.pantalla,teclas,eventos,self.tiles)
 
     

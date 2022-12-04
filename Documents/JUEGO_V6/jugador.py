@@ -130,6 +130,8 @@ class Jugador:
         self.move_alloved[IZQUIERDA] = True
         self.move_alloved[DERECHA] = True
 
+        self.dead_sound = pygame.mixer.Sound(RUTA_MUSICA + r"muerte_robot.wav")
+        self.shoot_sound = pygame.mixer.Sound(RUTA_MUSICA + r"laser_gun.wav")
 
     #ACCIONES
     def caminar(self,direccion:int): 
@@ -229,8 +231,9 @@ class Jugador:
             if bala.impacto:
                 self.municiones.remove(bala)
 
-    def comprobar_vidas(self):
+    def comprobar_vidas(self,sonidos):
         if self.vidas < 1:
+            pygame.mixer.Sound.play(sonidos[3])
             self.vivo = False
     
     #MOVIMIENTO
@@ -309,7 +312,7 @@ class Jugador:
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
 
-    def eventos(self,teclas,eventos):
+    def eventos(self,teclas,eventos,sonidos):
         #EVENTOS
         for evento in eventos:
             if evento.type == pygame.QUIT: # Salir
@@ -322,6 +325,7 @@ class Jugador:
             
                 if evento.key == pygame.K_s: # Saltar
                     self.disparar(True)
+                    pygame.mixer.Sound.play(sonidos[0])
 
                 if evento.key == pygame.K_a: # Saltar
                     self.atacar()
@@ -372,10 +376,10 @@ class Jugador:
         self.actualizar_frames(delta_ms)      
 
     #ACTUALIZACION PRINCIPAL
-    def actualizar(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas):
-        self.eventos(teclas,eventos)
+    def actualizar(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas,sonidos):
+        self.eventos(teclas,eventos,sonidos)
         # if not self.ganar:
-        self.comprobar_vidas()
+        self.comprobar_vidas(sonidos)
         self.hacer_movimiento(delta_ms,tiles,obstaculos,plataformas)
         self.hacer_animaciones(delta_ms)
         self.actualizar_invensible(delta_ms)

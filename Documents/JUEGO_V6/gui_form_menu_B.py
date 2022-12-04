@@ -40,7 +40,10 @@ class FormMenuB(Form):
         if self.pb2.value < self.pb2.value_max:
             self.pb2.value += 1
         
-    def update(self, lista_eventos):
+    def update(self, lista_eventos,sonidos):
+        pygame.mixer.music.set_volume(self.pb1.value/10)
+        for sonido in sonidos:
+            sonido.set_volume(self.pb2.value/10)
         for aux_boton in self.lista_widget:
             aux_boton.update(lista_eventos)
         for evento in lista_eventos:

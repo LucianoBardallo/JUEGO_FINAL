@@ -25,6 +25,9 @@ class FormMenuPausa(Form):
     def on_click_reset(self,parametro):
         self.forms_dict[self.boton1.on_click_param].resetear()
         self.set_active(parametro)
+    
+    def cambiar_nivel(self,parametro):
+        self.boton1.on_click_param = parametro
 
     def update(self, lista_eventos):
         for aux_widget in self.lista_widget:
@@ -33,9 +36,6 @@ class FormMenuPausa(Form):
              if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
                     self.set_active(self.boton1.on_click_param)
-    
-    def cambiar_nivel(self,parametro):
-        self.boton1.on_click_param = parametro
 
     def draw(self): 
         super().draw()

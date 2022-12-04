@@ -119,7 +119,6 @@ class Boss:
             self.animacion2 = self.ojo_stage["four"]
         if self.hp < 2000:
             self.animacion2 = self.ojo_stage["five"]
-        print(self.hp)
         
     def hacer_colision(self, pos_xy):
         self.disparar(False)
