@@ -13,7 +13,7 @@ from sql import insertar_linea
 
 class FormNivel(Form):
     def __init__(self, name, master_surface, x=0, y=0, w=ANCHO_VENTANA, h=ALTO_VENTANA, color_background=None, color_border=None, active=False):
-        self.nombre_jugador = ""
+        self.nombre_jugador = "PLAYER"
         self.name = name
         self.nivel_actual = Nivel(self.name,master_surface)
         imagen_background = self.nivel_actual.fondo
