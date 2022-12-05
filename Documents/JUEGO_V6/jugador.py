@@ -61,7 +61,6 @@ class Jugador:
 
         self.lives = 1
         self.vidas = 5
-        self.puntuacion = 0
         
         self.frame = 0
         self.move_x = 0
@@ -151,7 +150,7 @@ class Jugador:
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0 and self.municion > 0:
-                self.disparo_cooldown = 40
+                self.disparo_cooldown = 20
                 bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=8)
                 self.municiones.append(bala)
                 self.municion -= 1

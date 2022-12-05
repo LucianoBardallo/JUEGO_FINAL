@@ -60,17 +60,6 @@ class Bala:
         self.trayectoria()
         self.actualizar_frames(delta_ms)
     
-# class Boss_Disparo(Bala):
-#     def __init__(self, x, y, frame_rate_ms, direccion, velocidad_disparo):
-#         super().__init__(x, y, frame_rate_ms, direccion, velocidad_disparo)
-        
-#         self.disparando = {}
-#         self.disparando[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,False,w=50,h=50)
-#         self.disparando[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,True,w=50,h=50)
-
-#         self.impactando = {}
-#         self.impactando[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\hit\00{0}.png",6,False,w=50,h=50)
-#         self.disparando[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\hit\00{0}.png",6,True,w=50,h=50)
 
 class Boss_Disparo:
     def __init__(self,x,y,frame_rate_ms,direccion,velocidad_disparo):
