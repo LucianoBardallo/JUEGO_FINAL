@@ -13,6 +13,7 @@ from sql import insertar_linea
 
 class FormNivel(Form):
     def __init__(self, name, master_surface, x=0, y=0, w=ANCHO_VENTANA, h=ALTO_VENTANA, color_background=None, color_border=None, active=False):
+        self.nombre_jugador = ""
         self.name = name
         self.nivel_actual = Nivel(self.name,master_surface)
         imagen_background = self.nivel_actual.fondo
@@ -64,16 +65,16 @@ class FormNivel(Form):
             pygame.mixer.Sound.play(sonidos[5])
             if self.name == "nivel_1":
                 self.puntuacion_nivel = self.nivel_actual.puntuacion
-                insertar_linea("PLAYER","nivel_1", self.puntuacion_nivel)
+                insertar_linea(self.nombre_jugador,"nivel_1", self.puntuacion_nivel)
             if self.name == "nivel_2":
                 self.puntuacion_nivel = self.nivel_actual.puntuacion
-                insertar_linea("PLAYER","nivel_2", self.puntuacion_nivel)
+                insertar_linea(self.nombre_jugador,"nivel_2", self.puntuacion_nivel)
             if self.name == "nivel_3":
                 self.puntuacion_nivel = self.nivel_actual.puntuacion
-                insertar_linea("PLAYER","nivel_3", self.puntuacion_nivel)
+                insertar_linea(self.nombre_jugador,"nivel_3", self.puntuacion_nivel)
             if self.name == "nivel_4":
                 self.puntuacion_nivel = self.nivel_actual.puntuacion
-                insertar_linea("PLAYER","nivel_4", self.puntuacion_nivel)
+                insertar_linea(self.nombre_jugador,"nivel_4", self.puntuacion_nivel)
 
         if not self.jugador.vivo or self.perder:
             self.set_active("you_lose")

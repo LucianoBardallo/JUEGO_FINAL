@@ -25,13 +25,13 @@ class FormLose(Form):
         self.forms_dict[self.boton1.on_click_param].resetear()
         self.set_active(parametro)
 
+    def cambiar_nivel(self,parametro):
+        self.boton1.on_click_param = parametro
+
     def update(self, lista_eventos):
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
     
-    def cambiar_nivel(self,parametro):
-        self.boton1.on_click_param = parametro
-
     def draw(self): 
         super().draw()
         for aux_widget in self.lista_widget:    

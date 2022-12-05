@@ -4,7 +4,7 @@
         "nivel_1":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":30,
+            "tiempo":20,
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
                     "MLLLBBBLLLMMMMMLLLLLLLLM",
                     "MLLLBBBLLLLLLLLLLLLLLLLM",
@@ -87,7 +87,7 @@
         "nivel_2":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":30,
+            "tiempo":20,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
             "MMMMMMMMMMMMMMMMMMMMMMMM",
@@ -169,7 +169,7 @@
         "nivel_3":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":30,
+            "tiempo":20,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
             "MMMMMMMMMMMMMMMMMMMMMMMM",

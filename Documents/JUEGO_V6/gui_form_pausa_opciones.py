@@ -10,9 +10,9 @@ class FormMenuPausaOpciones(Form):
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
         super().__init__(name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active)
 
-        self.text1 = TextBox(master=self,x=100,y=50,w=100,h=40,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="MUSICA",font="IMPACT",font_size=20,font_color=WHITE)
+        self.text1 = Button(master=self,x=100,y=50,w=100,h=40,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="MUSICA",font="IMPACT",font_size=20,font_color=WHITE,on_click=None,on_click_param=None)
+        self.text2 = Button(master=self,x=100,y=170,w=100,h=40,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="EFECTOS",font="IMPACT",font_size=20,font_color=WHITE,on_click=None,on_click_param=None)
         self.pb1 = ProgressBar(master=self,x=50,y=110,w=200,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\bar.png",image_progress=RUTA_IMAGEN + "Menu\Button\Armor_Bar_Dot.png",value=5,value_max=10)
-        self.text2 = TextBox(master=self,x=100,y=170,w=100,h=40,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="EFECTOS",font="IMPACT",font_size=20,font_color=WHITE)
         self.pb2 = ProgressBar(master=self,x=50,y=230,w=200,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\bar.png",image_progress=RUTA_IMAGEN + "Menu\Button\Armor_Bar_Dot.png",value=5,value_max=10)
         self.boton1 = Button(master=self,x=20,y=120,w=20,h=20,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Backward_BTN.png",on_click=self.on_click_boton1,on_click_param="menu",text=None,font=None,font_size=None,font_color=None)
         self.boton2 = Button(master=self,x=20,y=240,w=20,h=20,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Backward_BTN.png",on_click=self.on_click_boton2,on_click_param="menu",text=None,font=None,font_size=None,font_color=None)

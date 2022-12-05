@@ -26,7 +26,7 @@ class FormManager():
         self.form_nivel_4 = FormNivel(name="nivel_4",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
         self.form_menu_pausa = FormMenuPausa(name="pausa",master_surface = pantalla,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
         self.form_menu_pausa_opciones = FormMenuPausaOpciones(name="pausa_opciones",master_surface = pantalla,x=500,y=200,w=300,h=300,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
-        self.form_win = FormWin(name="you_win",master_surface = pantalla,x=500,y=200,w=300,h=430,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
+        self.form_win = FormWin(name="you_win",master_surface = pantalla,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
         self.form_lose = FormLose(name="you_lose",master_surface = pantalla,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
         self.form_puntuaciones = Puntuaciones(name="puntuaciones",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
         self.form_tabla1 = Tabla(name="tabla_1",nivel="nivel_1",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
@@ -65,18 +65,22 @@ class FormManager():
             self.form_lose.draw()
 
         elif(self.form_nivel_1.active):
+            self.form_nivel_1.nombre_jugador = self.form_menu_B.nombre
             self.form_nivel_1.update(eventos, teclas, delta_ms, timer_1s, sonidos)
             self.form_nivel_1.draw()
         
         elif(self.form_nivel_2.active):
+            self.form_nivel_2.nombre_jugador = self.form_menu_B.nombre
             self.form_nivel_2.update(eventos, teclas, delta_ms, timer_1s, sonidos)
             self.form_nivel_2.draw()
         
         elif(self.form_nivel_3.active):
+            self.form_nivel_3.nombre_jugador = self.form_menu_B.nombre
             self.form_nivel_3.update(eventos, teclas, delta_ms, timer_1s, sonidos)
             self.form_nivel_3.draw()
 
         elif(self.form_nivel_4.active):
+            self.form_nivel_4.nombre_jugador = self.form_menu_B.nombre
             self.form_nivel_4.update(eventos, teclas, delta_ms, timer_1s, sonidos)
             self.form_nivel_4.draw()
         

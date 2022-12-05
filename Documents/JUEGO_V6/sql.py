@@ -1,6 +1,5 @@
 import sqlite3 as sql
 
-
 def crear_base():
     with sql.connect("clasificacion.db") as conexion:
         conexion.commit()
@@ -42,6 +41,17 @@ def leer_lineas(nivel):
             return datos
         except:
             print("Error")
+
+# def actualizar_filas(name):
+#     with sql.connect("clasificacion.db") as conexion:
+#         try:
+#             sentencia = "UPDATE score SET nombre = 'XX' WHERE id=?"
+#             cursor=conexion.execute(sentencia,(name,))
+#             datos = cursor.fetchall()
+#             conexion.commit()
+#         except:
+#             print("error")
+
 
 
         
