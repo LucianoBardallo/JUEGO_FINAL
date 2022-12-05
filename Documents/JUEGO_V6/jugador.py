@@ -217,7 +217,7 @@ class Jugador:
     def actualizar_invensible(self, delta_ms):
         if self.invensible:
             self.tiempo_inmune += delta_ms
-            if self.tiempo_inmune > 1500:
+            if self.tiempo_inmune > 500:
                 self.tiempo_inmune = 0
                 self.invensible = False
 

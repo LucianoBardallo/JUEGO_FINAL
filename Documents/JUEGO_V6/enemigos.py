@@ -17,7 +17,6 @@ class Enemigo:
         self.caminando[IZQUIERDA] = Auxiliar.getSurfaceFromSpriteSheet(RUTA_IMAGEN + r"Characters\enemies\set_juju\black\juju_move_right.png",8,2,True,scale=0.8)
         self.caminando[DERECHA] = Auxiliar.getSurfaceFromSpriteSheet(RUTA_IMAGEN + r"Characters\enemies\set_juju\black\juju_move_right.png",8,2,scale=0.8)
 
-        self.vidas = 5
         self.frame = 0
         self.mover_x = 0
         self.mover_y = 0
@@ -98,7 +97,7 @@ class Enemigo:
             self.vivo = False
 
     def renderizar(self,pantalla):
-        if self.vidas > 0:
+        if self.vivo:
             if DEBUG:
                 pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
                 pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -113,6 +112,7 @@ class Enemigo:
 class Enemigo_Melee(Enemigo):
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0):
         super().__init__(x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla)
+        self.vidas = 5
 
     def patrullar(self):
         if self.vidas > 0:
@@ -142,6 +142,14 @@ class Enemigo_Melee(Enemigo):
             pygame.mixer.Sound.play(self.sonidos[8])
             self.vivo = False
     
+    def renderizar(self,pantalla):
+        if self.vidas > 0:
+            if DEBUG:
+                pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
+                pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
+            self.imagen = self.animacion[self.frame]
+            pantalla.blit(self.imagen,self.rect)
+
     def actualizar(self,delta_ms,plataformas,sonidos):
         self.sonidos = sonidos
         self.hacer_movimiento(delta_ms,plataformas)
@@ -158,6 +166,7 @@ class Enemigo_Distancia(Enemigo):
         self.rectangulo_vision.centery = y + 75
         self.rectangulo_vision.height = ALTURA_PIES * 3
         self.rectangulo_vision.width = 1200
+        self.vidas = 3
 
         self.animacion = self.parado[direccion]
 

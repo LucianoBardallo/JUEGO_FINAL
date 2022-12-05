@@ -13,8 +13,6 @@ from gui_form_lose import FormLose
 from gui_posiciones import *
 
 
-
-
 class FormManager():
     def __init__(self,pantalla) -> None:
         self.form_menu_A = FormMenuA(name="menu",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\menu.jpg",color_border=BLACK,active=True)

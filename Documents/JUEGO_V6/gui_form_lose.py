@@ -13,8 +13,8 @@ class FormLose(Form):
 
         self.text1 = TextBox(master=self,x=25,y=60,w=250,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="NIVEL PERDIDO",font="IMPACT",font_size=30,font_color=WHITE)
         self.boton1 = Button(master=self,x=30,y=140,w=70,h=70,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Replay_BTN.png",on_click=self.on_click_reset,on_click_param="nivel_1",text=None)
-        self.boton2 = Button(master=self,x=190,y=140,w=70,h=70,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Menu_BTN.png",on_click=self.on_click_reset,on_click_param="menu",text=None)
-        self.boton3 = Button(master=self,x=110,y=140,w=70,h=70,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Hangar_BTN.png",on_click=self.on_click_reset,on_click_param="niveles",text=None)
+        self.boton2 = Button(master=self,x=190,y=140,w=70,h=70,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Menu_BTN.png",on_click=self.on_click_boton1,on_click_param="menu",text=None)
+        self.boton3 = Button(master=self,x=110,y=140,w=70,h=70,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Hangar_BTN.png",on_click=self.on_click_boton1,on_click_param="niveles",text=None)
         
         self.lista_widget = [self.text1,self.boton1,self.boton2,self.boton3]
 
