@@ -34,11 +34,6 @@ class Nivel:
         self.puntuacion = 0
         self.tiempo_juego = self.nivel_data["tiempo"]
 
-        # self.coin_sound = pygame.mixer.Sound(RUTA_MUSICA + r"space_coin.wav")
-        # self.door_activate = pygame.mixer.Sound(RUTA_MUSICA + r"door_activada.wav")
-        # self.door_open = pygame.mixer.Sound(RUTA_MUSICA + r"door_open.wav")
-        
-        
         
     def crear_jugador(self):
         for coordenadas in self.jugador_data["coordenadas"]:
@@ -263,7 +258,7 @@ class Nivel:
                 if objeto.rectangulo_colision.colliderect(self.jugador.rectangulo_colision) and self.jugador.puede_ganar:
                     objeto.activado = True
                     self.jugador.ganar = True
-                    pygame.mixer.Sound.play(sonidos[2])
+                    # pygame.mixer.Sound.play(sonidos[2])
    
 
     def renderizar(self):

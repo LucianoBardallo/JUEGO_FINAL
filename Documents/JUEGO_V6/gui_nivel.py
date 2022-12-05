@@ -61,6 +61,7 @@ class FormNivel(Form):
 
         if self.nivel_actual.jugador.ganar and self.ganar:
             self.set_active("you_win")
+            pygame.mixer.Sound.play(sonidos[5])
             if self.name == "nivel_1":
                 self.puntuacion_nivel = self.nivel_actual.puntuacion
                 insertar_linea("PLAYER","nivel_1", self.puntuacion_nivel)

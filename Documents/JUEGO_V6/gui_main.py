@@ -27,7 +27,8 @@ sonido_disparo = pygame.mixer.Sound(RUTA_MUSICA + r"laser_gun.wav")
 sonido_recolectar = pygame.mixer.Sound(RUTA_MUSICA + r"space_coin.wav")
 sonido_puerta_activada = pygame.mixer.Sound(RUTA_MUSICA + r"door_activada.wav")
 sonido_puerta_abierta = pygame.mixer.Sound(RUTA_MUSICA + r"door_open.wav")
-sonidos = [sonido_disparo,sonido_puerta_activada,sonido_puerta_abierta,sonido_muerte,sonido_recolectar]
+sonido_victoria = pygame.mixer.Sound(RUTA_MUSICA + r"victory.wav")
+sonidos = [sonido_disparo,sonido_puerta_activada,sonido_puerta_abierta,sonido_muerte,sonido_recolectar,sonido_victoria]
 for sonido in sonidos:
     sonido.set_volume(0.5)
 

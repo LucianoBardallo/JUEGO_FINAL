@@ -4,16 +4,16 @@
         "nivel_1":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":60,
+            "tiempo":30,
             "mapa":["MMMMMMMMMMMMMMMMMMMMMMMM",
                     "MLLLBBBLLLMMMMMLLLLLLLLM",
-                    "MLLLLLLLLLLLLLLLLLLLLLLM",
+                    "MLLLBBBLLLLLLLLLLLLLLLLM",
                     "MPPPLLLLLLLLLBBBLLLLLLLM",
-                    "MLLLLLLLLLLLLLLLLLLPPPPM",
+                    "MLLLLLLLLLLLLBBBLLLPPPPM",
                     "MLLLLLPPLPPLLLLLLLLMMMMM",
                     "MLLLLLLBBBLLPPLPPLLLBBBM",
-                    "MLLLLLLLLLLLLLLLLLLLBBBM",
-                    "MLLLLLLLLLLLLLLLLLLLBBBM",
+                    "MLLLLLLBBBLLLLLLLLLLBBBM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MLLLLLOOOOOOOLLLLLOOOOOM",
                     "MOOLLLMMMMMMMOOLLLMMMMMM",
                     "MMMSSOMMMMMMMMMSSSMMMMMM"],
@@ -87,17 +87,17 @@
         "nivel_2":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":60,
+            "tiempo":30,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
             "MMMMMMMMMMMMMMMMMMMMMMMM",
-            "MLLLLLLBBBLLBBBBBBBLLLLM",
-            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLBBBLLLLBBBBLLLLLM",
+            "MLLLLLLBBBLLLLBBBBLLLLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MPPPPLLLLLLLLLLLLLLLLLLM",
             "MLLLLLLLLLLPPPPPPPPPLLLM",
             "MLLLLLLBBBLLLLLLBBBBBLLM",
-            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLBBBLLLLLLBBBBBLLM",
             "MOOOLLLLLLLLLLLLLLLLLLLM",
             "MMMMLLLLLLLLLLOOOOOOOOOM",
             "MMMMOOSSSSSSSSMMMMMMMMMM"],
@@ -169,7 +169,7 @@
         "nivel_3":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":60,
+            "tiempo":30,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
             "MMMMMMMMMMMMMMMMMMMMMMMM",
@@ -177,8 +177,8 @@
             "MBBBBBLLLLLLLLLLLLBBBBBM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MPPPPPLLLLLPPLLLLLPPPPPM",
-            "MLLLLLLLLLLLLLLLLLLLLLLM",
-            "MLLLLLLLLLLLLLLLLLLLLLLM",
+            "MLLLLLLLLBBBBBBLLLLLLLLM",
+            "MLLLLLLLLBBBBBBLLLLLLLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MLLLLLLLLLLLLLLLLLLLLLLM",
             "MOOOOOTTTTTTTTTTTTOOOOOM",
