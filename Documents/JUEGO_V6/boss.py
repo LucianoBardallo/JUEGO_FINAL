@@ -89,6 +89,7 @@ class Boss:
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
+                pygame.mixer.Sound.play(self.sonidos[6])
                 self.disparo_cooldown = 200
                 bala = Boss_Disparo(self.rect_ojo.centerx + (0.6 * self.rect_ojo.size[0] * self.direccion),self.rect_ojo.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
                 self.municiones.append(bala)
@@ -107,6 +108,7 @@ class Boss:
         if self.hp <= 0:
             self.vidas -= 1
         if self.vidas < 1:
+            pygame.mixer.Sound.play(self.sonidos[7])
             self.vivo = False
         
         if self.hp < 8000:
@@ -138,7 +140,8 @@ class Boss:
                 pygame.draw.rect(pantalla,(255,0,0),self.rect_ojo)
                 pygame.draw.rect(pantalla,(255,255,0),self.rect_vision)
 
-    def actualizar(self,delta_ms,pantalla,pos_xy):
+    def actualizar(self,delta_ms,pantalla,pos_xy,sonidos):
+        self.sonidos = sonidos
         self.hacer_animacion_cuerpo(delta_ms)
         self.hacer_animacion_ojo(delta_ms)
         self.hacer_colision(pos_xy)

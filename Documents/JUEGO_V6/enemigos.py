@@ -17,7 +17,7 @@ class Enemigo:
         self.caminando[IZQUIERDA] = Auxiliar.getSurfaceFromSpriteSheet(RUTA_IMAGEN + r"Characters\enemies\set_juju\black\juju_move_right.png",8,2,True,scale=0.8)
         self.caminando[DERECHA] = Auxiliar.getSurfaceFromSpriteSheet(RUTA_IMAGEN + r"Characters\enemies\set_juju\black\juju_move_right.png",8,2,scale=0.8)
 
-        self.vidas = 1
+        self.vidas = 5
         self.frame = 0
         self.mover_x = 0
         self.mover_y = 0
@@ -47,6 +47,7 @@ class Enemigo:
         self.vivo = True
 
         self.comienzo_patrulla = self.rect.centerx
+        
        
         
     def cambiar_x(self,delta_x):
@@ -104,7 +105,7 @@ class Enemigo:
             self.imagen = self.animacion[self.frame]
             pantalla.blit(self.imagen,self.rect)
 
-    def actualizar(self,delta_ms,plataformas,municiones):
+    def actualizar(self,delta_ms,plataformas):
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
         self.actualizar_vida()
@@ -135,6 +136,17 @@ class Enemigo_Melee(Enemigo):
             self.patrullar()
             self.cambiar_x(self.mover_x)
             self.cambiar_y(self.mover_y)
+    
+    def actualizar_vida(self):
+        if self.vidas < 1:
+            pygame.mixer.Sound.play(self.sonidos[8])
+            self.vivo = False
+    
+    def actualizar(self,delta_ms,plataformas,sonidos):
+        self.sonidos = sonidos
+        self.hacer_movimiento(delta_ms,plataformas)
+        self.hacer_animacion(delta_ms)
+        self.actualizar_vida()
 
 class Enemigo_Distancia(Enemigo):
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0,direccion=DERECHA):
@@ -152,6 +164,7 @@ class Enemigo_Distancia(Enemigo):
         self.municiones = []
         self.disparo_cooldown = 0
         
+
     def cambiar_x(self,delta_x):
         self.rect.x += delta_x
         self.rectangulo_colision.x += delta_x
@@ -169,6 +182,7 @@ class Enemigo_Distancia(Enemigo):
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
+                pygame.mixer.Sound.play(self.sonidos[0])
                 self.disparo_cooldown = 120
                 bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
                 self.municiones.append(bala)
@@ -180,6 +194,11 @@ class Enemigo_Distancia(Enemigo):
             bala.actualizar(delta_ms,pantalla)
             if bala.impacto:
                 self.municiones.remove(bala)
+
+    def actualizar_vida(self):
+        if self.vidas < 1:
+            pygame.mixer.Sound.play(self.sonidos[8])
+            self.vivo = False
 
     def renderizar(self,pantalla):
         if DEBUG:
@@ -206,7 +225,8 @@ class Enemigo_Distancia(Enemigo):
             if bala.rectangulo_colision.colliderect(pos_xy):
                 self.municiones.remove(bala)
             
-    def actualizar(self,pantalla,delta_ms,plataformas,pos_xy):
+    def actualizar(self,pantalla,delta_ms,plataformas,pos_xy,sonidos):
+        self.sonidos = sonidos
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
         self.hacer_colision(pos_xy)

@@ -175,6 +175,7 @@ class Nivel:
                 if tile.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                     if not self.jugador.invensible:
                         self.jugador.vidas -= 1
+                        pygame.mixer.Sound.play(sonidos[2])
                         self.jugador.invensible = True
         
         #OBSTACULO
@@ -188,11 +189,13 @@ class Nivel:
                 if obstaculo.rectangulo_pies.colliderect(self.jugador.rectangulo_colision):
                     if not self.jugador.invensible:
                         self.jugador.vidas -= 1
+                        pygame.mixer.Sound.play(sonidos[2])
                         self.jugador.invensible = True
         for obstaculo2 in self.obstaculos2:
             if obstaculo2.rectangulo_pies.colliderect(self.jugador.rectangulo_colision):
                 if not self.jugador.invensible:
                     self.jugador.vidas -=1
+                    pygame.mixer.Sound.play(sonidos[2])
                     self.jugador.invensible = True
             
                 
@@ -202,6 +205,7 @@ class Nivel:
                 if enemigo.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                     if not self.jugador.invensible:
                         self.jugador.vidas -= 1
+                        pygame.mixer.Sound.play(sonidos[2])
                         self.jugador.invensible = True
             for bala in self.jugador.municiones:
                 if type(enemigo) == Boss:
@@ -211,12 +215,14 @@ class Nivel:
                 else:
                     if bala.rectangulo_colision.colliderect(enemigo.rectangulo_colision):
                         enemigo.vidas -= 1
+                        pygame.mixer.Sound.play(sonidos[2])
                         self.jugador.municiones.remove(bala)
             if type(enemigo) == Enemigo_Distancia or type(enemigo) == Boss:                
                 for bala in enemigo.municiones:
                     if bala.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
                         if not self.jugador.invensible:
                             self.jugador.vidas -= 1
+                            pygame.mixer.Sound.play(sonidos[2])
                             self.jugador.invensible = True
                             enemigo.municiones.remove(bala)
             if not enemigo.vivo:
@@ -271,15 +277,15 @@ class Nivel:
         
                 
     
-    def actualizar(self,delta_ms):
+    def actualizar(self,delta_ms,sonidos):
         for lista in self.nivel:
             for elemento in lista:
                 if type(elemento) == Enemigo_Melee:
-                    elemento.actualizar(delta_ms,self.tiles,self.jugador.municiones)
+                    elemento.actualizar(delta_ms,self.tiles,sonidos)
                 elif type(elemento) == Enemigo_Distancia:
-                    elemento.actualizar(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision)
+                    elemento.actualizar(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision,sonidos)
                 elif type(elemento) == Boss:
-                    elemento.actualizar(delta_ms,self.pantalla,self.jugador.rectangulo_colision)
+                    elemento.actualizar(delta_ms,self.pantalla,self.jugador.rectangulo_colision,sonidos)
                 elif type(elemento) == Botín or type(elemento) == Platforma_Mobiles or type(elemento) == Obstaculo_sierra:
                     elemento.actualizar(delta_ms)
                 
