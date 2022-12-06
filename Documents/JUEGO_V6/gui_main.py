@@ -2,14 +2,6 @@ import pygame
 from pygame.locals import *
 import sys
 from configuraciones import *
-from gui_form_menu_A import FormMenuA
-from gui_form_menu_B import FormMenuB
-from gui_form_menu_C import FormMenuC
-from gui_form_pausa import FormMenuPausa
-from gui_form_pausa_opciones import FormMenuPausaOpciones
-from gui_nivel import FormNivel
-from gui_form_win import FormWin
-from gui_form_lose import FormLose
 from gui_manager import FormManager
 from musica import Musica
 
@@ -40,9 +32,9 @@ while True:
 
     juego.actualizar_forms(eventos,teclas,delta_ms,timer_1s,musica.sonidos)
 
+    pygame.display.flip()
 
     
-    pygame.display.flip()
 
 
 

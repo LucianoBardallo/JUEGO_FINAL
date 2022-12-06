@@ -2,11 +2,8 @@ import pygame
 from pygame.locals import *
 from configuraciones import *
 from nivel import Nivel
-from enemigos import Enemigo_Distancia
-from gui_widget import Widget
 from gui_form import Form
 from gui_button import Button
-from gui_textbox import TextBox
 from gui_progressbar import ProgressBar
 from sql import insertar_linea
 

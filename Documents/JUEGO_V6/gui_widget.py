@@ -49,7 +49,7 @@ class Widget:
             pygame.draw.rect(self.slave_surface, self.color_border, self.slave_surface.get_rect(), 2)
 
     def update(self):
-        pass
+        self.render()
 
     def draw(self):
         self.master_form.surface.blit(self.slave_surface,self.slave_rect)

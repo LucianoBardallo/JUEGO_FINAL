@@ -1,10 +1,8 @@
-import pygame
 from pygame.locals import *
-import sys
 from configuraciones import *
-from gui_form_menu_A import FormMenuA
-from gui_form_menu_B import FormMenuB
-from gui_form_menu_C import FormMenuC
+from gui_form_menu import FormMenuA
+from gui_form_opciones import FormMenuB
+from gui_form_niveles import FormMenuC
 from gui_form_pausa import FormMenuPausa
 from gui_form_pausa_opciones import FormMenuPausaOpciones
 from gui_nivel import FormNivel
@@ -31,7 +29,6 @@ class FormManager():
         self.form_tabla2 = Tabla(name="tabla_2",nivel="nivel_2",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
         self.form_tabla3 = Tabla(name="tabla_3",nivel="nivel_3",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
         self.form_tabla4 = Tabla(name="tabla_4",nivel="nivel_4",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
-        
 
     def actualizar_forms(self,eventos,teclas,delta_ms,timer_1s,sonidos):
         if(self.form_menu_A.active):

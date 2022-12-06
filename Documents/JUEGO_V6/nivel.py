@@ -3,7 +3,7 @@ from auxiliar import *
 from configuraciones import *
 from plataformas import *
 from objetos import *
-from botínes import *
+from loot import *
 from enemigos import *
 from jugador import *
 from obstaculos import *

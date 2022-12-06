@@ -33,7 +33,6 @@ class FormWin(Form):
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
         
-    
     def draw(self): 
         super().draw()
         for aux_widget in self.lista_widget:    
