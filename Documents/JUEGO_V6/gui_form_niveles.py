@@ -1,17 +1,16 @@
 import pygame
-import sys
 from pygame.locals import *
 from configuraciones import *
 from gui_form import Form
 from gui_button import Button
-from gui_textbox import TextBox
-from gui_progressbar import ProgressBar
+from gui_widget import Widget
+
 
 class FormMenuC(Form):
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
         super().__init__(name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active)
 
-        self.text1 = Button(master=self,x=ANCHO_VENTANA//2-100,y=20,w=200,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="NIVELES",font="IMPACT",font_size=30,font_color=WHITE)
+        self.text1 = Widget(master=self,x=ANCHO_VENTANA//2-100,y=20,w=200,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="NIVELES",font="IMPACT",font_size=30,font_color=WHITE)
         self.boton1 = Button(master=self,x=200,y=350,w=100,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",on_click=self.on_click_boton_nivel,on_click_param="nivel_1",text="1",font="IMPACT",font_size=30,font_color=WHITE)
         self.boton2 = Button(master=self,x=625,y=375,w=100,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",on_click=self.on_click_boton_nivel,on_click_param="nivel_2",text="2",font="IMPACT",font_size=30,font_color=WHITE)
         self.boton3 = Button(master=self,x=980,y=315,w=100,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",on_click=self.on_click_boton_nivel,on_click_param="nivel_3",text="3",font="IMPACT",font_size=30,font_color=WHITE)

@@ -42,15 +42,7 @@ def leer_lineas(nivel):
         except:
             print("Error")
 
-# def actualizar_filas(name):
-#     with sql.connect("clasificacion.db") as conexion:
-#         try:
-#             sentencia = "UPDATE score SET nombre = 'XX' WHERE id=?"
-#             cursor=conexion.execute(sentencia,(name,))
-#             datos = cursor.fetchall()
-#             conexion.commit()
-#         except:
-#             print("error")
+
 
 
 

@@ -5,6 +5,7 @@ from nivel import Nivel
 from gui_form import Form
 from gui_button import Button
 from gui_progressbar import ProgressBar
+from gui_widget import Widget
 from sql import insertar_linea
 
 
@@ -20,12 +21,12 @@ class FormNivel(Form):
         self.jugador = self.nivel_actual.jugador
         super().__init__(name, master_surface, x, y, w, h, color_background, imagen_background, color_border, active)
 
-        self.text1 = Button(master=self,x=-100,y=-10,w=1400,h=60,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\bar.png",text=None,font=None,font_size=None,font_color=None)
-        self.text2 = Button(master=self,x=550,y=10,w=100,h=30,color_background=None,color_border=None,image_background=None,text="{0}".format(self.tiempo_juego),font="IMPACT",font_size=30,font_color=WHITE)
-        self.text3 = Button(master=self,x=1000,y=10,w=200,h=30,color_background=None,color_border=None,image_background=None,text="{0}".format(self.nivel_actual.puntuacion),font="IMPACT",font_size=30,font_color=WHITE)
-        self.ima1 = Button(master=self,x=510,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Clock_Icon.png",text=None,font=None,font_size=None,font_color=None)
-        self.ima2 = Button(master=self,x=50,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\HP_Icon.png",text=None,font=None,font_size=None,font_color=None)
-        self.ima3 = Button(master=self,x=960,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Shop_Cristal_Icon_01.png",text=None,font=None,font_size=None,font_color=None)
+        self.text1 = Widget(master=self,x=-100,y=-10,w=1400,h=60,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\bar.png",text=None,font=None,font_size=None,font_color=None)
+        self.text2 = Widget(master=self,x=550,y=10,w=100,h=30,color_background=None,color_border=None,image_background=None,text="{0}".format(self.tiempo_juego),font="IMPACT",font_size=30,font_color=WHITE)
+        self.text3 = Widget(master=self,x=1000,y=10,w=200,h=30,color_background=None,color_border=None,image_background=None,text="{0}".format(self.nivel_actual.puntuacion),font="IMPACT",font_size=30,font_color=WHITE)
+        self.ima1 = Widget(master=self,x=510,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Clock_Icon.png",text=None,font=None,font_size=None,font_color=None)
+        self.ima2 = Widget(master=self,x=50,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\HP_Icon.png",text=None,font=None,font_size=None,font_color=None)
+        self.ima3 = Widget(master=self,x=960,y=10,w=30,h=30,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Shop_Cristal_Icon_01.png",text=None,font=None,font_size=None,font_color=None)
         self.pb1 = ProgressBar(master=self,x=100,y=15,w=100,h=20,color_background=None,color_border=None,image_background=None,image_progress=CORAZON,value=self.nivel_actual.jugador.vidas,value_max=5)
 
         
@@ -60,17 +61,14 @@ class FormNivel(Form):
         if self.nivel_actual.jugador.ganar and self.ganar:
             self.set_active("you_win")
             pygame.mixer.Sound.play(sonidos[5])
+            self.puntuacion_nivel = self.nivel_actual.puntuacion
             if self.name == "nivel_1":
-                self.puntuacion_nivel = self.nivel_actual.puntuacion
                 insertar_linea(self.nombre_jugador,"nivel_1", self.puntuacion_nivel)
             if self.name == "nivel_2":
-                self.puntuacion_nivel = self.nivel_actual.puntuacion
                 insertar_linea(self.nombre_jugador,"nivel_2", self.puntuacion_nivel)
             if self.name == "nivel_3":
-                self.puntuacion_nivel = self.nivel_actual.puntuacion
                 insertar_linea(self.nombre_jugador,"nivel_3", self.puntuacion_nivel)
             if self.name == "nivel_4":
-                self.puntuacion_nivel = self.nivel_actual.puntuacion
                 insertar_linea(self.nombre_jugador,"nivel_4", self.puntuacion_nivel)
 
         if not self.jugador.vivo or self.perder:

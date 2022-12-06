@@ -5,7 +5,7 @@ import math
 
 class Bullet():
     
-    def __init__(self,owner,x_init,y_init,x_end,y_end,speed,path,frame_rate_ms,move_rate_ms,width=5,height=5) -> None:
+    def __init__(self,owner,x_init,y_init,x_end,y_end,speed,path,frame_rate_ms,move_rate_ms,width=50,height=50) -> None:
         self.tiempo_transcurrido_move = 0
         self.tiempo_transcurrido_animation = 0
         self.image = pygame.image.load(path).convert()
@@ -27,11 +27,11 @@ class Bullet():
         self.is_active = True 
    
     def change_x(self,delta_x):
-        self.x = self.x + delta_x
+        self.x += delta_x
         self.rect.x = int(self.x)   
 
     def change_y(self,delta_y):
-        self.y = self.y + delta_y
+        self.y += delta_y
         self.rect.y = int(self.y)
 
     def do_movement(self,delta_ms,plataform_list,enemy_list,player):
@@ -51,7 +51,7 @@ class Bullet():
     def check_impact(self,plataform_list,enemy_list,player):
         if(self.is_active and self.owner != player and self.rect.colliderect(player.rect)):
             print("IMPACTO PLAYER")
-            player.receive_shoot()
+            player.vida -= 1
             self.is_active = False
         for aux_enemy in enemy_list:
             if(self.is_active and self.owner != aux_enemy and self.rect.colliderect(aux_enemy.rect)):
