@@ -86,7 +86,7 @@ class FormNivel(Form):
         self.nivel_actual.draw()
         self.nivel_actual.jugador.draw(self.nivel_actual.pantalla)
         for obstaculo in self.nivel_actual.obstaculos:
-            obstaculo.draw(self.nivel_actual.pantalla)
+            obstaculo.renderizar(self.nivel_actual.pantalla)
         for aux_widget in self.lista_widget:    
             aux_widget.draw()
         

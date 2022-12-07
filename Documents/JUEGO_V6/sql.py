@@ -42,6 +42,12 @@ def leer_lineas(nivel):
         except:
             print("Error")
 
+def eliminar_linea():
+    with sql.connect("clasificacion.db") as conexion:
+        sentencia = "DELETE FROM score WHERE id=?"
+        cursor=conexion.execute(sentencia,(26,))
+
+
 
 
 

@@ -39,7 +39,7 @@ class Bala:
         self.rect.x += self.velocidad_disparo
         self.rectangulo_colision.x += self.velocidad_disparo
 
-    def renderizar(self,screen):
+    def draw(self,screen):
         if self.impacto == False:
             if(DEBUG):
                 pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -55,8 +55,8 @@ class Bala:
             else: 
                 self.frame = 0
 
-    def actualizar(self,delta_ms,screen):
-        self.renderizar(screen)
+    def update(self,delta_ms,screen):
+        self.draw(screen)
         self.trayectoria()
         self.actualizar_frames(delta_ms)
     
@@ -92,7 +92,7 @@ class Boss_Disparo:
         self.rect.x += self.velocidad_disparo
         self.rectangulo_colision.x += self.velocidad_disparo
 
-    def renderizar(self,screen):
+    def draw(self,screen):
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rectangulo_colision)
         self.imagen = self.animacion[self.frame]
@@ -107,8 +107,8 @@ class Boss_Disparo:
             else: 
                 self.frame = 0
 
-    def actualizar(self,delta_ms,screen):
-        self.renderizar(screen)
+    def update(self,delta_ms,screen):
+        self.draw(screen)
         self.trayectoria()
         self.actualizar_frames(delta_ms) 
         

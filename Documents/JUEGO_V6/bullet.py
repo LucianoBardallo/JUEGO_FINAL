@@ -5,11 +5,18 @@ import math
 
 class Bullet():
     
-    def __init__(self,owner,x_init,y_init,x_end,y_end,speed,path,frame_rate_ms,move_rate_ms,width=50,height=50) -> None:
+    def __init__(self,owner,x_init,y_init,x_end,y_end,speed,frame_rate_ms,move_rate_ms,width=50,height=50) -> None:
+        self.direccion = IZQUIERDA
+        self.disparando = {}
+        self.disparando[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,False,w=width,h=height)
+        self.disparando[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,True,w=width,h=height)
+
+        self.speed = speed
         self.tiempo_transcurrido_move = 0
         self.tiempo_transcurrido_animation = 0
-        self.image = pygame.image.load(path).convert()
-        self.image = pygame.transform.scale(self.image,(width,height))
+        self.animacion = self.disparando[self.direccion]
+        self.frame = 0
+        self.image = self.animacion[self.frame]
         self.rect = self.image.get_rect()
         self.x = x_init
         self.y = y_init
@@ -21,10 +28,11 @@ class Bullet():
         angle = math.atan2(y_end - y_init, x_end - x_init) #Obtengo el angulo en radianes
         print('El angulo engrados es:', int(angle*180/math.pi))
 
-        self.move_x = math.cos(angle)*speed
-        self.move_y = math.sin(angle)*speed
+        self.move_x = math.cos(angle)*self.speed
+        self.move_y = math.sin(angle)*self.speed
         
         self.is_active = True 
+        self.impacto = False
    
     def change_x(self,delta_x):
         self.x += delta_x
@@ -46,17 +54,20 @@ class Bullet():
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
-            pass
+            if(self.frame < len(self.animacion) - 1):
+                self.frame += 1 
+            else:
+                self.frame = 0
     
     def check_impact(self,plataform_list,enemy_list,player):
-        if(self.is_active and self.owner != player and self.rect.colliderect(player.rect)):
+        if(self.is_active and self.owner != player and self.rect.colliderect(player.rectangulo_colision)):
             print("IMPACTO PLAYER")
-            player.vida -= 1
             self.is_active = False
-        for aux_enemy in enemy_list:
-            if(self.is_active and self.owner != aux_enemy and self.rect.colliderect(aux_enemy.rect)):
-                print("IMPACTO ENEMY")
-                self.is_active = False
+
+        # for aux_enemy in enemy_list:
+        #     if(self.is_active and self.owner != aux_enemy and self.rect.colliderect(aux_enemy.rectangulo_colision)):
+        #         print("IMPACTO ENEMY")
+        #         self.is_active = False
 
     def update(self,delta_ms,plataform_list,enemy_list,player):
         self.do_movement(delta_ms,plataform_list,enemy_list,player)
@@ -65,5 +76,6 @@ class Bullet():
     def draw(self,screen):
         if(self.is_active):
             if(DEBUG):
-                pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
+                pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rect)
+            self.imagen = self.animacion[self.frame]
             screen.blit(self.image,self.rect)

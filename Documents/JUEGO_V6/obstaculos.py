@@ -15,7 +15,7 @@ class Obstaculo:
         self.rectangulo_pies.height = ALTURA_PIES
         self.rectangulo_pies.y = y + self.rect.height - ALTURA_PIES
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -41,7 +41,7 @@ class Obstaculo_sierra(Obstaculo):
 
         self.rectangulo_pies.y = y + self.rect.height - ALTURA_PIES * 3
     
-    def actualizar(self,delta_ms):
+    def update(self,delta_ms):
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
@@ -50,7 +50,7 @@ class Obstaculo_sierra(Obstaculo):
             else: 
                 self.frame = 0
     
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):

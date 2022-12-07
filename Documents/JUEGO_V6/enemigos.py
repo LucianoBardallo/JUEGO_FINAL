@@ -96,7 +96,7 @@ class Enemigo:
         if self.vidas < 1:
             self.vivo = False
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if self.vivo:
             if DEBUG:
                 pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
@@ -104,7 +104,7 @@ class Enemigo:
             self.imagen = self.animacion[self.frame]
             pantalla.blit(self.imagen,self.rect)
 
-    def actualizar(self,delta_ms,plataformas):
+    def update(self,delta_ms,plataformas):
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
         self.actualizar_vida()
@@ -142,7 +142,7 @@ class Enemigo_Melee(Enemigo):
             pygame.mixer.Sound.play(self.sonidos[8])
             self.vivo = False
     
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if self.vidas > 0:
             if DEBUG:
                 pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
@@ -150,7 +150,7 @@ class Enemigo_Melee(Enemigo):
             self.imagen = self.animacion[self.frame]
             pantalla.blit(self.imagen,self.rect)
 
-    def actualizar(self,delta_ms,plataformas,sonidos):
+    def update(self,delta_ms,plataformas,sonidos):
         self.sonidos = sonidos
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
@@ -200,7 +200,7 @@ class Enemigo_Distancia(Enemigo):
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.actualizar(delta_ms,pantalla)
+            bala.update(delta_ms,pantalla)
             if bala.impacto:
                 self.municiones.remove(bala)
 
@@ -209,7 +209,7 @@ class Enemigo_Distancia(Enemigo):
             pygame.mixer.Sound.play(self.sonidos[8])
             self.vivo = False
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if DEBUG:
             pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -234,13 +234,17 @@ class Enemigo_Distancia(Enemigo):
             if bala.rectangulo_colision.colliderect(pos_xy):
                 self.municiones.remove(bala)
             
-    def actualizar(self,pantalla,delta_ms,plataformas,pos_xy,sonidos):
+    def update(self,pantalla,delta_ms,plataformas,pos_xy,sonidos):
         self.sonidos = sonidos
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
         self.hacer_colision(pos_xy)
         self.actualizar_vida()
         self.actualizar_bala(delta_ms,pantalla)
+
+class Torret(Enemigo_Distancia):
+    pass
+
 
 
 

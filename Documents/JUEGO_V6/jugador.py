@@ -123,7 +123,7 @@ class Jugador:
 
         self.municiones = []
         self.disparo_cooldown = 0
-        self.municion = 100
+        self.municion = 200
 
         self.move_alloved = {}
         self.move_alloved[IZQUIERDA] = True
@@ -226,7 +226,7 @@ class Jugador:
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.actualizar(delta_ms,pantalla)
+            bala.update(delta_ms,pantalla)
             if bala.impacto:
                 self.municiones.remove(bala)
 
@@ -300,7 +300,7 @@ class Jugador:
                     if self.vivo == False:
                         self.frame = len(self.animacion) - 1 
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -311,7 +311,7 @@ class Jugador:
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
 
-    def eventos(self,teclas,eventos,sonidos):
+    def events(self,teclas,eventos,sonidos):
         #EVENTOS
         for evento in eventos:
             if evento.type == pygame.QUIT: # Salir
@@ -375,8 +375,8 @@ class Jugador:
         self.actualizar_frames(delta_ms)      
 
     #ACTUALIZACION PRINCIPAL
-    def actualizar(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas,sonidos):
-        self.eventos(teclas,eventos,sonidos)
+    def update(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas,sonidos):
+        self.events(teclas,eventos,sonidos)
         # if not self.ganar:
         self.comprobar_vidas(sonidos)
         self.hacer_movimiento(delta_ms,tiles,obstaculos,plataformas)

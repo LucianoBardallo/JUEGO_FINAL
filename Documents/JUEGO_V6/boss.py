@@ -4,6 +4,7 @@ from configuraciones import *
 from plataformas import *
 from objetos import *
 from balas import *
+from bullet import Bullet
 from gui.gui_progressbar import *
 
 class Boss:
@@ -44,9 +45,9 @@ class Boss:
         self.rect_ojo.x = x+200
         self.rect_ojo.y = y+250
 
-        # self.rect_boca = self.imagen2.get_rect()
-        # self.rect_boca.centerx = 850
-        # self.rect_boca.centery = 450
+        self.rect_boca = self.imagen2.get_rect()
+        self.rect_boca.centerx = 850
+        self.rect_boca.centery = 450
 
         self.rect_vision = self.imagen2.get_rect()
         self.rect_vision.y = 0
@@ -64,6 +65,7 @@ class Boss:
 
         self.vivo = True
         self.blink = True
+
 
     def hacer_animacion_cuerpo(self,delta_ms):
         self.tiempo_transcurrido_animation_cuerpo += delta_ms
@@ -85,22 +87,24 @@ class Boss:
                 if self.blink:
                     self.frame2 = len(self.animacion2) - 4
     
-    def disparar(self,shoot=True):
+    def disparar(self,shoot,pos_xy):
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
                 pygame.mixer.Sound.play(self.sonidos[6])
                 self.disparo_cooldown = 200
-                bala = Boss_Disparo(self.rect_ojo.centerx + (0.6 * self.rect_ojo.size[0] * self.direccion),self.rect_ojo.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
+                bala = Bullet(owner=self,x_init=self.rect_boca.centerx,y_init=self.rect_boca.centery,
+                x_end=pos_xy.centerx,y_end=pos_xy.centery,speed=8,frame_rate_ms=20,move_rate_ms=20,width=50,height=50)
                 self.municiones.append(bala)
         else:
             self.esta_disparando = False
 
-    def actualizar_bala(self,delta_ms,pantalla):
+    def actualizar_bala(self,delta_ms,pantalla,player):
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.actualizar(delta_ms,pantalla)
+            bala.update(delta_ms,[],[],player)
+            bala.draw(pantalla)
             if bala.impacto:
                 self.municiones.remove(bala)
     
@@ -123,14 +127,14 @@ class Boss:
             self.animacion2 = self.ojo_stage["five"]
         
     def hacer_colision(self, pos_xy):
-        self.disparar(False)
+        self.disparar(False,pos_xy)
         if self.rect_vision.colliderect(pos_xy):
-            self.disparar(True)
+            self.disparar(True,pos_xy)
         for bala in self.municiones:
-            if bala.rectangulo_colision.colliderect(pos_xy):
+            if bala.rect.colliderect(pos_xy):
                 self.municiones.remove(bala)
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if self.vidas > 0:
             self.imagen = self.animacion[self.frame]
             self.imagen2 = self.animacion2[self.frame2]
@@ -139,11 +143,12 @@ class Boss:
             if DEBUG:
                 pygame.draw.rect(pantalla,(255,0,0),self.rect_ojo)
                 pygame.draw.rect(pantalla,(255,255,0),self.rect_vision)
+                pygame.draw.rect(pantalla,(255,0,0),self.rect_boca)
 
-    def actualizar(self,delta_ms,pantalla,pos_xy,sonidos):
+    def update(self,delta_ms,pantalla,pos_xy,sonidos,player):
         self.sonidos = sonidos
         self.hacer_animacion_cuerpo(delta_ms)
         self.hacer_animacion_ojo(delta_ms)
         self.hacer_colision(pos_xy)
-        self.actualizar_bala(delta_ms,pantalla)
+        self.actualizar_bala(delta_ms,pantalla,player)
         self.actualizar_vida()

@@ -12,13 +12,14 @@ from boss import Boss
 class Nivel:
     def __init__(self,nivel,pantalla):
         self.nivel_data = Auxiliar.cargar_nivel(r"C:\Users\lucia\Documents\JUEGO_V6\niveles.json",nivel)
+        self.fondo = self.nivel_data["fondo"]
         self.mapa = self.nivel_data["mapa"]
         self.objetos_data = self.nivel_data["objetos"]
         self.enemigos_data = self.nivel_data["enemigos"]
         self.jugador_data = self.nivel_data["jugador"]
-        self.fondo = self.nivel_data["fondo"]
         self.plataformas_data = self.nivel_data["plataformas"]
         self.obstaculos_data = self.nivel_data["obstaculos"]
+        self.tiempo_juego = self.nivel_data["tiempo"]
         self.tiles = self.crear_mapa()
         self.plataformas = self.crear_plataformas_mobiles()
         self.loot = self.crear_loot()
@@ -32,8 +33,6 @@ class Nivel:
 
         self.tiempo_activado = 0
         self.puntuacion = 0
-        self.tiempo_juego = self.nivel_data["tiempo"]
-
         
     def crear_jugador(self):
         for coordenadas in self.jugador_data["coordenadas"]:
@@ -219,7 +218,7 @@ class Nivel:
                         self.jugador.municiones.remove(bala)
             if type(enemigo) == Enemigo_Distancia or type(enemigo) == Boss:                
                 for bala in enemigo.municiones:
-                    if bala.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
+                    if bala.rect.colliderect(self.jugador.rectangulo_colision):
                         if not self.jugador.invensible:
                             self.jugador.vidas -= 1
                             pygame.mixer.Sound.play(sonidos[2])
@@ -267,27 +266,27 @@ class Nivel:
                     # pygame.mixer.Sound.play(sonidos[2])
    
 
-    def renderizar(self):
+    def draw(self):
         for lista in self.nivel:
             for elemento in lista:
-                elemento.renderizar(self.pantalla)
+                elemento.draw(self.pantalla)
                 if type(elemento) == Enemigo_Distancia or type(elemento) == Boss:
                     for bala in elemento.municiones:
-                        bala.renderizar(self.pantalla)
+                        bala.draw(self.pantalla)
         
                 
     
-    def actualizar(self,delta_ms,sonidos):
+    def update(self,delta_ms,sonidos):
         for lista in self.nivel:
             for elemento in lista:
                 if type(elemento) == Enemigo_Melee:
-                    elemento.actualizar(delta_ms,self.tiles,sonidos)
+                    elemento.update(delta_ms,self.tiles,sonidos)
                 elif type(elemento) == Enemigo_Distancia:
-                    elemento.actualizar(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision,sonidos)
+                    elemento.update(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision,sonidos)
                 elif type(elemento) == Boss:
-                    elemento.actualizar(delta_ms,self.pantalla,self.jugador.rectangulo_colision,sonidos)
+                    elemento.update(delta_ms,self.pantalla,self.jugador.rectangulo_colision,sonidos,self.jugador)
                 elif type(elemento) == Botín or type(elemento) == Platforma_Mobiles or type(elemento) == Obstaculo_sierra:
-                    elemento.actualizar(delta_ms)
+                    elemento.update(delta_ms)
                 
                     
                 

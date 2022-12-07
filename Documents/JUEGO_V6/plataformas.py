@@ -15,7 +15,7 @@ class Plataforma:
         self.rectangulo_pies = pygame.Rect(self.rect)
         self.rectangulo_pies.height = ALTURA_PIES
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         pantalla.blit(self.image,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -33,7 +33,7 @@ class Muro:
         self.rectangulo_pies = pygame.Rect(self.rect)
         self.rectangulo_pies.height = ALTURA_PIES
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -111,13 +111,13 @@ class Platforma_Mobiles(Plataforma):
                 self.mover_abajo = True
 
     
-    def renderizar(self,screen):
+    def draw(self,screen):
         screen.blit(self.image,self.rect)
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
             pygame.draw.rect(screen,color=(255,255,0),rect=self.rect_pies)
 
-    def actualizar(self,delta_ms):   
+    def update(self,delta_ms):   
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.mover_plataforma_horizontal()

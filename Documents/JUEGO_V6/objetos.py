@@ -14,7 +14,7 @@ class Objeto:
         self.activado = False
         self.desbloqueado = False
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -34,7 +34,7 @@ class Objeto_Animado(Objeto):
         self.tipo_desbloqueado = tipo_desbloqueado
         self.tipo_bloqueado = tipo_bloqueado
         
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         self.imagen = self.imagenes[self.tipo_bloqueado]
         if self.desbloqueado:
             self.imagen = self.imagenes[self.tipo_desbloqueado]

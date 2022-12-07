@@ -19,14 +19,14 @@ class Botín:
         self.recolectado = False
         
 
-    def renderizar(self,pantalla):
+    def draw(self,pantalla):
         if self.recolectado == False:
             if(DEBUG):
                 pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
             self.imagen = self.animacion[self.frame]
             pantalla.blit(self.imagen,self.rect)
 
-    def actualizar(self,delta_ms):
+    def update(self,delta_ms):
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0

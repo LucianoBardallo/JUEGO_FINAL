@@ -15,10 +15,10 @@ class Musica:
         self.muerte_enemigo = pygame.mixer.Sound(RUTA_MUSICA + r"muerte_enemigo.wav")
         self.sonidos = [self.disparo,self.puerta_activada,self.hit,self.muerte,self.recolectar,self.victoria,self.disparo_boss,self.muerte_boss,self.muerte_enemigo]
         for sonido in self.sonidos:
-            sonido.set_volume(0.5)
+            sonido.set_volume(0.3)
 
     def play_musica(self):
         pygame.mixer.init()
         pygame.mixer.music.load(RUTA_MUSICA + r"track 1.ogg")
-        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(-1)
