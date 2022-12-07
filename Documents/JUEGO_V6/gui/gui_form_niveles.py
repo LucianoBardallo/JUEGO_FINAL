@@ -1,9 +1,9 @@
 import pygame
 from pygame.locals import *
 from configuraciones import *
-from gui_form import Form
-from gui_button import Button
-from gui_widget import Widget
+from gui.gui_form import Form
+from gui.gui_button import Button
+from gui.gui_widget import Widget
 
 
 class FormMenuC(Form):

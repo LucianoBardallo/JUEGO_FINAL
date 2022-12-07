@@ -4,7 +4,7 @@ from configuraciones import *
 from plataformas import *
 from objetos import *
 from balas import *
-from gui_progressbar import *
+from gui.gui_progressbar import *
 
 class Boss:
     def __init__(self,x,y,frame_rate_ms):

@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 import sys
 from configuraciones import *
-from gui_manager import FormManager
+from gui.gui_manager import FormManager
 from musica import Musica
 
 flags = DOUBLEBUF 

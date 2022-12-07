@@ -2,9 +2,9 @@ import pygame
 import sys
 from pygame.locals import *
 from configuraciones import *
-from gui_form import Form
-from gui_widget import Widget
-from gui_button import Button
+from gui.gui_form import Form
+from gui.gui_widget import Widget
+from gui.gui_button import Button
 
 class FormMenuA(Form):
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):

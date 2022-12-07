@@ -11,7 +11,7 @@ FPS = 120
 
 #RUTA DE IMAGENES
 RUTA_IMAGEN = r"C:\Users\lucia\Documents\JUEGO_V6\images\\"
-RUTA_MUSICA = r"C:\Users\lucia\Documents\JUEGO_V6\musica\\"
+RUTA_MUSICA = r"C:\Users\lucia\Documents\JUEGO_V6\sounds\\"
 
 #DIRECCION DONDE MIRA EL PERSONAJKE
 IZQUIERDA = -1

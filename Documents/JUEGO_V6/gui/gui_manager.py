@@ -1,14 +1,14 @@
 from pygame.locals import *
 from configuraciones import *
-from gui_form_menu import FormMenuA
-from gui_form_opciones import FormMenuB
-from gui_form_niveles import FormMenuC
-from gui_form_pausa import FormMenuPausa
-from gui_form_pausa_opciones import FormMenuPausaOpciones
-from gui_nivel import FormNivel
-from gui_form_win import FormWin
-from gui_form_lose import FormLose
-from gui_posiciones import *
+from gui.gui_form_menu import FormMenuA
+from gui.gui_form_opciones import FormMenuB
+from gui.gui_form_niveles import FormMenuC
+from gui.gui_form_pausa import FormMenuPausa
+from gui.gui_form_pausa_opciones import FormMenuPausaOpciones
+from gui.gui_nivel import FormNivel
+from gui.gui_form_win import FormWin
+from gui.gui_form_lose import FormLose
+from gui.gui_posiciones import *
 
 
 class FormManager():

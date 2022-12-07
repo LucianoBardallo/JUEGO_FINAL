@@ -1,8 +1,6 @@
 import pygame
 from configuraciones import *
 from pygame.locals import *
-from gui_widget import Widget
-from gui_button import Button
 
 class Form():
     forms_dict = {}

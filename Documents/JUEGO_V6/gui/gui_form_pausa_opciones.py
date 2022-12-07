@@ -1,9 +1,9 @@
 import pygame
 from pygame.locals import *
-from gui_form import Form
-from gui_widget import Widget
-from gui_button import Button
-from gui_progressbar import ProgressBar
+from gui.gui_form import Form
+from gui.gui_widget import Widget
+from gui.gui_button import Button
+from gui.gui_progressbar import ProgressBar
 from configuraciones import *
 
 class FormMenuPausaOpciones(Form):

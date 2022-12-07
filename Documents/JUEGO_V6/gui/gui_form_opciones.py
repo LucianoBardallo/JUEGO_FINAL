@@ -1,10 +1,10 @@
 import pygame
 from pygame.locals import *
-from gui_form import Form
-from gui_textbox import TextBox
-from gui_button import Button
-from gui_widget import Widget
-from gui_progressbar import *
+from gui.gui_form import Form
+from gui.gui_textbox import TextBox
+from gui.gui_button import Button
+from gui.gui_widget import Widget
+from gui.gui_progressbar import *
 from configuraciones import *
 
 class FormMenuB(Form):
