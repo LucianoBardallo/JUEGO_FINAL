@@ -52,8 +52,8 @@ class Boss:
         self.rect_vision = self.imagen2.get_rect()
         self.rect_vision.y = 0
         self.rect_vision.x = 0
-        self.rect_vision.height = 500
-        self.rect_vision.width = 800
+        self.rect_vision.height = ALTO_VENTANA
+        self.rect_vision.width = ANCHO_VENTANA
 
         
         self.tiempo_transcurrido_animation_cuerpo = 0
@@ -61,6 +61,7 @@ class Boss:
         self.frame_rate_ms = frame_rate_ms
 
         self.municiones = []
+        self.bullets_tirados = 0
         self.disparo_cooldown = 0
 
         self.vivo = True
@@ -93,20 +94,26 @@ class Boss:
             if self.disparo_cooldown == 0:
                 pygame.mixer.Sound.play(self.sonidos[6])
                 self.disparo_cooldown = 200
-                bala = Bullet(owner=self,x_init=self.rect_boca.centerx,y_init=self.rect_boca.centery,
-                x_end=pos_xy.centerx,y_end=pos_xy.centery,speed=8,frame_rate_ms=20,move_rate_ms=20,width=50,height=50)
+                self.bullets_tirados += 1
+                if self.bullets_tirados % 3 == 0:
+                    bala = Bullet(owner=self,x_init=self.rect_boca.centerx,y_init=self.rect_boca.centery,
+                    x_end=pos_xy.centerx,y_end=pos_xy.centery,speed=8,frame_rate_ms=20,move_rate_ms=20,width=50,height=50)
+                elif self.bullets_tirados % 4 == 0:
+                    bala = Bullet(owner=self,x_init=self.rect_boca.centerx,y_init=self.rect_boca.centery,
+                    x_end=pos_xy.centerx,y_end=pos_xy.centery-50,speed=8,frame_rate_ms=20,move_rate_ms=20,width=50,height=50)
+                else:
+                    bala = Bullet(owner=self,x_init=self.rect_boca.centerx,y_init=self.rect_boca.centery,
+                    x_end=pos_xy.centerx,y_end=pos_xy.centery+50,speed=8,frame_rate_ms=20,move_rate_ms=20,width=50,height=50)
                 self.municiones.append(bala)
         else:
             self.esta_disparando = False
 
-    def actualizar_bala(self,delta_ms,pantalla,player):
+    def actualizar_bala(self,delta_ms,pantalla):
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.update(delta_ms,[],[],player)
+            bala.update(delta_ms)
             bala.draw(pantalla)
-            if bala.impacto:
-                self.municiones.remove(bala)
     
     def actualizar_vida(self):
         if self.hp <= 0:
@@ -130,9 +137,6 @@ class Boss:
         self.disparar(False,pos_xy)
         if self.rect_vision.colliderect(pos_xy):
             self.disparar(True,pos_xy)
-        for bala in self.municiones:
-            if bala.rect.colliderect(pos_xy):
-                self.municiones.remove(bala)
 
     def draw(self,pantalla):
         if self.vidas > 0:
@@ -145,10 +149,10 @@ class Boss:
                 pygame.draw.rect(pantalla,(255,255,0),self.rect_vision)
                 pygame.draw.rect(pantalla,(255,0,0),self.rect_boca)
 
-    def update(self,delta_ms,pantalla,pos_xy,sonidos,player):
+    def update(self,delta_ms,pantalla,pos_xy,sonidos):
         self.sonidos = sonidos
         self.hacer_animacion_cuerpo(delta_ms)
         self.hacer_animacion_ojo(delta_ms)
         self.hacer_colision(pos_xy)
-        self.actualizar_bala(delta_ms,pantalla,player)
+        self.actualizar_bala(delta_ms,pantalla)
         self.actualizar_vida()

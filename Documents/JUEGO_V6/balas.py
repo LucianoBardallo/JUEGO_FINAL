@@ -39,6 +39,15 @@ class Bala:
         self.rect.x += self.velocidad_disparo
         self.rectangulo_colision.x += self.velocidad_disparo
 
+    def actualizar_frames(self,delta_ms):
+        self.tiempo_transcurrido_animation += delta_ms
+        if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
+            self.tiempo_transcurrido_animation = 0
+            if(self.frame < len(self.animacion) - 1):
+                self.frame += 1 
+            else: 
+                self.frame = 0
+
     def draw(self,screen):
         if self.impacto == False:
             if(DEBUG):
@@ -46,71 +55,10 @@ class Bala:
             self.imagen = self.animacion[self.frame]
             screen.blit(self.imagen,self.rect)
 
-    def actualizar_frames(self,delta_ms):
-        self.tiempo_transcurrido_animation += delta_ms
-        if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
-            self.tiempo_transcurrido_animation = 0
-            if(self.frame < len(self.animacion) - 1):
-                self.frame += 1 
-            else: 
-                self.frame = 0
-
-    def update(self,delta_ms,screen):
-        self.draw(screen)
+    def update(self,delta_ms):
         self.trayectoria()
         self.actualizar_frames(delta_ms)
     
-
-class Boss_Disparo:
-    def __init__(self,x,y,frame_rate_ms,direccion,velocidad_disparo):
-        self.direccion = direccion
-
-        self.disparando = {}
-        self.disparando[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,False,w=100,h=100)
-        self.disparando[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\BossFireball\idle\00{0}.png",4,True,w=100,h=100)
-
-        self.animacion = self.disparando[self.direccion]
-        self.frame = 0
-        self.imagen = self.animacion[self.frame]
-        self.rect = self.imagen.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-
-        self.rectangulo_colision = pygame.Rect(x+self.rect.width/3,y+self.rect.height/3,self.rect.width/3,self.rect.height/3)
-
-        self.frame_rate_ms = frame_rate_ms
-        self.tiempo_transcurrido_animation = 0
-        self.impacto = False
-        self.velocidad_disparo = velocidad_disparo
-
-        self.velocidad_trayectoria = {}
-        self.velocidad_trayectoria[DERECHA] = self.velocidad_disparo
-        self.velocidad_trayectoria[IZQUIERDA] = -self.velocidad_disparo
-
-    def trayectoria(self):
-        self.velocidad_disparo = self.velocidad_trayectoria[self.direccion]
-        self.rect.x += self.velocidad_disparo
-        self.rectangulo_colision.x += self.velocidad_disparo
-
-    def draw(self,screen):
-        if(DEBUG):
-            pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rectangulo_colision)
-        self.imagen = self.animacion[self.frame]
-        screen.blit(self.imagen,self.rect)
-
-    def actualizar_frames(self,delta_ms):
-        self.tiempo_transcurrido_animation += delta_ms
-        if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
-            self.tiempo_transcurrido_animation = 0
-            if(self.frame < len(self.animacion) - 1):
-                self.frame += 1 
-            else: 
-                self.frame = 0
-
-    def update(self,delta_ms,screen):
-        self.draw(screen)
-        self.trayectoria()
-        self.actualizar_frames(delta_ms) 
         
 
 

@@ -127,7 +127,7 @@
                 {
                     "nombre":"horizontal",  
                     "cantidad":2,
-                    "coordenadas":[[400,525,200,600],[400,250,200,600]]
+                    "coordenadas":[[400,525,200,600],[400,275,200,600]]
                 },
                 {   
                     "nombre":"vertical",   
@@ -258,7 +258,7 @@
                     "MPPPLLLLLLLLLLLLLLLLPPPM",
                     "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MLLLLLLLLLLLLLLLLLLLLLLM",
-                    "MLLLLLLLLLLLLLLLLLLLLPPM",
+                    "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MLLLLLLLLLLLLLLLLLLLLLLM",
                     "MLLLLLLLLLLLLLLLLOOOOOOM",
@@ -276,8 +276,8 @@
                 },
                 {   
                     "nombre":"artillero_l",   
-                    "cantidad":2,
-                    "coordenadas":[[1050,130,0],[1030,400,0]]
+                    "cantidad":3,
+                    "coordenadas":[[1050,130,0],[1050,400,0],[1030,200,0]]
                 },
                 {   
                     "nombre":"boss",   
@@ -293,8 +293,8 @@
                 },
                 {   
                     "nombre":"vertical",   
-                    "cantidad":0,
-                    "coordenadas":[]
+                    "cantidad":1,
+                    "coordenadas":[[1050,300,300,500]]
                 }
             ],
             "obstaculos":[

@@ -11,7 +11,7 @@ class FormOpciones(Form):
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
         super().__init__(name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active)
 
-        self.nombre = ""
+        self.nombre = "PLAYER"
         self.text1 = Widget(master=self,x=ANCHO_VENTANA//2-100,y=130,w=200,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="MUSICA",font="IMPACT",font_size=30,font_color=WHITE)
         self.text2 = Widget(master=self,x=ANCHO_VENTANA//2-100,y=280,w=200,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="EFECTOS",font="IMPACT",font_size=30,font_color=WHITE)
         self.text3 = Widget(master=self,x=ANCHO_VENTANA//2-100,y=440,w=200,h=50,color_background=None,color_border=None,image_background=RUTA_IMAGEN + r"Menu\Button\Table.png",text="NOMBRE",font="IMPACT",font_size=30,font_color=WHITE)

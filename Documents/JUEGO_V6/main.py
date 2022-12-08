@@ -13,6 +13,7 @@ clock = pygame.time.Clock()
 musica = Musica()
 musica.play_musica()
 
+
 juego = FormManager(PANTALLA)
 
 timer_1s = pygame.USEREVENT + 0

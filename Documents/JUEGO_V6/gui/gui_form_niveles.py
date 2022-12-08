@@ -18,9 +18,6 @@ class FormNiveles(Form):
 
         self.lista_widget = [self.text1,self.boton1,self.boton2,self.boton3,self.boton4]
 
-    def on_click_boton1(self, parametro):
-        self.set_active(parametro)
-
     def update(self, lista_eventos):
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
@@ -30,6 +27,7 @@ class FormNiveles(Form):
                     self.set_active("menu")
 
     def on_click_boton_nivel(self,parametro):
+        self.forms_dict[parametro].resetear()
         self.set_active(parametro)
         self.forms_dict["pausa"].cambiar_nivel(parametro)
         self.forms_dict["you_win"].cambiar_nivel(parametro)

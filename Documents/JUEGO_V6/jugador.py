@@ -226,9 +226,8 @@ class Jugador:
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.update(delta_ms,pantalla)
-            if bala.impacto:
-                self.municiones.remove(bala)
+            bala.update(delta_ms)
+            bala.draw(pantalla)
 
     def comprobar_vidas(self,sonidos):
         if self.vidas < 1:
@@ -364,9 +363,8 @@ class Jugador:
             self.verificar_plataforma(tiles,obstaculos,plataformas)
             self.aplicar_gravedad()
             self.cambiar_y(self.move_y)
-            if self.vivo:
-                self.limitar_salto()
-                self.cambiar_x(self.move_x)
+            self.limitar_salto()
+            self.cambiar_x(self.move_x)
                 
 
     #ANIMACIONES
@@ -377,13 +375,11 @@ class Jugador:
     #ACTUALIZACION PRINCIPAL
     def update(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas,sonidos):
         self.events(teclas,eventos,sonidos)
-        # if not self.ganar:
         self.comprobar_vidas(sonidos)
         self.hacer_movimiento(delta_ms,tiles,obstaculos,plataformas)
         self.hacer_animaciones(delta_ms)
         self.actualizar_invensible(delta_ms)
         self.actualizar_bala(delta_ms,pantalla)
-        # self.renderizar(pantalla)
         
 
     

@@ -31,8 +31,6 @@ class Bullet():
         self.move_x = math.cos(angle)*self.speed
         self.move_y = math.sin(angle)*self.speed
         
-        self.is_active = True 
-        self.impacto = False
    
     def change_x(self,delta_x):
         self.x += delta_x
@@ -42,13 +40,12 @@ class Bullet():
         self.y += delta_y
         self.rect.y = int(self.y)
 
-    def do_movement(self,delta_ms,plataform_list,enemy_list,player):
+    def do_movement(self,delta_ms):
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
             self.change_x(self.move_x)
             self.change_y(self.move_y)
-            self.check_impact(plataform_list,enemy_list,player)
 
     def do_animation(self,delta_ms):
         self.tiempo_transcurrido_animation += delta_ms
@@ -56,26 +53,17 @@ class Bullet():
             self.tiempo_transcurrido_animation = 0
             if(self.frame < len(self.animacion) - 1):
                 self.frame += 1 
-            else:
+            else: 
                 self.frame = 0
     
-    def check_impact(self,plataform_list,enemy_list,player):
-        if(self.is_active and self.owner != player and self.rect.colliderect(player.rectangulo_colision)):
-            print("IMPACTO PLAYER")
-            self.is_active = False
+    def draw(self,screen):
+        if(DEBUG):
+            pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rect)
+        self.image = self.animacion[self.frame]
+        screen.blit(self.image,self.rect)
 
-        # for aux_enemy in enemy_list:
-        #     if(self.is_active and self.owner != aux_enemy and self.rect.colliderect(aux_enemy.rectangulo_colision)):
-        #         print("IMPACTO ENEMY")
-        #         self.is_active = False
-
-    def update(self,delta_ms,plataform_list,enemy_list,player):
-        self.do_movement(delta_ms,plataform_list,enemy_list,player)
+    def update(self,delta_ms):
+        self.do_movement(delta_ms)
         self.do_animation(delta_ms) 
 
-    def draw(self,screen):
-        if(self.is_active):
-            if(DEBUG):
-                pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rect)
-            self.imagen = self.animacion[self.frame]
-            screen.blit(self.image,self.rect)
+    

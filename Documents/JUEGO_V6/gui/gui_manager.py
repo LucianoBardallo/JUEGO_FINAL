@@ -27,15 +27,18 @@ class FormManager():
         self.form_win = FormWin(name="you_win",master_surface = pantalla,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
         self.form_lose = FormLose(name="you_lose",master_surface = pantalla,x=500,y=200,w=300,h=230,imagen_background=RUTA_IMAGEN + r"Menu\Button\Window.png",color_background=BLACK,color_border=BLACK,active=False)
         self.form_puntuaciones = FormPuntuaciones(name="puntuaciones",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
-        self.form_tabla1 = FormTabla(name="tabla_1",nivel="nivel_1",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
-        self.form_tabla2 = FormTabla(name="tabla_2",nivel="nivel_2",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
-        self.form_tabla3 = FormTabla(name="tabla_3",nivel="nivel_3",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
-        self.form_tabla4 = FormTabla(name="tabla_4",nivel="nivel_4",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
+        self.form_tabla1 = self.crear_tabla("tabla_1","nivel_1")
+        self.form_tabla2 = self.crear_tabla("tabla_2","nivel_2")
+        self.form_tabla3 = self.crear_tabla("tabla_3","nivel_3")
+        self.form_tabla4 = self.crear_tabla("tabla_4","nivel_4")
         self.niveles = [self.form_menu,self.form_opciones,self.form_niveles,self.form_nivel_1,self.form_nivel_2,self.form_nivel_3,
             self.form_nivel_4,self.form_pausa,self.form_pausa_opciones,self.form_puntuaciones,self.form_tabla1,self.form_tabla2,self.form_tabla3,self.form_tabla4]
 
     def crear_nivel(self,nivel):
         return FormNivel(name=nivel,master_surface = self.pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
+
+    def crear_tabla(self,tabla,nivel):
+        return FormTabla(name=tabla,nivel=nivel,master_surface = self.pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
 
     def actualizar_forms(self,eventos,teclas,delta_ms,timer_1s,sonidos):
         

@@ -47,8 +47,6 @@ class Enemigo:
 
         self.comienzo_patrulla = self.rect.centerx
         
-       
-        
     def cambiar_x(self,delta_x):
         self.rect.x += delta_x
         self.rectangulo_colision.x += delta_x
@@ -59,13 +57,22 @@ class Enemigo:
         self.rectangulo_colision.y += delta_y
         self.rectangulo_pies.y += delta_y
 
-    def verificar_plataforma(self, plataformas):
+    def verificar_plataforma(self, tiles, plataformas):
         self.sobre_plataforma = False
-        for plataforma in plataformas:
-            if type(plataforma) == Plataforma or type(plataforma) == Objeto_Estatico or type(plataforma) == Muro:
-                if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
+        for tile in tiles:
+            if type(tile) == Plataforma or type(tile) == Objeto_Estatico or type(tile) == Muro:
+                if self.rectangulo_pies.colliderect(tile.rectangulo_pies):
                     self.sobre_plataforma = True
                     break
+        for plataforma in plataformas:
+            if self.rectangulo_pies.colliderect(plataforma.rectangulo_pies):
+                self.sobre_plataforma = True
+                if plataforma.mover_izquierda or plataforma.mover_derecha:
+                    self.move_x = plataforma.move_x
+                else:
+                    self.move_y = plataforma.move_y
+                    self.cambiar_y(self.move_y)
+                break
 
     def aplicar_gravedad(self):
         if not self.sobre_plataforma:
@@ -73,12 +80,12 @@ class Enemigo:
         else:
             self.mover_y = 0
 
-    def hacer_movimiento(self,delta_ms,plataform_list):
+    def hacer_movimiento(self,delta_ms,tiles,plataformas):
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
 
-            self.verificar_plataforma(plataform_list)
+            self.verificar_plataforma(tiles,plataformas)
             self.aplicar_gravedad()
             self.cambiar_x(self.mover_x)
             self.cambiar_y(self.mover_y)
@@ -92,17 +99,12 @@ class Enemigo:
             else: 
                 self.frame = 0
     
-    def actualizar_vida(self):
-        if self.vidas < 1:
-            self.vivo = False
-
     def draw(self,pantalla):
-        if self.vivo:
-            if DEBUG:
-                pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
-                pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
-            self.imagen = self.animacion[self.frame]
-            pantalla.blit(self.imagen,self.rect)
+        if DEBUG:
+            pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
+            pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
+        self.imagen = self.animacion[self.frame]
+        pantalla.blit(self.imagen,self.rect)
 
     def update(self,delta_ms,plataformas):
         self.hacer_movimiento(delta_ms,plataformas)
@@ -126,12 +128,12 @@ class Enemigo_Melee(Enemigo):
             else:
                 self.mover_izquierda = True
 
-    def hacer_movimiento(self,delta_ms,plataform_list):
+    def hacer_movimiento(self,delta_ms,tiles,plataformas):
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
 
-            self.verificar_plataforma(plataform_list)
+            self.verificar_plataforma(tiles,plataformas)
             self.aplicar_gravedad()
             self.patrullar()
             self.cambiar_x(self.mover_x)
@@ -143,16 +145,15 @@ class Enemigo_Melee(Enemigo):
             self.vivo = False
     
     def draw(self,pantalla):
-        if self.vidas > 0:
-            if DEBUG:
-                pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
-                pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
-            self.imagen = self.animacion[self.frame]
-            pantalla.blit(self.imagen,self.rect)
+        if DEBUG:
+            pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
+            pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
+        self.imagen = self.animacion[self.frame]
+        pantalla.blit(self.imagen,self.rect)
 
-    def update(self,delta_ms,plataformas,sonidos):
+    def update(self,delta_ms,tiles,sonidos,plataformas):
         self.sonidos = sonidos
-        self.hacer_movimiento(delta_ms,plataformas)
+        self.hacer_movimiento(delta_ms,tiles,plataformas)
         self.hacer_animacion(delta_ms)
         self.actualizar_vida()
 
@@ -200,9 +201,8 @@ class Enemigo_Distancia(Enemigo):
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
-            bala.update(delta_ms,pantalla)
-            if bala.impacto:
-                self.municiones.remove(bala)
+            bala.update(delta_ms)
+            bala.draw(pantalla)
 
     def actualizar_vida(self):
         if self.vidas < 1:
@@ -217,11 +217,11 @@ class Enemigo_Distancia(Enemigo):
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
 
-    def hacer_movimiento(self,delta_ms,plataform_list):
+    def hacer_movimiento(self,delta_ms,tiles,plataformas):
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
-            self.verificar_plataforma(plataform_list)
+            self.verificar_plataforma(tiles,plataformas)
             self.aplicar_gravedad()
             self.cambiar_x(self.mover_x)
             self.cambiar_y(self.mover_y)
@@ -230,22 +230,14 @@ class Enemigo_Distancia(Enemigo):
         self.disparar(False)
         if self.rectangulo_vision.colliderect(pos_xy):
             self.disparar(True)
-        for bala in self.municiones:
-            if bala.rectangulo_colision.colliderect(pos_xy):
-                self.municiones.remove(bala)
             
-    def update(self,pantalla,delta_ms,plataformas,pos_xy,sonidos):
+    def update(self,pantalla,delta_ms,tiles,pos_xy,sonidos,plataformas):
         self.sonidos = sonidos
-        self.hacer_movimiento(delta_ms,plataformas)
+        self.actualizar_vida()
+        self.hacer_movimiento(delta_ms,tiles,plataformas)
         self.hacer_animacion(delta_ms)
         self.hacer_colision(pos_xy)
-        self.actualizar_vida()
         self.actualizar_bala(delta_ms,pantalla)
-
-class Torret(Enemigo_Distancia):
-    pass
-
-
 
 
     

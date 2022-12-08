@@ -65,16 +65,15 @@ class Nivel:
     def crear_plataformas_mobiles(self):
         plataformas = []
         for plataforma in self.plataformas_data:
-            for i in range(plataforma["cantidad"]):
-                for coordenada in plataforma["coordenadas"]:
-                    x = coordenada[0]
-                    y = coordenada[1]
-                    punto_inicio = coordenada[2]
-                    punto_final = coordenada[3]
-                    if plataforma["nombre"] == "horizontal":
-                        plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="horizontal"))
-                    elif plataforma["nombre"] == "vertical":
-                        plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="vertical"))
+            for coordenada in plataforma["coordenadas"]:
+                x = coordenada[0]
+                y = coordenada[1]
+                punto_inicio = coordenada[2]
+                punto_final = coordenada[3]
+                if plataforma["nombre"] == "horizontal":
+                    plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="horizontal"))
+                elif plataforma["nombre"] == "vertical":
+                    plataformas.append(Platforma_Mobiles(x,y,ancho=50,alto=50,tipo=14,velocidad=4,move_rate_ms=20,punto_inicio=punto_inicio,punto_final=punto_final,direccion="vertical"))
         return plataformas
 
     def crear_obstaculos(self):
@@ -98,12 +97,11 @@ class Nivel:
     def crear_obstaculos2(self):
         obstaculos2 = []
         for obstaculo in self.obstaculos_data:
-            for i in range(obstaculo["cantidad"]):
-                for coordenada in obstaculo["coordenadas"]:
-                    x = coordenada[0]
-                    y = coordenada[1]
-                    if obstaculo["nombre"] == "sierra":
-                        obstaculos2.append(Obstaculo_sierra(x,y,ancho=50,alto=50,tipo=0))
+            for coordenada in obstaculo["coordenadas"]:
+                x = coordenada[0]
+                y = coordenada[1]
+                if obstaculo["nombre"] == "sierra":
+                    obstaculos2.append(Obstaculo_sierra(x,y,ancho=50,alto=50,tipo=0))
         return obstaculos2
 
 
@@ -123,34 +121,32 @@ class Nivel:
     def crear_enemigos(self):
         enemigos = []
         for enemigo in self.enemigos_data:
-            for i in range(enemigo["cantidad"]):
-                for coordenada in enemigo["coordenadas"]:
-                    x = coordenada[0]
-                    y = coordenada[1]
-                    patrulla = coordenada[2]
-                    if enemigo["nombre"] == "soldado":
-                        enemigos.append(Enemigo_Melee(x,y,velocidad_movimiento=4,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla))
-                    elif enemigo["nombre"] == "artillero_l":
-                        enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=IZQUIERDA))
-                    elif enemigo["nombre"] == "artillero_r":
-                        enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=DERECHA))
-                    elif enemigo["nombre"] == "boss":
-                        enemigos.append(Boss(x,y,frame_rate_ms=120))
+            for coordenada in enemigo["coordenadas"]:
+                x = coordenada[0]
+                y = coordenada[1]
+                patrulla = coordenada[2]
+                if enemigo["nombre"] == "soldado":
+                    enemigos.append(Enemigo_Melee(x,y,velocidad_movimiento=4,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla))
+                elif enemigo["nombre"] == "artillero_l":
+                    enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=IZQUIERDA))
+                elif enemigo["nombre"] == "artillero_r":
+                    enemigos.append(Enemigo_Distancia(x,y,velocidad_movimiento=0,gravedad=10,frame_rate_ms=20,move_rate_ms=20,patrulla=patrulla,direccion=DERECHA))
+                elif enemigo["nombre"] == "boss":
+                    enemigos.append(Boss(x,y,frame_rate_ms=120))
         return enemigos
            
     def crear_objetos(self):
         objetos = []
         for objeto in self.objetos_data:
-            for i in range(objeto["cantidad"]):
-                for coordenada in objeto["coordenadas"]:
-                    x = coordenada[0]
-                    y = coordenada[1]
-                    if objeto["nombre"] == "inicio":
-                        objetos.append(Objeto_Animado("inicio",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
-                    if objeto["nombre"] == "interruptor":
-                        objetos.append(Objeto_Animado("interruptor",x,y,ancho=25,alto=75,tipo_desbloqueado=8,tipo_abierto=7,tipo_bloqueado=8))
-                    elif objeto["nombre"] == "final":
-                        objetos.append(Objeto_Animado("final",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
+            for coordenada in objeto["coordenadas"]:
+                x = coordenada[0]
+                y = coordenada[1]
+                if objeto["nombre"] == "inicio":
+                    objetos.append(Objeto_Animado("inicio",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
+                if objeto["nombre"] == "interruptor":
+                    objetos.append(Objeto_Animado("interruptor",x,y,ancho=25,alto=75,tipo_desbloqueado=8,tipo_abierto=7,tipo_bloqueado=8))
+                elif objeto["nombre"] == "final":
+                    objetos.append(Objeto_Animado("final",x,y,ancho=80,alto=120,tipo_desbloqueado=6,tipo_abierto=4,tipo_bloqueado=5))
         return objetos
 
     def colisiones(self,delta_ms,sonidos):
@@ -200,36 +196,38 @@ class Nivel:
                 
         #ENEMIGOS
         for enemigo in self.enemigos:
-            if type(enemigo) != Boss:
-                if enemigo.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
-                    if not self.jugador.invensible:
-                        self.jugador.vidas -= 1
-                        pygame.mixer.Sound.play(sonidos[2])
-                        self.jugador.invensible = True
-            for bala in self.jugador.municiones:
-                if type(enemigo) == Boss:
-                    if bala.rectangulo_colision.colliderect(enemigo.rect_ojo):
-                        enemigo.hp -= 200
-                        self.jugador.municiones.remove(bala)
-                else:
-                    if bala.rectangulo_colision.colliderect(enemigo.rectangulo_colision):
-                        enemigo.vidas -= 1
-                        pygame.mixer.Sound.play(sonidos[2])
-                        self.jugador.municiones.remove(bala)
-            if type(enemigo) == Enemigo_Distancia or type(enemigo) == Boss:                
-                for bala in enemigo.municiones:
-                    if bala.rect.colliderect(self.jugador.rectangulo_colision):
-                        if not self.jugador.invensible:
-                            self.jugador.vidas -= 1
-                            pygame.mixer.Sound.play(sonidos[2])
-                            self.jugador.invensible = True
-                            enemigo.municiones.remove(bala)
             if not enemigo.vivo:
                 if type(enemigo) == Boss:
                     self.puntuacion += 2000
                 else:
                     self.puntuacion += 200
                 self.enemigos.remove(enemigo)
+            else:
+                if type(enemigo) != Boss:
+                    if enemigo.rectangulo_colision.colliderect(self.jugador.rectangulo_colision):
+                        if not self.jugador.invensible:
+                            self.jugador.vidas -= 1
+                            pygame.mixer.Sound.play(sonidos[2])
+                            self.jugador.invensible = True
+                for bala in self.jugador.municiones:
+                    if type(enemigo) == Boss:
+                        if bala.rectangulo_colision.colliderect(enemigo.rect_ojo):
+                            enemigo.hp -= 200
+                            self.jugador.municiones.remove(bala)
+                    else:
+                        if bala.rectangulo_colision.colliderect(enemigo.rectangulo_colision):
+                            enemigo.vidas -= 1
+                            pygame.mixer.Sound.play(sonidos[2])
+                            self.jugador.municiones.remove(bala)
+                if type(enemigo) == Enemigo_Distancia or type(enemigo) == Boss:                
+                    for bala in enemigo.municiones:
+                        if bala.rect.colliderect(self.jugador.rectangulo_colision):
+                            if not self.jugador.invensible:
+                                self.jugador.vidas -= 1
+                                pygame.mixer.Sound.play(sonidos[2])
+                                self.jugador.invensible = True
+                                enemigo.municiones.remove(bala)
+            
                 
 
         #BOTÍN
@@ -263,7 +261,6 @@ class Nivel:
                 if objeto.rectangulo_colision.colliderect(self.jugador.rectangulo_colision) and self.jugador.puede_ganar:
                     objeto.activado = True
                     self.jugador.ganar = True
-                    # pygame.mixer.Sound.play(sonidos[2])
    
 
     def draw(self):
@@ -280,11 +277,11 @@ class Nivel:
         for lista in self.nivel:
             for elemento in lista:
                 if type(elemento) == Enemigo_Melee:
-                    elemento.update(delta_ms,self.tiles,sonidos)
+                    elemento.update(delta_ms,self.tiles,sonidos,self.plataformas)
                 elif type(elemento) == Enemigo_Distancia:
-                    elemento.update(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision,sonidos)
+                    elemento.update(self.pantalla,delta_ms,self.tiles,self.jugador.rectangulo_colision,sonidos,self.plataformas)
                 elif type(elemento) == Boss:
-                    elemento.update(delta_ms,self.pantalla,self.jugador.rectangulo_colision,sonidos,self.jugador)
+                    elemento.update(delta_ms,self.pantalla,self.jugador.rectangulo_colision,sonidos)
                 elif type(elemento) == Botín or type(elemento) == Platforma_Mobiles or type(elemento) == Obstaculo_sierra:
                     elemento.update(delta_ms)
                 
