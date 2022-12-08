@@ -57,15 +57,11 @@ class Platforma_Mobiles(Plataforma):
             self.mover_izquierda = False
             self.mover_derecha = True
 
-
-        
-
         self.velocidad = velocidad
         self.move_x = 0
         self.move_y = 0
 
         self.direccion = direccion
-
         
         self.tiempo_transcurrido_move = 0
         self.move_rate_ms = move_rate_ms

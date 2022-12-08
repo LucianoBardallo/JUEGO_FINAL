@@ -87,7 +87,7 @@
         "nivel_2":
         {
             "fondo":"C:/Users/lucia/Documents/JUEGO_V6/images/Menu/Fondo/Spaceship.jpg",
-            "tiempo":25,
+            "tiempo":30,
             "mapa":
             ["MMMMMMMMMMMMMMMMMMMMMMMM",
             "MMMMMMMMMMMMMMMMMMMMMMMM",
@@ -114,8 +114,8 @@
                 },
                 {   
                     "nombre":"artillero_l",   
-                    "cantidad":0,
-                    "coordenadas":[]
+                    "cantidad":1,
+                    "coordenadas":[[1050,300,0]]
                 },
                 {   
                     "nombre":"boss",   
