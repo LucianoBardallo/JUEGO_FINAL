@@ -51,15 +51,16 @@ class Jugador:
         self.atacar_saltando[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/JumpShoot ({0}).png",5,False,w=100,h=100)
         self.atacar_saltando[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/JumpShoot ({0}).png",5,True,w=100,h=100)
 
-        self.deslizarse = {}
-        self.deslizarse[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/Slide ({0}).png",10,False,w=100,h=100)
-        self.deslizarse[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/Slide ({0}).png",10,True,w=100,h=100)
+        self.golpeado = {}
+        self.golpeado[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/Slide ({0}).png",10,False,w=100,h=100)
+        self.golpeado[IZQUIERDA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/Slide ({0}).png",10,True,w=100,h=100)
 
         self.velocidad_movimiento = {}
         self.velocidad_movimiento[DERECHA] = velocidad_movimiento
         self.velocidad_movimiento[IZQUIERDA] = -velocidad_movimiento
 
         self.lives = 1
+        self.comienzo_vidas = 5
         self.vidas = 5
         
         self.frame = 0
@@ -101,6 +102,7 @@ class Jugador:
         self.esta_caminando = False
         self.esta_disparando = False
         self.esta_pegando = False
+        self.esta_golpeado = False
         self.puede_ganar = False
         self.invensible = False
         self.vivo = True
@@ -217,11 +219,10 @@ class Jugador:
     def actualizar_invensible(self, delta_ms):
         if self.invensible:
             self.tiempo_inmune += delta_ms
-            if self.tiempo_inmune > 500:
+            if self.tiempo_inmune >= 500:
                 self.tiempo_inmune = 0
                 self.invensible = False
 
-    
     def actualizar_bala(self,delta_ms,pantalla):
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
@@ -255,18 +256,21 @@ class Jugador:
     #ANIMACIONES
     def animaciones(self):
         if self.vivo:
-            if self.esta_saltando:
-                self.cambiar_animacion(self.saltando)
-            elif(self.esta_cayendo):
-                self.cambiar_animacion(self.cayendo)
-            elif(self.esta_caminando):
-                self.cambiar_animacion(self.caminando)
-            elif(self.esta_disparando):
-                self.cambiar_animacion(self.disparando)
-            elif(self.esta_pegando):
-                self.cambiar_animacion(self.atacando)
+            if not self.invensible:
+                if self.esta_saltando:
+                    self.cambiar_animacion(self.saltando)
+                elif(self.esta_cayendo):
+                    self.cambiar_animacion(self.cayendo)
+                elif(self.esta_caminando):
+                    self.cambiar_animacion(self.caminando)
+                elif(self.esta_disparando):
+                    self.cambiar_animacion(self.disparando)
+                elif(self.esta_pegando):
+                    self.cambiar_animacion(self.atacando)
+                else:
+                    self.cambiar_animacion(self.parado)
             else:
-                self.cambiar_animacion(self.parado)
+                self.cambiar_animacion(self.golpeado)
         else:
             self.cambiar_animacion(self.muriendo)
 

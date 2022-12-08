@@ -193,7 +193,7 @@ class Enemigo_Distancia(Enemigo):
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
                 pygame.mixer.Sound.play(self.sonidos[0])
-                self.disparo_cooldown = 120
+                self.disparo_cooldown = 200
                 bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
                 self.municiones.append(bala)
 
