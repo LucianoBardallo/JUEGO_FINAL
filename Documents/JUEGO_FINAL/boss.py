@@ -8,6 +8,11 @@ from bullet import Bullet
 from gui.gui_progressbar import *
 
 class Boss:
+    """
+    Esta clase representa al jefe final del juego
+
+    Parametros: recibe una posicion x, una posicion y, y el frame_rate de la animacion
+    """
     def __init__(self,x,y,frame_rate_ms):
 
         self.direccion = IZQUIERDA

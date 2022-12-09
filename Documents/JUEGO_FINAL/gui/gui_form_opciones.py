@@ -8,6 +8,9 @@ from gui.gui_progressbar import *
 from configuraciones import *
 
 class FormOpciones(Form):
+    """
+    Formulario de opciones donde se pueda ajustar tanto el volumen como cambiarte el nombre
+    """
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
         super().__init__(name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active)
 

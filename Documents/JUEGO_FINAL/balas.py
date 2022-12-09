@@ -3,6 +3,11 @@ from configuraciones import *
 from auxiliar import Auxiliar
 
 class Bala:
+    """
+    Esta clase representa a una bala que viaja derecho hacia donde se derecto la colision de la vista del enemigo con el jugador.
+
+    Parametros: una posicion x, una posicion y, un frame rate de la animacion, direccion hacia donde va la bala, y una velocidad de disparo
+    """
     def __init__(self,x,y,frame_rate_ms,direccion,velocidad_disparo):
         self.direccion = direccion
 

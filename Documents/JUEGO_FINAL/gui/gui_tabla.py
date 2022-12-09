@@ -6,6 +6,9 @@ from configuraciones import *
 
 
 class FormTabla(Form):
+    """
+    Formulario que muestra los nombre y score de los jugador dependiendo del nivel
+    """
     def __init__(self, name, nivel, master_surface, x, y, w, h, color_background, imagen_background, color_border, active):
         super().__init__(name, master_surface, x, y, w, h, color_background, imagen_background, color_border, active)
 

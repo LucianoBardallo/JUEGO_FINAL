@@ -4,7 +4,12 @@ from auxiliar import Auxiliar
 import math
 
 class Bullet():
-    
+    """
+    Esta clase representa a una bala que toma como referencia la posicion del jugador para disparar en esa direccion.
+
+    Parametros: recibe un owner que es el que va a tener la bala, una x e y inicial donde se creara la bala, 
+    una x e y final que es hacia donde viajara la bala, la velocidad de disparo, frames_rates de animacion y movimiento y por ultimo el ancho y largo de la bala
+    """
     def __init__(self,owner,x_init,y_init,x_end,y_end,speed,frame_rate_ms,move_rate_ms,width=50,height=50) -> None:
         self.direccion = IZQUIERDA
         self.disparando = {}

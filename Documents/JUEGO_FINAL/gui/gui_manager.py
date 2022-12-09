@@ -13,6 +13,9 @@ from gui.gui_tabla import FormTabla
 
 
 class FormManager():
+    """
+    Formulario manager que crea los demas formularios, los actualiza y dibuj, asi como tambien se fija cual mostrar en pantalla
+    """
     def __init__(self,pantalla) -> None:
         self.pantalla = pantalla
         self.form_menu = FormMenu(name="menu",master_surface = pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Fondo\menu.jpg",color_border=BLACK,active=True)

@@ -10,8 +10,8 @@ NIVEL_TECHO = 50
 FPS = 120
 
 #RUTA DE IMAGENES
-RUTA_IMAGEN = r"C:\Users\lucia\Documents\JUEGO_FINAL\images\\"
-RUTA_MUSICA = r"C:\Users\lucia\Documents\JUEGO_FINAL\sounds\\"
+RUTA_IMAGEN = r"C:\Users\lucia\Documents\JUEGO_FINAL\images\\"  #RUTA DE IMAGENES
+RUTA_MUSICA = r"C:\Users\lucia\Documents\JUEGO_FINAL\sounds\\"   #RUTA DE MUSICA
 
 #DIRECCION DONDE MIRA EL PERSONAJKE
 IZQUIERDA = -1
@@ -33,13 +33,14 @@ YELLOW = (255,255,0)
 CYAN = "#d7fcd4"
 DORADO = "#b68f40"
 
-
+#ESTADOS
 M_STATE_NORMAL = 1
 M_STATE_HOVER = 2
 M_STATE_CLICK = 3
 M_BRIGHT_HOVER = 1
 M_BRIGHT_CLICK = 2
 
+#TILED
 PLATAFORMA = "P"
 PISO = "O"
 MURO = "M"

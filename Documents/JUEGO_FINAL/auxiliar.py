@@ -3,6 +3,9 @@ import json
 from configuraciones import *
 
 class Auxiliar:
+    """
+    Esta clase se encarga de darnos metodos de ayuda, ya sea cargando imagenes de spritesheet, o de imagenes separadas, tambien cargar un json.
+    """
     @staticmethod
     def getSurfaceFromSpriteSheet(path,columnas,filas,flip=False, step = 1,scale=1):
         lista = []

@@ -6,6 +6,11 @@ from objetos import *
 from balas import Bala
 
 class Enemigo:
+    """
+    Esta clase enemigo es la padre de todos los enemigos
+
+    Parametros: recibe una posicion x, una posicion y, la velocidad del enemigo, la gravedad, frame rates de movimiento y animacion y por ultimo patrulla (pixeles que se mueven)
+    """
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0):
 
         self.direccion = DERECHA
@@ -118,6 +123,11 @@ class Enemigo:
         
 
 class Enemigo_Melee(Enemigo):
+    """
+    Esta clase representa a un enemigo cuerpo a cuerpo, solo daña al jugador cuando colisiona con el y patrulla una zona pasada por parametro.
+
+    Parametros: recibe una posicion x, una posicion y, la velocidad del enemigo, la gravedad, frame rates de movimiento y animacion y por ultimo patrulla (pixeles que se mueven)
+    """
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0):
         super().__init__(x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla)
         self.vidas = 5
@@ -154,6 +164,11 @@ class Enemigo_Melee(Enemigo):
         
 
 class Enemigo_Distancia(Enemigo):
+    """
+    Esta clase representa a un enemigo a distancia, que daña al jugador tanto cuerpo a cuerpo como a distancia con disparos, solo se queda quieto en una posicion.
+
+    Parametros: recibe una posicion x, una posicion y, la velocidad del enemigo, la gravedad, frame rates de movimiento y animacion, un dato patrulla (pixeles que se mueven) y por ultimo la direccion a donde va a estar apuntando.
+    """
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0,direccion=DERECHA):
         super().__init__(x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla)
 

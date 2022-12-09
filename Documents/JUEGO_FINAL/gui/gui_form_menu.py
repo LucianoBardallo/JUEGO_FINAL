@@ -7,6 +7,9 @@ from gui.gui_widget import Widget
 from gui.gui_button import Button
 
 class FormMenu(Form):
+    """
+    Formulario principal cuando inicia el juego, lleva tanto a opciones, ranking, como a la seleccion de niveles
+    """
     def __init__(self,name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active):
         super().__init__(name,master_surface,x,y,w,h,color_background,imagen_background,color_border,active)
 

@@ -9,6 +9,9 @@ from sql import insertar_linea
 
 
 class FormNivel(Form):
+    """
+    Formulario que maneja el nivel, dependiendo de cual se cargue
+    """
     def __init__(self, name, master_surface, x=0, y=0, w=ANCHO_VENTANA, h=ALTO_VENTANA, color_background=None, color_border=None, active=False):
         self.nombre_jugador = "PLAYER"
         self.name = name
