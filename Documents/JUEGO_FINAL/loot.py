@@ -3,6 +3,11 @@ from auxiliar import *
 from configuraciones import *
 
 class Botín:
+    """
+    Esta clase representa a un objeto recolectable del juego, con la imagen de una manzana
+
+    Parametros: una posicion x, una posicion y, un frame_rate que representa cuan rapido se actualiza la animacion.
+    """
     def __init__(self,x,y,frame_rate_ms):
 
         self.parado = Auxiliar.getSurfaceFromSpriteSheet(RUTA_IMAGEN + "Items\Fruits\Apple.png",columnas=17,filas=1,scale=2)

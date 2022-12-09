@@ -1,11 +1,17 @@
 import sqlite3 as sql
 
 def crear_base():
+    """
+    Esta funcion sirva para crear la base de datos desde 0
+    """
     with sql.connect("clasificacion.db") as conexion:
         conexion.commit()
 
 
 def crear_tabla():
+    """
+    Esta funcion sirva para crear una tabla dentro de la base de datos, con los atributos de id, nombre, nivel y score
+    """
     with sql.connect("clasificacion.db") as conexion:
         try:
             conexion.execute(
@@ -20,7 +26,12 @@ def crear_tabla():
             print("La tabla score ya existe")
 
 
-def insertar_linea(name, nivel, score):
+def insertar_linea(name:str, nivel:str, score:int):
+    """
+    Esta funcion sirve para ingresar una linea dentro de una tabla
+
+    Parametros: name como str, nivel como str y score como int
+    """
     with sql.connect("clasificacion.db") as conexion:
         try:
             conexion.execute(
@@ -29,7 +40,12 @@ def insertar_linea(name, nivel, score):
         except:
             print("Error")
 
-def leer_lineas(nivel):
+def leer_lineas(nivel:str):
+    """
+    Esta funcion se encarga de leer todas lass lineas de la tabla score que compartan la columna nivel
+
+    Parametros: nivel como clave para tomar los datos en la tabla
+    """
     with sql.connect("clasificacion.db") as conexion:
         try:
             cursor = conexion.cursor()
@@ -42,7 +58,12 @@ def leer_lineas(nivel):
         except:
             print("Error")
 
-def eliminar_linea(id):
+def eliminar_linea(id:int):
+    """
+    Esta funcion se encarga de borrar un dato dependiendo del ID
+
+    Parametros: un id del tipo int
+    """
     with sql.connect("clasificacion.db") as conexion:
         sentencia = "DELETE FROM score WHERE id=?"
         cursor=conexion.execute(sentencia,(id,))

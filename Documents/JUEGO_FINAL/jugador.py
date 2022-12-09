@@ -9,7 +9,12 @@ from obstaculos import *
 import sys
 
 class Jugador:
-    def __init__(self,x,y,velocidad_movimiento,gravedad,fuerza_salto,frame_rate_ms,frame_rate_jump_ms,move_rate_ms,altura_salto,p_scale=1) -> None:
+    """
+    Esta es la clase jugador, que contiene todo lo relacionado a nuestro personaje, animaciones, algunas colisiones, actualizacion, dibujado, eventos, etc
+
+    Parametros: una posicion x, una posicion y, la velocidad de movimiento, la gravedad, fuerza de salto, frame_rate, move_rate, y la escala.
+    """
+    def __init__(self,x,y,velocidad_movimiento,gravedad,fuerza_salto,frame_rate_ms,move_rate_ms,p_scale=1) -> None:
         
         self.parado = {}
         self.parado[DERECHA] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "Characters/robot/Idle ({0}).png",10,False,w=100,h=100)
@@ -109,10 +114,8 @@ class Jugador:
         self.ganar = False
 
         self.frame_rate_ms = frame_rate_ms 
-        self.frame_rate_jump_ms = frame_rate_jump_ms
         self.move_rate_ms = move_rate_ms
         self.comienzo_salto = self.rectangulo_pies.y
-        self.altura_salto = altura_salto
 
         self.tiempo_activado = 0
         self.tiempo_recolectado = 0
@@ -130,9 +133,6 @@ class Jugador:
         self.move_alloved = {}
         self.move_alloved[IZQUIERDA] = True
         self.move_alloved[DERECHA] = True
-
-        self.dead_sound = pygame.mixer.Sound(RUTA_MUSICA + r"muerte_robot.wav")
-        self.shoot_sound = pygame.mixer.Sound(RUTA_MUSICA + r"laser_gun.wav")
 
     #ACCIONES
     def caminar(self,direccion:int): 
@@ -284,7 +284,7 @@ class Jugador:
     def actualizar_frames(self,delta_ms):
         self.tiempo_transcurrido_animacion += delta_ms
         if self.esta_saltando or self.esta_cayendo:
-            if(self.tiempo_transcurrido_animacion >= self.frame_rate_jump_ms):
+            if(self.tiempo_transcurrido_animacion >= self.frame_rate_ms + 80):
                 self.tiempo_transcurrido_animacion = 0
                 if(self.frame < len(self.animacion) - 1):
                     self.frame += 1 

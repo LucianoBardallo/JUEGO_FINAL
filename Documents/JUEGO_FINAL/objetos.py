@@ -3,8 +3,12 @@ from configuraciones import *
 from auxiliar import Auxiliar
 
 class Objeto:
-    def __init__(self, x, y,ancho, alto, tipo_desbloqueado=1):
+    """
+    Esta clase representa un objeto del juego
 
+    Parametros, recibe la posicion de x, la posicion de y, un ancho y un largo y por ultimo un tipo de tile
+    """
+    def __init__(self, x, y,ancho, alto, tipo_desbloqueado=1):
         self.imagenes= Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + "TileSet\space_ship\Objects\Object ({0}).png",9,flip=False,w=ancho,h=alto)
         self.imagen = self.imagenes[tipo_desbloqueado]
         self.rect = self.imagen.get_rect()
@@ -20,6 +24,11 @@ class Objeto:
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
 
 class Objeto_Estatico(Objeto):
+    """
+    Esta clase representa un objeto estatico (sin animacion)
+
+    Parametros, recibe la posicion de x, la posicion de y, un ancho y un largo y por ultimo un tipo de tile
+    """
     def __init__(self, x, y,ancho, alto, tipo_desbloqueado=1):
         super().__init__(x, y,ancho, alto, tipo_desbloqueado=1)
         self.imagen = self.imagenes[tipo_desbloqueado]
@@ -27,6 +36,12 @@ class Objeto_Estatico(Objeto):
         self.rectangulo_pies.height = ALTURA_PIES
 
 class Objeto_Animado(Objeto):
+    """
+    Esta clase representa un objeto animado del juego
+
+    Parametros: recibe una posicion de x, una posicion de y, un ancho y largo, un tipo que representa al objeto desbloqueado,
+    otro tipo que representa al objeto abierto, y por ultimo un tipo que representa al objeto bloqueado
+    """
     def __init__(self,nombre, x, y,ancho, alto, tipo_desbloqueado=1 ,tipo_abierto =1,tipo_bloqueado = 1):
         super().__init__(x, y,ancho, alto, tipo_desbloqueado=1)
         self.nombre = nombre

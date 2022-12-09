@@ -3,6 +3,9 @@ from configuraciones import *
 
 # AGREGAR MUSICA
 class Musica:
+    """
+    Esta clase sirve para cargar todos los sonidos y musica del juego, asi como ponerles un volumen inicial
+    """
     def __init__(self) -> None:
         self.muerte = pygame.mixer.Sound(RUTA_MUSICA + r"muerte_robot.wav")
         self.disparo = pygame.mixer.Sound(RUTA_MUSICA + r"laser_gun.wav")

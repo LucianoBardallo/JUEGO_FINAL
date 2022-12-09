@@ -106,10 +106,16 @@ class Enemigo:
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
 
+    def actualizar_vida(self):
+        if self.vidas < 1:
+            pygame.mixer.Sound.play(self.sonidos[8])
+            self.vivo = False
+
     def update(self,delta_ms,plataformas):
+        self.actualizar_vida()
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
-        self.actualizar_vida()
+        
 
 class Enemigo_Melee(Enemigo):
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0):
@@ -139,23 +145,13 @@ class Enemigo_Melee(Enemigo):
             self.cambiar_x(self.mover_x)
             self.cambiar_y(self.mover_y)
     
-    def actualizar_vida(self):
-        if self.vidas < 1:
-            pygame.mixer.Sound.play(self.sonidos[8])
-            self.vivo = False
-    
-    def draw(self,pantalla):
-        if DEBUG:
-            pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
-            pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
-        self.imagen = self.animacion[self.frame]
-        pantalla.blit(self.imagen,self.rect)
 
     def update(self,delta_ms,tiles,sonidos,plataformas):
         self.sonidos = sonidos
+        self.actualizar_vida()
         self.hacer_movimiento(delta_ms,tiles,plataformas)
         self.hacer_animacion(delta_ms)
-        self.actualizar_vida()
+        
 
 class Enemigo_Distancia(Enemigo):
     def __init__(self,x,y,velocidad_movimiento,gravedad,frame_rate_ms,move_rate_ms,patrulla=0,direccion=DERECHA):
@@ -172,20 +168,7 @@ class Enemigo_Distancia(Enemigo):
         self.animacion = self.parado[direccion]
 
         self.municiones = []
-        self.disparo_cooldown = 0
-        
-
-    def cambiar_x(self,delta_x):
-        self.rect.x += delta_x
-        self.rectangulo_colision.x += delta_x
-        self.rectangulo_pies.x += delta_x
-        self.rectangulo_vision.x += delta_x
-
-    def cambiar_y(self,delta_y):
-        self.rect.y += delta_y
-        self.rectangulo_colision.y += delta_y
-        self.rectangulo_pies.y += delta_y
-        self.rectangulo_vision.y += delta_y    
+        self.disparo_cooldown = 0  
 
     def disparar(self,shoot=True):
         self.esta_disparando = False
@@ -204,11 +187,6 @@ class Enemigo_Distancia(Enemigo):
             bala.update(delta_ms)
             bala.draw(pantalla)
 
-    def actualizar_vida(self):
-        if self.vidas < 1:
-            pygame.mixer.Sound.play(self.sonidos[8])
-            self.vivo = False
-
     def draw(self,pantalla):
         if DEBUG:
             pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
@@ -216,15 +194,6 @@ class Enemigo_Distancia(Enemigo):
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_vision)
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
-
-    def hacer_movimiento(self,delta_ms,tiles,plataformas):
-        self.tiempo_transcurrido_move += delta_ms
-        if(self.tiempo_transcurrido_move >= self.move_rate_ms):
-            self.tiempo_transcurrido_move = 0
-            self.verificar_plataforma(tiles,plataformas)
-            self.aplicar_gravedad()
-            self.cambiar_x(self.mover_x)
-            self.cambiar_y(self.mover_y)
 
     def hacer_colision(self, pos_xy):
         self.disparar(False)

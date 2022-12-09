@@ -10,6 +10,11 @@ from obstaculos import *
 from boss import Boss
 
 class Nivel:
+    """
+    Esta clase es la del nivel manager, aca se crea todo lo relacionado al nivel, se actualiza, se dibuja y se verifican las colisiones
+
+    Parametros: recibe como parametro el nivel que es la clave para saber a que parte del json acceder y la pantalla principal donde se va a mostrar el juego
+    """
     def __init__(self,nivel,pantalla):
         self.nivel_data = Auxiliar.cargar_nivel(r"C:\Users\lucia\Documents\JUEGO_FINAL\niveles.json",nivel)
         self.fondo = self.nivel_data["fondo"]
@@ -38,7 +43,7 @@ class Nivel:
         for coordenadas in self.jugador_data["coordenadas"]:
             x = coordenadas[0]
             y = coordenadas[1]
-            jugador = Jugador(x,y, velocidad_movimiento = 8, gravedad = 8, fuerza_salto = 8, frame_rate_ms = 40,frame_rate_jump_ms = 120, move_rate_ms = 20, altura_salto = 180, p_scale=0.2)
+            jugador = Jugador(x,y, velocidad_movimiento = 8, gravedad = 8, fuerza_salto = 8, frame_rate_ms = 40, move_rate_ms = 20, p_scale=0.2)
             return jugador
 
 
