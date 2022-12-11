@@ -14,7 +14,7 @@ teniendo que recolectar objetos mientras esquivan los distintos tipos de trampas
 
 <h3> Demo </h3>
 
-https://www.youtube.com/watch?v=c2l85ImWJis
+- https://www.youtube.com/watch?v=c2l85ImWJis
 
 <h3> Características incluidas hasta el momento </h3>
 
