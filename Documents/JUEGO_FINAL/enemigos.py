@@ -241,13 +241,24 @@ class Enemigo_Distancia(Enemigo):
         self.municiones = []
         self.disparo_cooldown = 0  
 
+
+    def cambiar_y(self,delta_y):
+        """
+        Este metodo se encarga de cambiar el valor de Y para darle movimiento al enemigo
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
+        self.rect.y += delta_y
+        self.rectangulo_colision.y += delta_y
+        self.rectangulo_pies.y += delta_y
+        self.rectangulo_vision.centery += delta_y
+
     def disparar(self,shoot=True):
         """
         Este metodo se encarga del disparo del enemigo, crear una bala cuando dispara y se guarda en una lista de municiones
 
         Parametros: recibe un booleano que sirve para verificar si el enemigo tiene que disparar o no
         """
-        self.esta_disparando = False
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
@@ -255,6 +266,8 @@ class Enemigo_Distancia(Enemigo):
                 self.disparo_cooldown = 200
                 bala = Bala(self.rectangulo_colision.centerx + (0.6 * self.rectangulo_colision.size[0] * self.direccion),self.rectangulo_colision.centery-20,frame_rate_ms=20,direccion=self.direccion,velocidad_disparo=2)
                 self.municiones.append(bala)
+        else:
+            self.esta_disparando = False
 
     def actualizar_bala(self,delta_ms,pantalla):
         """

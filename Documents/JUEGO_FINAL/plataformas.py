@@ -134,7 +134,7 @@ class Platforma_Mobiles(Plataforma):
         screen.blit(self.image,self.rect)
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
-            pygame.draw.rect(screen,color=(255,255,0),rect=self.rect_pies)
+            pygame.draw.rect(screen,color=(255,255,0),rect=self.rectangulo_pies)
 
     def update(self,delta_ms):
         """
