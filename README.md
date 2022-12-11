@@ -8,9 +8,9 @@ teniendo que recolectar objetos mientras esquivan los distintos tipos de trampas
 
 <h3> Contenido del juego </h3>
 
-![image_text](https://github.com/LucianoBardallo/JUEGO_FINAL/blob/main/Documents/Space_adventure/Nivel%202.png)
+![image_text](https://github.com/LucianoBardallo/JUEGO_FINAL/blob/main/Space_adventure/Nivel%202.png)
 
-![image_text](https://github.com/LucianoBardallo/JUEGO_FINAL/blob/main/Documents/Space_adventure/Boss.png)
+![image_text](https://github.com/LucianoBardallo/JUEGO_FINAL/blob/main/Space_adventure/Boss.png)
 
 <h3> Demo </h3>
 
@@ -47,15 +47,17 @@ https://www.youtube.com/watch?v=c2l85ImWJis
 
 <h3> Tecnologias usadas </h3>
 
-- Visual Studio Code
 - Python
-- Pygame
 - Sqlite
 
 <h3> Requisitos </h3>
 
 - Version de Python 3.9.12 en adelante
 - Instalar pygame
+
+
+<h3> Ejecutar </h3>
+
 - Iniciar juego desde carpeta main
 
 <h3> Un poco sobre mi </h3>
