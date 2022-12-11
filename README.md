@@ -36,10 +36,27 @@ https://www.youtube.com/watch?v=c2l85ImWJis
 - Añadir mas variedad de objetos y objetivos
 - Manejar el juego de manera mas fluida
 
+<h3> Bugs conocidos </h3>
+
+- Juego un poco lento
+- Colisiones no tan precisas
+- Disparos desaparecen cuando muere enemigo
+- Sonido de pausa no sincronizado con el del menu
+- Cambio de nombre poco intuitivo
+- Ranking permanente a los 5 mejores puestos
+
+<h3> Tecnologias usadas </h3>
+
+- Visual Studio Code
+- Python
+- Pygame
+- Sqlite
+
 <h3> Requisitos </h3>
 
 - Version de Python 3.9.12 en adelante
 - Instalar pygame
+- Iniciar juego desde carpeta main
 
 <h3> Un poco sobre mi </h3>
 
