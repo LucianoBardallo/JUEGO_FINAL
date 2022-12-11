@@ -65,16 +65,29 @@ class Platforma_Mobiles(Plataforma):
         self.move_rate_ms = move_rate_ms
      
     def change_x(self,delta_x):
+        """
+        Este metodo se encarga de cambiar el valor de X para darle movimiento al objeto
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.x += delta_x
         self.collition_rect.x += delta_x
         self.rectangulo_pies.x += delta_x
 
     def change_y(self,delta_y):
+        """
+        Este metodo se encarga de cambiar el valor de Y para darle movimiento al objeto
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.y += delta_y
         self.collition_rect.y += delta_y
         self.rectangulo_pies.y += delta_y
 
     def mover_plataforma_horizontal(self):
+        """
+        Este metodo se encarga de mover la plataforma, hacia la izquierda o hacia la derecha
+        """
         if(self.mover_derecha):
             self.move_x = self.velocidad
         elif(self.mover_izquierda):
@@ -82,6 +95,9 @@ class Platforma_Mobiles(Plataforma):
         self.change_x(self.move_x)
 
     def mover_plataforma_vertical(self):
+        """
+        Este metodo se encarga de mover la plataforma, hacia arriba o hacia abajo
+        """
         if(self.mover_arriba):
             self.move_y = -self.velocidad
         elif(self.mover_abajo):
@@ -89,6 +105,10 @@ class Platforma_Mobiles(Plataforma):
         self.change_y(self.move_y)
 
     def actualizar_plataformas(self):
+        """
+        Este metoddo se encarga de actualizar las banderas de las plataformas para saber hacia donde se tienen que mover,
+        tambien depense si la plataforma se mueve de forrma vertical u horizontal
+        """
         if self.direccion == "horizontal":
             if(self.rect.x >= self.punto_final):
                 self.mover_derecha = False
@@ -106,12 +126,22 @@ class Platforma_Mobiles(Plataforma):
 
     
     def draw(self,screen):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         screen.blit(self.image,self.rect)
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
             pygame.draw.rect(screen,color=(255,255,0),rect=self.rect_pies)
 
-    def update(self,delta_ms):   
+    def update(self,delta_ms):
+        """
+        Este metodo es el principal que se encarga actualizar los demas metodos dependiendo del tiempo que le pasemos al move_rate
+
+        Parametros: recibe un delta_ms que es un valor acumulable que nos servira para controlar cada cuando se actualiza el objeto
+        """  
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.mover_plataforma_horizontal()

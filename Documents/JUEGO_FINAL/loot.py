@@ -25,13 +25,23 @@ class Botín:
         
 
     def draw(self,pantalla):
-        if self.recolectado == False:
-            if(DEBUG):
-                pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
-            self.imagen = self.animacion[self.frame]
-            pantalla.blit(self.imagen,self.rect)
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
+        if(DEBUG):
+            pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
+        self.imagen = self.animacion[self.frame]
+        pantalla.blit(self.imagen,self.rect)
 
     def update(self,delta_ms):
+        """
+        Este metodo se encarga de actualizar el frame de una animacion, dependiendo el valor que le pasemos a frame_rate
+
+        Parametros: recibe como parametro un delta_ms que es un valor acumulable que lo usaremos para controlar cada cuanto se actualize la animacion
+        """
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0

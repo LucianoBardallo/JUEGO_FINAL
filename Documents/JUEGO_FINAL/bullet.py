@@ -38,14 +38,29 @@ class Bullet():
         
    
     def change_x(self,delta_x):
+        """
+        Este metodo se encarga de cambiar el valor de X para darle movimiento a la bala
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.x += delta_x
         self.rect.x = int(self.x)   
 
     def change_y(self,delta_y):
+        """
+        Este metodo se encarga de cambiar el valor de Y para darle movimiento a la bala
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.y += delta_y
         self.rect.y = int(self.y)
 
     def do_movement(self,delta_ms):
+        """
+        Este metodo se encarga de actualizar el movimiento de las balas
+
+        Parametros: recibe como parametro el valor delta_ms
+        """
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
@@ -53,6 +68,11 @@ class Bullet():
             self.change_y(self.move_y)
 
     def do_animation(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de las animaciones
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
@@ -62,12 +82,21 @@ class Bullet():
                 self.frame = 0
     
     def draw(self,screen):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rect)
         self.image = self.animacion[self.frame]
         screen.blit(self.image,self.rect)
 
     def update(self,delta_ms):
+        """
+        Este metodo se encarga de utilizar los metodos creados anteriormente y actualizarlos
+        """
         self.do_movement(delta_ms)
         self.do_animation(delta_ms) 
 

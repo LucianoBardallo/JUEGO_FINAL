@@ -24,22 +24,39 @@ class FormPausaOpciones(Form):
         self.lista_widget = [self.text1,self.text2,self.pb1,self.pb2,self.boton1,self.boton2,self.boton3,self.boton4]
 
     def on_click_boton1(self, parametro):
+        """
+        Este metodo se encarga de decrementar el valor del progressbar
+        """
         if self.pb1.value > 0:
             self.pb1.value -= 1
     
     def on_click_boton2(self, parametro):
+        """
+        Este metodo se encarga de decrementar el valor del progressbar
+        """
         if self.pb2.value > 0:
             self.pb2.value -= 1
     
     def on_click_boton3(self, parametro):
+        """
+        Este metodo se encarga de incrementar el valor del progressbar
+        """
         if self.pb1.value < self.pb1.value_max:
             self.pb1.value += 1
     
     def on_click_boton4(self, parametro):
+        """
+        Este metodo se encarga de incrementar el valor del progressbar
+        """
         if self.pb2.value < self.pb2.value_max:
             self.pb2.value += 1
         
     def update(self, lista_eventos,sonidos):
+        """
+        Este metodo se encarga de actualizar y controlar el sonido y los distintos widget
+
+        Parametros: recibe una lista de eventos y sonidos
+        """
         pygame.mixer.music.set_volume(self.pb1.value/10)
         for sonido in sonidos:
             sonido.set_volume(self.pb2.value/10)
@@ -51,6 +68,9 @@ class FormPausaOpciones(Form):
                     self.set_active("pausa")
 
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar los distintos widget en pantalla
+        """
         super().draw()
         for aux_boton in self.lista_widget:    
             aux_boton.draw()

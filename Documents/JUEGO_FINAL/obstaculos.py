@@ -20,6 +20,11 @@ class Obstaculo:
         self.rectangulo_pies.y = y + self.rect.height - ALTURA_PIES
 
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -53,6 +58,11 @@ class Obstaculo_sierra(Obstaculo):
         self.rectangulo_pies.y = y + self.rect.height - ALTURA_PIES * 3
     
     def update(self,delta_ms):
+        """
+        Este metodo se encarga de actualizar el frame de una animacion, dependiendo el valor que le pasemos a frame_rate
+
+        Parametros: recibe como parametro un delta_ms que es un valor acumulable que lo usaremos para controlar cada cuanto se actualize la animacion
+        """
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
@@ -62,6 +72,12 @@ class Obstaculo_sierra(Obstaculo):
                 self.frame = 0
     
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         self.imagen = self.animacion[self.frame]
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):

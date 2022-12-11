@@ -23,17 +23,33 @@ class FormMenu(Form):
         self.lista_widget = [self.text1,self.boton1,self.boton2,self.boton3,self.boton4]
 
     def on_click_boton1(self, parametro):
+        """
+        Este metodo se encarga de obtener un parametro y pasarlo a otro metodo
+
+        Parametro: un str que representa la clave del formulario
+        """
         self.set_active(parametro)
     
     def on_click_boton2(self, parametro):
+        """
+        Este metodo se encarga de cerrar el juego
+        """
         pygame.quit()
         sys.exit()
 
     def update(self, lista_eventos):
+        """
+        Este metodo se encarga de actualizar el los distintos widget
+
+        Parametros: recibe una lista de eventos
+        """
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
 
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar los distintos widget en pantalla
+        """
         super().draw()
         for aux_widget in self.lista_widget:    
             aux_widget.draw()

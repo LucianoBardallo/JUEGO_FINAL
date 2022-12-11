@@ -36,6 +36,11 @@ class FormTabla(Form):
         self.lista_widget = [self.boton1,self.boton2,self.boton3,self.boton4,self.boton5,self.boton6,self.boton7,self.boton8,self.boton9,self.boton10,self.ima1,self.ima2,self.ima3,self.ima4,self.ima5]
     
     def update(self, lista_eventos):
+        """
+        Este metodo se encarga de actualizar los distintos widget, y la tabla de posiciones
+
+        Parametros: recibe una lista de eventos
+        """
         self.puntuaciones = leer_lineas(self.nivel)
         self.boton1._text = " {0} ".format(self.puntuaciones[0][1])
         self.boton2._text = " {0} ".format(self.puntuaciones[1][1])
@@ -56,6 +61,9 @@ class FormTabla(Form):
                     self.set_active("puntuaciones")
         
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar los widget en pantalla
+        """
         super().draw()
         for aux_widget in self.lista_widget:    
             aux_widget.draw()

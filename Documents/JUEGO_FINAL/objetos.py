@@ -19,6 +19,11 @@ class Objeto:
         self.desbloqueado = False
 
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         pantalla.blit(self.imagen,self.rect)
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -50,6 +55,12 @@ class Objeto_Animado(Objeto):
         self.tipo_bloqueado = tipo_bloqueado
         
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Cambia la imagen dependiendo del estado que se encuentra el objeto animado
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         self.imagen = self.imagenes[self.tipo_bloqueado]
         if self.desbloqueado:
             self.imagen = self.imagenes[self.tipo_desbloqueado]

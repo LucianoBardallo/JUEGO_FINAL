@@ -40,6 +40,11 @@ class Nivel:
         self.puntuacion = 0
         
     def crear_jugador(self):
+        """
+        Este metodo se encarga de crear al jugador principal
+
+        Retorna: el jugador tipo objeto
+        """
         for coordenadas in self.jugador_data["coordenadas"]:
             x = coordenadas[0]
             y = coordenadas[1]
@@ -48,6 +53,11 @@ class Nivel:
 
 
     def crear_mapa(self):
+        """
+        Este metodo se encarga de crear todo lo que sea tiles y objetos estaticos del nivel
+
+        Retorna: una lista con todos los tiles
+        """
         tiles = []
         x = 0
         y = 50
@@ -68,6 +78,11 @@ class Nivel:
         return tiles
     
     def crear_plataformas_mobiles(self):
+        """
+        Este metodo se encarga de crear todas las plataformas mobiles
+
+        Retorna: una lista con las plataformas mobiles
+        """
         plataformas = []
         for plataforma in self.plataformas_data:
             for coordenada in plataforma["coordenadas"]:
@@ -82,6 +97,11 @@ class Nivel:
         return plataformas
 
     def crear_obstaculos(self):
+        """
+        Este metodo se encarga de crear los obstaculos ya sean pinchos o acido
+
+        Retorna: una lista de con los obstaculos
+        """
         obstaculos = []
         x = 0
         y = 50
@@ -100,6 +120,11 @@ class Nivel:
         return obstaculos
     
     def crear_obstaculos2(self):
+        """
+        Este metodo se encarga de crear obstaculos tipo sierra que tienen animacion
+
+        Retorna: una lista de obstaculos sierra
+        """
         obstaculos2 = []
         for obstaculo in self.obstaculos_data:
             for coordenada in obstaculo["coordenadas"]:
@@ -111,6 +136,11 @@ class Nivel:
 
 
     def crear_loot(self):
+        """
+        Este metodo se encarga de crear todos los objetos recolectables del nivel
+
+        Retorna: una lista de objetos recolectables
+        """
         loot = []
         x = 0
         y = 50
@@ -124,6 +154,11 @@ class Nivel:
         return loot
 
     def crear_enemigos(self):
+        """
+        Este metodo se encarga de crear todos los enemigos del nivel
+
+        Retorna: una lista de enemigos
+        """
         enemigos = []
         for enemigo in self.enemigos_data:
             for coordenada in enemigo["coordenadas"]:
@@ -141,6 +176,11 @@ class Nivel:
         return enemigos
            
     def crear_objetos(self):
+        """
+        Este metodo se encarga de crear todos los objetos que tienen diferentes estados del nivel
+
+        Retorna: una lista de objetos animados
+        """
         objetos = []
         for objeto in self.objetos_data:
             for coordenada in objeto["coordenadas"]:
@@ -155,6 +195,9 @@ class Nivel:
         return objetos
 
     def colisiones(self,delta_ms,sonidos):
+        """
+        Este metodo se encarga de verificar todas las coliciones del nivel
+        """
         #MUROS
         self.jugador.move_alloved[IZQUIERDA] = True
         self.jugador.move_alloved[DERECHA] = True
@@ -269,6 +312,10 @@ class Nivel:
    
 
     def draw(self):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla. En este todos los elementos que componen el nivel
+        Tambien se encarga de dibujar las balas de los enemigos
+        """
         for lista in self.nivel:
             for elemento in lista:
                 elemento.draw(self.pantalla)
@@ -279,6 +326,9 @@ class Nivel:
                 
     
     def update(self,delta_ms,sonidos):
+        """
+        Este metodo se encarga de actualizar todos los elementos del nivel, usando todos los metodos update
+        """
         for lista in self.nivel:
             for elemento in lista:
                 if type(elemento) == Enemigo_Melee:

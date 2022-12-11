@@ -136,6 +136,11 @@ class Jugador:
 
     #ACCIONES
     def caminar(self,direccion:int): 
+        """
+        Este metodo se encarga del movimiento del jugador, le da un valor al movimiento de x
+
+        Parametros: recibe como parametros la direccion de hacia donde mira el personaje
+        """
         if self.vivo:
             self.direccion = direccion
             self.esta_caminando = True
@@ -145,10 +150,18 @@ class Jugador:
                     self.move_x = self.velocidad_movimiento[self.direccion] // 2
          
     def parar(self):
+        """
+        Este metodo se encarga se parar al personaje cuando no esta haciendo ninguna accion
+        """
         self.esta_caminando = False
         self.move_x = 0
 
     def disparar(self,shoot=True):
+        """
+        Este metodo se encarga del disparo del personaje, crear una bala cuando se usa el boton de disparar y se guarda en una lista de municiones
+
+        Parametros: recibe un booleano que sirve para verificar si el personaje tiene que disparar o no
+        """
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0 and self.municion > 0:
@@ -160,11 +173,21 @@ class Jugador:
             self.esta_disparando = False
     
     def atacar(self,melee=True):
+        """
+        Este metodo se encarga del ataque cuerpo a cuerpo del personaje
+
+        Parametros: recibe un booleano que sirve para verificar si el personaje tiene que atacar o no
+        """
         self.esta_pegando = melee
         if melee:
             self.esta_pegando = True
         
     def saltar(self, jump=True):
+        """
+        Este metodo se encarga del salto del personaje, le da un valor al movimiento de y
+
+        Parametros: recibe un booleano que sirva para verificar si el personaje tiene que saltar o no
+        """
         if jump:
             if self.sobre_plataforma:
                 self.esta_saltando = True
@@ -176,11 +199,19 @@ class Jugador:
 
     #VERIFICACIONES     
     def limitar_salto(self):
+        """
+        Este metodo se encarga de darle un limite al salto, para que no salte infinitamente
+        """
         if self.rectangulo_pies.y < self.comienzo_salto - 150:
             self.esta_saltando = False
  
 
     def verificar_plataforma(self, tiles,obstaculos,plataformas):
+        """
+        Este metodo se encarga de verificar todas las plataformas con los pies del personaje, para saber si se aplica la gravedad o no.
+
+        Parametros: recibe una lista de tiles, obstaculos y plataformas que es donde el personaje puede pisar y no caerse
+        """
         if not self.esta_saltando:
             self.sobre_plataforma = False
             for tile in tiles:
@@ -208,6 +239,9 @@ class Jugador:
                 
 
     def aplicar_gravedad(self):
+        """
+        Este metodo se encarga de la gravedad, si no esta sobre una plataforma o saltando, se aplica la gravedad y el personaje cae
+        """
         if not self.esta_saltando:
             if not self.sobre_plataforma:
                 self.move_y = self.gravedad
@@ -217,6 +251,11 @@ class Jugador:
                 self.esta_cayendo = False
 
     def actualizar_invensible(self, delta_ms):
+        """
+        Este metodo se encarga de actualizar al invensibilidad del personaje, dandole un tiempo donde el personaje no recibe daño
+
+        Parametros: recibe un valor de delta_ms que sirve para controlar cuando tiempo dura la invensibilidad
+        """
         if self.invensible:
             self.tiempo_inmune += delta_ms
             if self.tiempo_inmune >= 500:
@@ -224,6 +263,11 @@ class Jugador:
                 self.invensible = False
 
     def actualizar_bala(self,delta_ms,pantalla):
+        """
+        Este metodo se encarga de actualizar las balas del personaje, actualiza el tiempo de cooldowwn, dibuja y updatea las balas
+
+        Parametros: recibe un valor delta_ms que se le pasa al update de las balas y la pantalla donde se van a dibujar las balas
+        """
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
@@ -231,12 +275,22 @@ class Jugador:
             bala.draw(pantalla)
 
     def comprobar_vidas(self,sonidos):
+        """
+        Este metodo se encarga de comprobar las vidas del personaje, y si llegan a cero el personaje pasa a estado muerto
+
+        Parametros: recibe una lista de sonidos, para usarlo cuando recibe un hit
+        """
         if self.vidas < 1:
             pygame.mixer.Sound.play(sonidos[3])
             self.vivo = False
     
     #MOVIMIENTO
     def cambiar_x(self,delta_x):
+        """
+        Este metodo se encarga de cambiar el valor de X para darle movimiento al personaje
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.x += delta_x
         self.rectangulo_colision.x += delta_x
         self.rectangulo_pies.x += delta_x
@@ -246,6 +300,11 @@ class Jugador:
 
 
     def cambiar_y(self,delta_y):
+        """
+        Este metodo se encarga de cambiar el valor de Y para darle movimiento al personaje
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.y += delta_y
         self.rectangulo_colision.y += delta_y
         self.rectangulo_pies.y += delta_y
@@ -255,6 +314,9 @@ class Jugador:
 
     #ANIMACIONES
     def animaciones(self):
+        """
+        Este metodo se encarga de cambiar las distintas animaciones del personaje
+        """
         if self.vivo:
             if not self.invensible:
                 if self.esta_saltando:
@@ -276,12 +338,22 @@ class Jugador:
 
 
     def cambiar_animacion(self, animation):
+        """
+        Este metodo se encarga de cambiar la animacion actual en caso de ser necesario
+
+        Parametro: recibe como parametro la animacion a verificar
+        """
         if self.animacion != animation[DERECHA] and self.animacion != animation[IZQUIERDA]:
             self.frame = 0
         self.animacion = animation[self.direccion]
 
 
     def actualizar_frames(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de las animaciones
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animacion += delta_ms
         if self.esta_saltando or self.esta_cayendo:
             if(self.tiempo_transcurrido_animacion >= self.frame_rate_ms + 80):
@@ -304,6 +376,12 @@ class Jugador:
                         self.frame = len(self.animacion) - 1 
 
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         if(DEBUG):
             pygame.draw.rect(pantalla,color=(255,0 ,0),rect=self.rectangulo_colision)
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -315,6 +393,11 @@ class Jugador:
         pantalla.blit(self.imagen,self.rect)
 
     def events(self,teclas,eventos,sonidos):
+        """
+        Este metodo se encarga de verificar todos los eventos del usuario con el juego o la pantalla
+
+        Parametros: recibe como parametros, las teclas presionadas, los eventos ocurridos y una lista de sonidos para usarlos en algunos casos
+        """
         #EVENTOS
         for evento in eventos:
             if evento.type == pygame.QUIT: # Salir
@@ -360,6 +443,11 @@ class Jugador:
 
     #MOVIMIENTO
     def hacer_movimiento(self,delta_ms,tiles,obstaculos,plataformas):
+        """
+        Este metodo se encarga de todo el movimiento del personaje, usando los distintos tipos de metodos creados anteriormente
+
+        Parametros: recibe como parametros el valor delta_ms que se usa para controlar el tiempo, una lista de tiles,obstaculos y plataformas
+        """
         self.tiempo_transcurrido_movimiento += delta_ms
         if(self.tiempo_transcurrido_movimiento >= self.move_rate_ms):
             self.tiempo_transcurrido_movimiento = 0
@@ -373,11 +461,20 @@ class Jugador:
 
     #ANIMACIONES
     def hacer_animaciones(self,delta_ms):
+        """
+        Este metodo se encarga de controlar las animaciones usando los metodos relacionados con el mismo creados anteriormente
+        """
         self.animaciones()
         self.actualizar_frames(delta_ms)      
 
     #ACTUALIZACION PRINCIPAL
     def update(self,delta_ms,pantalla,teclas,eventos,tiles,obstaculos,plataformas,sonidos):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto jugador y ponerlos en un solo metodo
+
+        Parametros: recibe como parametros el valor delta_ms, pantalla, lista de teclas, eventos, 
+        tiles, obstaculos, plataformas y sonidos para pasarlos a los metodo correspondientes
+        """
         self.events(teclas,eventos,sonidos)
         self.comprobar_vidas(sonidos)
         self.hacer_movimiento(delta_ms,tiles,obstaculos,plataformas)

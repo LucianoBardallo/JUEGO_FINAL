@@ -53,16 +53,31 @@ class Enemigo:
         self.comienzo_patrulla = self.rect.centerx
         
     def cambiar_x(self,delta_x):
+        """
+        Este metodo se encarga de cambiar el valor de X para darle movimiento al enemigo
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.x += delta_x
         self.rectangulo_colision.x += delta_x
         self.rectangulo_pies.x += delta_x
 
     def cambiar_y(self,delta_y):
+        """
+        Este metodo se encarga de cambiar el valor de Y para darle movimiento al enemigo
+
+        Parametros: recibe como parametro un int que representa los pixeles a mover
+        """
         self.rect.y += delta_y
         self.rectangulo_colision.y += delta_y
         self.rectangulo_pies.y += delta_y
 
     def verificar_plataforma(self, tiles, plataformas):
+        """
+        Este metodo se encarga de verificar todas las plataformas con los pies del enemigo, para saber si se aplica la gravedad o no.
+
+        Parametros: recibe una lista de tiles y plataformas que es donde el enemigo puede pisar y no caerse
+        """
         self.sobre_plataforma = False
         for tile in tiles:
             if type(tile) == Plataforma or type(tile) == Objeto_Estatico or type(tile) == Muro:
@@ -80,12 +95,20 @@ class Enemigo:
                 break
 
     def aplicar_gravedad(self):
+        """
+        Este metodo se encarga de la gravedad, si no esta sobre una plataforma o saltando, se aplica la gravedad y el enemigo cae
+        """
         if not self.sobre_plataforma:
             self.mover_y = self.gravedad
         else:
             self.mover_y = 0
 
     def hacer_movimiento(self,delta_ms,tiles,plataformas):
+        """
+        Este metodo se encarga de todo el movimiento del enemigo, usando los distintos tipos de metodos creados anteriormente
+
+        Parametros: recibe como parametros el valor delta_ms que se usa para controlar el tiempo, una lista de tiles y plataformas
+        """
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
@@ -96,6 +119,11 @@ class Enemigo:
             self.cambiar_y(self.mover_y)
 
     def hacer_animacion(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de las animaciones
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
@@ -105,6 +133,12 @@ class Enemigo:
                 self.frame = 0
     
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         if DEBUG:
             pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -112,11 +146,19 @@ class Enemigo:
         pantalla.blit(self.imagen,self.rect)
 
     def actualizar_vida(self):
+        """
+        Este metodo se encarga de verificar la vida actual del enemigo, y pasarlo a muerto en caso de tener cero
+        """
         if self.vidas < 1:
             pygame.mixer.Sound.play(self.sonidos[8])
             self.vivo = False
 
     def update(self,delta_ms,plataformas):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto enemigo y ponerlos en un solo metodo
+
+        Parametros: recibe como parametros el valor delta_ms y una lista de plataformas
+        """
         self.actualizar_vida()
         self.hacer_movimiento(delta_ms,plataformas)
         self.hacer_animacion(delta_ms)
@@ -133,6 +175,9 @@ class Enemigo_Melee(Enemigo):
         self.vidas = 5
 
     def patrullar(self):
+        """
+        Este metodo se encarga de darle un comportamiento al enemigo, en este caso el de patrullar una zona pasado por parametro
+        """
         if self.vidas > 0:
             if self.rect.x >= self.comienzo_patrulla - self.patrulla and self.mover_izquierda:
                 self.mover_x = -self.velocidad_movimiento
@@ -145,6 +190,11 @@ class Enemigo_Melee(Enemigo):
                 self.mover_izquierda = True
 
     def hacer_movimiento(self,delta_ms,tiles,plataformas):
+        """
+        Este metodo se encarga de todo el movimiento del enemigo, usando los distintos tipos de metodos creados anteriormente
+
+        Parametros: recibe como parametros el valor delta_ms que se usa para controlar el tiempo, una lista de tiles y plataformas
+        """
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
             self.tiempo_transcurrido_move = 0
@@ -157,6 +207,12 @@ class Enemigo_Melee(Enemigo):
     
 
     def update(self,delta_ms,tiles,sonidos,plataformas):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto enemigo y ponerlos en un solo metodo
+
+        Parametros: recibe como parametros el valor delta_ms, 
+        tiles, plataformas y sonidos para pasarlos a los metodo correspondientes
+        """
         self.sonidos = sonidos
         self.actualizar_vida()
         self.hacer_movimiento(delta_ms,tiles,plataformas)
@@ -186,6 +242,11 @@ class Enemigo_Distancia(Enemigo):
         self.disparo_cooldown = 0  
 
     def disparar(self,shoot=True):
+        """
+        Este metodo se encarga del disparo del enemigo, crear una bala cuando dispara y se guarda en una lista de municiones
+
+        Parametros: recibe un booleano que sirve para verificar si el enemigo tiene que disparar o no
+        """
         self.esta_disparando = False
         if shoot:
             self.esta_disparando = True
@@ -196,6 +257,11 @@ class Enemigo_Distancia(Enemigo):
                 self.municiones.append(bala)
 
     def actualizar_bala(self,delta_ms,pantalla):
+        """
+        Este metodo se encarga de actualizar las balas del enemigo, actualiza el tiempo de cooldowwn, dibuja y updatea las balas
+
+        Parametros: recibe un valor delta_ms que se le pasa al update de las balas y la pantalla donde se van a dibujar las balas
+        """
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
@@ -203,6 +269,12 @@ class Enemigo_Distancia(Enemigo):
             bala.draw(pantalla)
 
     def draw(self,pantalla):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         if DEBUG:
             pygame.draw.rect(pantalla,(255,0,0),self.rectangulo_colision)
             pygame.draw.rect(pantalla,color=(255,255,0),rect=self.rectangulo_pies)
@@ -211,11 +283,21 @@ class Enemigo_Distancia(Enemigo):
         pantalla.blit(self.imagen,self.rect)
 
     def hacer_colision(self, pos_xy):
+        """
+        Este metodo se encarga de verificar la colision de la rectangulo vision del enemigo con el personaje, en caso de colicionar, el enemigo dispara
+
+        Parametros: recibe como parametro la posicion del jugador
+        """
         self.disparar(False)
         if self.rectangulo_vision.colliderect(pos_xy):
             self.disparar(True)
             
     def update(self,pantalla,delta_ms,tiles,pos_xy,sonidos,plataformas):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto enemigo y ponerlos en un solo metodo
+
+        Parametros: recibe como parametros el valor delta_ms y una lista de plataformas
+        """
         self.sonidos = sonidos
         self.actualizar_vida()
         self.hacer_movimiento(delta_ms,tiles,plataformas)

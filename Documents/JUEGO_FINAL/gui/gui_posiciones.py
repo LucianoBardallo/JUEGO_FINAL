@@ -23,9 +23,19 @@ class FormPuntuaciones(Form):
         self.lista_widget = [self.boton1,self.boton2,self.boton3,self.boton4]
 
     def on_click_boton1(self, parametro):
+        """
+        Este metodo se encarga de obtener un parametro y pasarlo a otro metodo
+
+        Parametro: un str que representa la clave del formulario
+        """
         self.set_active(parametro)
 
     def update(self, lista_eventos):
+        """
+        Este metodo se encarga de actualizar el los distintos widget
+
+        Parametros: recibe una lista de eventos
+        """
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
         for evento in lista_eventos:
@@ -34,6 +44,9 @@ class FormPuntuaciones(Form):
                     self.set_active("menu")
 
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar los distintos widget en pantalla
+        """
         super().draw()
         for aux_widget in self.lista_widget:    
             aux_widget.draw()

@@ -40,11 +40,19 @@ class Bala:
         self.velocidad_trayectoria[IZQUIERDA] = -self.velocidad_disparo
 
     def trayectoria(self):
+        """
+        Este metodo se encarga de darle una trayectoria a la bala
+        """
         self.velocidad_disparo = self.velocidad_trayectoria[self.direccion]
         self.rect.x += self.velocidad_disparo
         self.rectangulo_colision.x += self.velocidad_disparo
 
     def actualizar_frames(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de la animacion de la bala
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animation += delta_ms
         if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation = 0
@@ -54,6 +62,12 @@ class Bala:
                 self.frame = 0
 
     def draw(self,screen):
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
         if self.impacto == False:
             if(DEBUG):
                 pygame.draw.rect(screen,color=(255,0 ,0),rect=self.rectangulo_colision)
@@ -61,6 +75,11 @@ class Bala:
             screen.blit(self.imagen,self.rect)
 
     def update(self,delta_ms):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto Bala y ponerlos en un solo metodo
+
+        Parametros: recibe como parametro el valor delta_ms
+        """
         self.trayectoria()
         self.actualizar_frames(delta_ms)
     

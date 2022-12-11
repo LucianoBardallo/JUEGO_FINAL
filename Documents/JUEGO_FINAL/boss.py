@@ -32,8 +32,6 @@ class Boss:
         self.ojo_stage["four"] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\eye4\00{0}.png",7,False,w=100,h=100)
         self.ojo_stage["five"] = Auxiliar.getSurfaceFromSeparateFiles(RUTA_IMAGEN + r"Characters\boss\eye5\00{0}.png",7,False,w=100,h=100)
 
-
-        self.vidas = 1
         self.hp = 10000
         self.frame = 0
         self.frame2 = 0
@@ -74,6 +72,11 @@ class Boss:
 
 
     def hacer_animacion_cuerpo(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de las animaciones del cuerpo del boss
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animation_cuerpo += delta_ms
         if(self.tiempo_transcurrido_animation_cuerpo >= self.frame_rate_ms):
             self.tiempo_transcurrido_animation_cuerpo = 0
@@ -83,6 +86,11 @@ class Boss:
                 self.frame = 0
 
     def hacer_animacion_ojo(self,delta_ms):
+        """
+        Este metodo se encarga de actualiza los frames de las animaciones del ojo del boss
+
+        Parametro: recibe un valor delta_ms que se acumula y ayuda a control el tiempo de la actualizacion
+        """
         self.tiempo_transcurrido_animation_ojo += delta_ms
         if(self.tiempo_transcurrido_animation_ojo >= self.frame_rate_ms + 80):
             self.tiempo_transcurrido_animation_ojo = 0
@@ -94,6 +102,11 @@ class Boss:
                     self.frame2 = len(self.animacion2) - 4
     
     def disparar(self,shoot,pos_xy):
+        """
+        Este metodo se encarga del disparo del boss, crear una bala cuando dispara y se guarda en una lista de municiones
+
+        Parametros: recibe un booleano que sirve para verificar si el boss tiene que disparar o no y la posicion del personaje
+        """
         if shoot:
             self.esta_disparando = True
             if self.disparo_cooldown == 0:
@@ -114,6 +127,11 @@ class Boss:
             self.esta_disparando = False
 
     def actualizar_bala(self,delta_ms,pantalla):
+        """
+        Este metodo se encarga de actualizar las balas del boss, actualiza el tiempo de cooldowwn, dibuja y updatea las balas
+
+        Parametros: recibe un valor delta_ms que se le pasa al update de las balas y la pantalla donde se van a dibujar las balas
+        """
         if self.disparo_cooldown > 0:
             self.disparo_cooldown -= 1
         for bala in self.municiones:
@@ -121,9 +139,11 @@ class Boss:
             bala.draw(pantalla)
     
     def actualizar_vida(self):
+        """
+        Este metodo se encarga de verificar la vida actual del enemigo, 
+        y pasarlo a muerto en caso de tener cero, tambien cambia la animacion del ojo dependiendo de la vida del boss
+        """
         if self.hp <= 0:
-            self.vidas -= 1
-        if self.vidas < 1:
             pygame.mixer.Sound.play(self.sonidos[7])
             self.vivo = False
         
@@ -139,22 +159,37 @@ class Boss:
             self.animacion2 = self.ojo_stage["five"]
         
     def hacer_colision(self, pos_xy):
+        """
+        Este metodo se encarga de verificar la colision de la rectangulo vision del boss con el personaje, en caso de colicionar, el boss dispara
+
+        Parametros: recibe como parametro la posicion del jugador
+        """
         self.disparar(False,pos_xy)
         if self.rect_vision.colliderect(pos_xy):
             self.disparar(True,pos_xy)
 
     def draw(self,pantalla):
-        if self.vidas > 0:
-            self.imagen = self.animacion[self.frame]
-            self.imagen2 = self.animacion2[self.frame2]
-            pantalla.blit(self.imagen,self.rect)
-            pantalla.blit(self.imagen2,self.rect_ojo)
-            if DEBUG:
-                pygame.draw.rect(pantalla,(255,0,0),self.rect_ojo)
-                pygame.draw.rect(pantalla,(255,255,0),self.rect_vision)
-                pygame.draw.rect(pantalla,(255,0,0),self.rect_boca)
+        """
+        Este metodo se encarga de 'dibujar' lo que aparece en pantalla, tambien tiene un modo debug que muestra los rectangulos. 
+        Por ultima actualiza la imagen que se va a blitear
+
+        Parametros: recibe como parametro la pantalla que es donde se va a 'dibujar' el objeto
+        """
+        self.imagen = self.animacion[self.frame]
+        self.imagen2 = self.animacion2[self.frame2]
+        pantalla.blit(self.imagen,self.rect)
+        pantalla.blit(self.imagen2,self.rect_ojo)
+        if DEBUG:
+            pygame.draw.rect(pantalla,(255,0,0),self.rect_ojo)
+            pygame.draw.rect(pantalla,(255,255,0),self.rect_vision)
+            pygame.draw.rect(pantalla,(255,0,0),self.rect_boca)
 
     def update(self,delta_ms,pantalla,pos_xy,sonidos):
+        """
+        Esta es el metodo principal utilizado para usar todos los metodos principales del objeto Boss y ponerlos en un solo metodo
+
+        Parametros: recibe como parametros el valor delta_ms, pantalla y sonidos para pasarlos a los metodo correspondientes
+        """
         self.sonidos = sonidos
         self.hacer_animacion_cuerpo(delta_ms)
         self.hacer_animacion_ojo(delta_ms)

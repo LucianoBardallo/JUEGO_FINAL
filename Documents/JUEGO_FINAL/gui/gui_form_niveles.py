@@ -22,6 +22,11 @@ class FormNiveles(Form):
         self.lista_widget = [self.text1,self.boton1,self.boton2,self.boton3,self.boton4]
 
     def update(self, lista_eventos):
+        """
+        Este metodo se encarga de actualizar el los distintos widget
+
+        Parametros: recibe una lista de eventos
+        """
         for aux_widget in self.lista_widget:
             aux_widget.update(lista_eventos)
         for evento in lista_eventos:
@@ -30,6 +35,10 @@ class FormNiveles(Form):
                     self.set_active("menu")
 
     def on_click_boton_nivel(self,parametro):
+        """
+        Este metodo se encarga de resetear el nivel y activar el pasado por parametro y 
+        tambien cambiar el parametro donde van a trabajar de los formularios de pausa, you_win y you_lose
+        """
         self.forms_dict[parametro].resetear()
         self.set_active(parametro)
         self.forms_dict["pausa"].cambiar_nivel(parametro)
@@ -38,6 +47,9 @@ class FormNiveles(Form):
 
 
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar los distintos widget en pantalla
+        """
         super().draw()
         for aux_widget in self.lista_widget:    
             aux_widget.draw()

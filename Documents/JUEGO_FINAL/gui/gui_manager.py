@@ -38,12 +38,31 @@ class FormManager():
             self.form_nivel_4,self.form_pausa,self.form_pausa_opciones,self.form_puntuaciones,self.form_tabla1,self.form_tabla2,self.form_tabla3,self.form_tabla4]
 
     def crear_nivel(self,nivel):
+        """
+        Este metodo se encarga de crear el formulario nivel
+
+        Parametros: recibe un str que representa la clave del nivel a crear
+
+        Retorna: un objeto que representa al formulario del nivel
+        """
         return FormNivel(name=nivel,master_surface = self.pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,color_border=BLACK,active=False)
 
     def crear_tabla(self,tabla,nivel):
+        """
+        Este metodo se encarga de crear el formulario de la tabla de posiciones
+
+        Parametros: recibe un str que representa la clave de la tabla y otro que representa el nivel
+
+        Retorna: un objeto que representa al formulario de la tabla creada
+        """
         return FormTabla(name=tabla,nivel=nivel,master_surface = self.pantalla,x=0,y=0,w=ANCHO_VENTANA,h=ALTO_VENTANA,color_background=BLACK,imagen_background=RUTA_IMAGEN + "Menu\Button\Window_2.png",color_border=BLACK,active=False)
 
     def actualizar_forms(self,eventos,teclas,delta_ms,timer_1s,sonidos):
+        """
+        Este metodo se encarga de actualizar y dibujar el formulario que este activo
+
+        Parametros: una lista de eventos, teclas, sonidos, tambien un valor delta_ms, y un evento de usuario de tiempo
+        """
         
         if(self.form_menu.active):
             self.form_menu.update(eventos)

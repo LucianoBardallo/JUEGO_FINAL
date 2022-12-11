@@ -36,9 +36,19 @@ class FormNivel(Form):
 
         
     def resetear(self):
+        """
+        Este metodo se encarga de crear nuevamente el formulario, con los mismos atributos
+        """
         self.__init__(name = self.name, master_surface = self.master_surface)
 
     def update(self, lista_eventos, teclas, delta_ms, tiempo, sonidos):
+        """
+        Este metodo se encarga de actualizar el nivel actual, las colisiones y el jugador
+        Tambien ingresar la puntacion del jugador al terminar el nivel a la base de datos
+        Y por ultimo actualizar los distintos widget
+
+        Parametros: una lista de eventos, teclas, sonidos y un valor delta_ms y un evento de usario de tiempo
+        """
         self.nivel_actual.update(delta_ms,sonidos)
         self.nivel_actual.colisiones(delta_ms,sonidos)
         self.nivel_actual.jugador.update(delta_ms,self.nivel_actual.pantalla,teclas,lista_eventos,self.nivel_actual.tiles,self.nivel_actual.obstaculos,self.nivel_actual.plataformas,sonidos)
@@ -85,6 +95,10 @@ class FormNivel(Form):
    
         
     def draw(self): 
+        """
+        Este metodo se encarga de dibujar todo lo relacionado al nivel, y al jugadoor
+        Tambien los distintos tipos de widget y obstaculos
+        """
         super().draw()
         self.nivel_actual.draw()
         self.nivel_actual.jugador.draw(self.nivel_actual.pantalla)

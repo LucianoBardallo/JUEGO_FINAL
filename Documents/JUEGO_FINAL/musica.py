@@ -21,6 +21,9 @@ class Musica:
             sonido.set_volume(0.3)
 
     def play_musica(self):
+        """
+        Este metodo se encarga de reproducir la musica principal del juego
+        """
         pygame.mixer.init()
         pygame.mixer.music.load(RUTA_MUSICA + r"track 1.ogg")
         pygame.mixer.music.set_volume(0.3)
