@@ -55,6 +55,9 @@ https://www.youtube.com/watch?v=c2l85ImWJis
 - Version de Python 3.9.12 en adelante
 - Instalar pygame
 
+<h3> Instalacion </h3>
+
+- https://www.youtube.com/watch?v=gRpY-ty3alU&ab_channel=KevinVeliz
 
 <h3> Ejecutar </h3>
 
