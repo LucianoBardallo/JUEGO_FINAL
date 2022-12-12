@@ -1,5 +1,5 @@
 <h1 align="center">Hola 👋, Mi nombre es Luciano Bardallo</h1>
-<h3 align="center">Soy persona apasionada que está aprendiendo a programar</h3>
+<h3 align="center">Soy una persona apasionada que está aprendiendo a programar</h3>
 
 <h3> Introduccion </h3>
 
