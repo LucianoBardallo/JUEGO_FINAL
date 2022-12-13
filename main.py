@@ -27,8 +27,6 @@ while True:
             pygame.quit()
             sys.exit()
 
-    keys = pygame.key.get_pressed()
-
     delta_ms = clock.tick(FPS)
 
     juego.actualizar_forms(eventos,teclas,delta_ms,timer_1s,musica.sonidos)
