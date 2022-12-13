@@ -1,5 +1,5 @@
 <h1 align="center">Hola 👋, Mi nombre es Luciano Bardallo</h1>
-<h3 align="center">Soy persona apasionada que está aprendiendo a programar</h3>
+<h3 align="center">Soy una persona apasionada que está aprendiendo a programar</h3>
 
 <h3> Introduccion </h3>
 
@@ -14,7 +14,7 @@ teniendo que recolectar objetos mientras esquivan los distintos tipos de trampas
 
 <h3> Demo </h3>
 
-https://www.youtube.com/watch?v=c2l85ImWJis
+- https://www.youtube.com/watch?v=c2l85ImWJis
 
 <h3> Características incluidas hasta el momento </h3>
 
@@ -55,6 +55,9 @@ https://www.youtube.com/watch?v=c2l85ImWJis
 - Version de Python 3.9.12 en adelante
 - Instalar pygame
 
+<h3> Instalacion </h3>
+
+- https://www.youtube.com/watch?v=gRpY-ty3alU&ab_channel=KevinVeliz
 
 <h3> Ejecutar </h3>
 
